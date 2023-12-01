@@ -2,6 +2,9 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        'k2d': ['K2D', 'sans-serif'],
+      },
       colors: {
         primary: '#4673ce',
         secondary: '#1b387e',
