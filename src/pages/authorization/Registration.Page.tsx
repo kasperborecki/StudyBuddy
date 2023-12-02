@@ -1,15 +1,47 @@
-import {useState} from 'react';
+import {ChangeEvent, FormEvent, useState} from 'react';
 import logo from '../../asets/Logo.png';
-import UiPurpleButtonShort from '../../components/butons/UiPurpleButtonShort';
-import UiPurpleInput from '../../components/inputs/UiPurpleInput';
 import {IoMdEye} from 'react-icons/io';
 import {IoMdEyeOff} from 'react-icons/io';
+import supabase from '../../config/SupabaseClient';
+import {useNavigate} from 'react-router-dom';
 
 const RegistrationPage = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const navigate = useNavigate();
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
-  const handleShowHidePassword = () => {
-    setIsVisible(!isVisible);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    passwordSecond: '',
+  });
+
+  const handleTogglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [event.target.name]: event.target.value,
+    }));
+    console.log(formData);
+  };
+
+  const handleSubmit = async (e: FormEvent): Promise<void> => {
+    e.preventDefault();
+    if (formData.password === formData.passwordSecond) {
+      try {
+        const {error} = await supabase.auth.signUp({
+          email: formData.email,
+          password: formData.password,
+        });
+        // navigate('/');
+
+        if (error) throw error;
+      } catch (error) {
+        console.error('Authentication error:', error);
+      }
+    }
   };
 
   return (
@@ -21,36 +53,76 @@ const RegistrationPage = () => {
           className='w-[200px] h-[200px]'
         />
       </div>
-      <div className='mt-[12%] w-screen flex flex-col items-center font-k2d font-bold'>
+      <form
+        className='mt-[12%] w-screen flex flex-col items-center font-k2d font-bold'
+        onSubmit={handleSubmit}>
         <div className='w-[80%]'>
-          <p className='ml-4'>Email:</p>
-          <UiPurpleInput
-            backgroundText={'Przykład@gmail.com'}
-            isPassword={false}
+          <label className='ml-4'>Email:</label>
+          <input
+            className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
+            placeholder='Przykład@gmail.com'
+            name='email'
+            onChange={handleChange}
           />
-          <p className='ml-4'>Hasło:</p>
+          <label className='ml-4'>Hasło:</label>
           <div className='relative'>
-            <UiPurpleInput
-              backgroundText={'Przykład123#'}
-              isPassword={isVisible}
+            <input
+              type={isPasswordVisible ? 'text' : 'password'}
+              className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
+              placeholder='Przykład123!'
+              name='password'
+              onChange={handleChange}
             />
-            <button onClick={handleShowHidePassword} className='absolute top-3 right-5'>
-              {isVisible ? <IoMdEyeOff className='w-6 h-6'/> : <IoMdEye className='w-6 h-6'/>}
+            <button
+              type='button'
+              onClick={handleTogglePasswordVisibility}
+              className='absolute top-3 right-5'>
+              {isPasswordVisible ? (
+                <IoMdEye className='w-6 h-6' />
+              ) : (
+                <IoMdEyeOff className='w-6 h-6' />
+              )}
             </button>
-          </div>
-          <p className='ml-4'>Powtórz Hasło:</p>
-          <div className='relative'>
-            <UiPurpleInput
-              backgroundText={'Przykład123#'}
-              isPassword={isVisible}
-            />
-            <button onClick={handleShowHidePassword} className='absolute top-3 right-5'>
-              {isVisible ? <IoMdEyeOff className='w-6 h-6'/> : <IoMdEye className='w-6 h-6'/>}
-            </button>
+            <label className='ml-4'>Powtórz Hasło:</label>
+            <div className='relative'>
+              <input
+                type={isPasswordVisible ? 'text' : 'password'}
+                className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
+                placeholder='Przykład123!'
+                name='passwordSecond'
+                onChange={handleChange}
+              />
+              <button
+                type='button'
+                onClick={handleTogglePasswordVisibility}
+                className='absolute top-3 right-5'>
+                {isPasswordVisible ? (
+                  <IoMdEye className='w-6 h-6' />
+                ) : (
+                  <IoMdEyeOff className='w-6 h-6' />
+                )}
+              </button>
+            </div>
+            <div className='flex ml-5'>
+              <input
+                type='checkbox'
+                id='rememberMe'
+                className='w-4 h-4 mt-0.5 accent-purple-500'
+              />
+              <label
+                htmlFor='rememberMe'
+                className='ml-3'>
+                Zapamiętaj mnie
+              </label>
+            </div>
           </div>
         </div>
-        <UiPurpleButtonShort text={'ZAREJESTRUJ SIĘ'} />
-      </div>
+        <button
+          className='bg-[#ccabd8] border-2 border-black w-[50%] h-[50px] rounded-3xl mt-[8%]'
+          type='submit'>
+          ZAREJESTRUJ SIĘ
+        </button>
+      </form>
     </div>
   );
 };
