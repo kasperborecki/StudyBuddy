@@ -4,10 +4,13 @@ import {IoMdEye} from 'react-icons/io';
 import {IoMdEyeOff} from 'react-icons/io';
 import supabase from '../../config/SupabaseClient';
 import {useNavigate} from 'react-router-dom';
+import { useRecoilState} from 'recoil';
+import { registeredUserEmail } from '../../atoms/RegistredUser.Atom';
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [, setRegisteredUser] = useRecoilState(registeredUserEmail);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -35,7 +38,8 @@ const RegistrationPage = () => {
           email: formData.email,
           password: formData.password,
         });
-        // navigate('/');
+        navigate('/Complete-Data');
+        setRegisteredUser(formData.email)
 
         if (error) throw error;
       } catch (error) {
@@ -46,11 +50,11 @@ const RegistrationPage = () => {
 
   return (
     <div className='flex flex-col items-center justify-start h-screen bg-gradient-to-tr from-[#D687F3] via-[#F6AA80] to-[#FFDD94]'>
-      <div className='mt-[25%]'>
+      <div className='mt-[8%]'>
         <img
           src={logo}
           alt='Logo'
-          className='w-[200px] h-[200px]'
+          className='w-[150px] h-[150px]'
         />
       </div>
       <form
