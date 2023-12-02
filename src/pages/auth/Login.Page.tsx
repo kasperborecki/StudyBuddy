@@ -42,8 +42,12 @@ const LoginPage = () => {
 
   return (
     <div className='flex flex-col items-center justify-start h-screen bg-gradient-to-tr from-[#D687F3] via-[#F6AA80] to-[#FFDD94]'>
-      <div className='mt-[25%]'>
-        <img src={logo} alt='Logo' className='w-[200px] h-[200px]' />
+     <div className='mt-[8%]'>
+        <img
+          src={logo}
+          alt='Logo'
+          className='w-[150px] h-[150px]'
+        />
       </div>
       <form className='mt-[12%] w-screen flex flex-col items-center font-k2d font-bold' onSubmit={handleSubmit}>
         <div className='w-[80%]'>
