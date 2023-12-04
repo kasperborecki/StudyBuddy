@@ -26,12 +26,12 @@
   }
   
   .sc-nav-indicator {
-    margin-left: 21px;
+    /* margin-left: 5.5%; */
     position: absolute;
     width: 56px;
     height: 56px;
     bottom: 24px;
-    left: 0;
+    /* left: 0; */
     background-color: #000000;
     box-shadow: var(--main-cast-shadow);
     border-radius: 50%;
