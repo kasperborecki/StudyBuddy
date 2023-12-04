@@ -4,8 +4,8 @@ import {IoMdEye} from 'react-icons/io';
 import {IoMdEyeOff} from 'react-icons/io';
 import supabase from '../../config/SupabaseClient';
 import {useNavigate} from 'react-router-dom';
-import { useRecoilState} from 'recoil';
-import { registeredUserEmail } from '../../atoms/RegistredUser.Atom';
+import {useRecoilState} from 'recoil';
+import {registeredUserEmail} from '../../atoms/RegistredUser.Atom';
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ const RegistrationPage = () => {
       ...prevFormData,
       [event.target.name]: event.target.value,
     }));
-    console.log(formData);
   };
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
@@ -39,7 +38,7 @@ const RegistrationPage = () => {
           password: formData.password,
         });
         navigate('/Complete-Data');
-        setRegisteredUser(formData.email)
+        setRegisteredUser(formData.email);
 
         if (error) throw error;
       } catch (error) {
@@ -106,18 +105,6 @@ const RegistrationPage = () => {
                   <IoMdEyeOff className='w-6 h-6' />
                 )}
               </button>
-            </div>
-            <div className='flex ml-5'>
-              <input
-                type='checkbox'
-                id='rememberMe'
-                className='w-4 h-4 mt-0.5 accent-purple-500'
-              />
-              <label
-                htmlFor='rememberMe'
-                className='ml-3'>
-                Zapamiętaj mnie
-              </label>
             </div>
           </div>
         </div>

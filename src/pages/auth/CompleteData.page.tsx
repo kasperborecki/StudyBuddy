@@ -1,13 +1,13 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
+import {ChangeEvent, useState} from 'react';
 import logo from '../../asets/Logo.png';
-import {IoMdEye} from 'react-icons/io';
-import {IoMdEyeOff} from 'react-icons/io';
-import supabase from '../../config/SupabaseClient';
 import {useNavigate} from 'react-router-dom';
+import UserData from '../../services/common/UserData';
+import { registeredUserEmail } from '../../atoms/RegistredUser.Atom';
+import { useRecoilState } from 'recoil';
 
 const CompleteDataPage = () => {
-  // const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const [registeredUser, ] = useRecoilState(registeredUserEmail);
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -22,10 +22,13 @@ const CompleteDataPage = () => {
     }));
     console.log(formData);
   };
-
-  const handleSubmit = async (e: FormEvent): Promise<void> => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    const newData = { ...formData };
+    console.log(registeredUser, newData);
+    await UserData.completeUserData(newData, registeredUser);
+    navigate('/');
   };
+  
 
   return (
     <div className='flex flex-col items-center justify-start h-screen bg-gradient-to-tr from-[#D687F3] via-[#F6AA80] to-[#FFDD94]'>
@@ -40,14 +43,14 @@ const CompleteDataPage = () => {
         className='mt-[12%] w-screen flex flex-col items-center font-k2d font-bold'
         onSubmit={handleSubmit}>
         <div className='w-[80%]'>
-          <label className='ml-4'>Email:</label>
+          <label className='ml-4'>Imie:</label>
           <input
             className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
             placeholder='Jan'
             name='name'
             onChange={handleChange}
           />
-          <label className='ml-4'>Hasło:</label>
+          <label className='ml-4'>Nazwisko:</label>
           <div className='relative'>
             <input
               className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'

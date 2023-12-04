@@ -7,7 +7,7 @@ import LoginPage from '../pages/auth/Login.Page';
 import RegistrationPage from '../pages/auth/Registration.Page';
 import { useAuth } from '../atoms/Route.Atom';
 import HomePage from '../pages/home/Home.Page';
-import CompleteDataPage from '../pages/auth/CompleteData.page';
+// import CompleteDataPage from '../pages/auth/CompleteData.page';
 
 const AppRouter = () => {
   const { session } = useAuth();
@@ -23,7 +23,7 @@ const AppRouter = () => {
               <Route path='/' element={<WelcomePage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/registration' element={<RegistrationPage />} />
-              <Route path='Complete-Data' element={<CompleteDataPage />} />
+              {/* <Route path='Complete-Data' element={<CompleteDataPage />} /> */}
             </>
           )}
         </Routes>

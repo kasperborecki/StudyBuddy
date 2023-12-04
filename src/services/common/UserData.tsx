@@ -1,17 +1,17 @@
 import supabase from "../../config/SupabaseClient";
 
-const completeUserData = async (formData: string) => {
+const completeUserData = async (newData: any, registeredUser:string ) => {
 const { error } = await supabase
   .from('profiles')
   .insert([
     { 
-      name: FormData.name, 
-      // surname: FormData.surname, 
-      // city: FormData.city, 
-      // birth_date: FormData.birthDate, 
+      name: newData.name, 
+      surname: newData.surname, 
+      city: newData.city, 
+      birth_date: newData.birthDate, 
     },
   ])
-  // .eq(email, )
+  .eq('email', registeredUser)
   if (error) throw error.message;
 };
 
