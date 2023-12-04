@@ -1,43 +1,76 @@
-// BottomBar.js
-import React, { useState } from 'react';
-import { IoHomeOutline, IoChatbubblesOutline } from 'react-icons/io5';
-import { FaRegCalendarAlt } from 'react-icons/fa';
-import { CiUser } from 'react-icons/ci';
+import React, {useState} from 'react';
+import calendar from '../../asets/calendar.png'
+import chat from '../../asets/chat.png'
+import home from '../../asets/home.png'
+import user from '../../asets/user.png'
 import './BottomBar.css';
 
 const BottomBar = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const tabs = [
-    { icon: <IoHomeOutline />, id: 0 },
-    { icon: <IoChatbubblesOutline />, id: 1 },
-    { icon: <FaRegCalendarAlt />, id: 2 },
-    { icon: <CiUser />, id: 3 },
+    {
+      icon: (
+        <img
+          src={home}
+          alt='home'
+          className='w-[26px] h-[26px]'
+        />
+      ),
+      id: 0,
+      name: 'Home',
+    },
+    {icon:  <img
+      src={chat}
+      alt='chat'
+      className='w-[26px] h-[26px]'
+    />, id: 1, name: 'Czat'},
+    {icon:  <img
+      src={calendar}
+      alt='Calendar'
+      className='w-[26px] h-[26px]'
+    />, id: 2, name: 'Plan'},
+    {icon:  <img
+      src={user}
+      alt='user'
+      className='w-[26px] h-[26px]'
+    />, id: 3, name: 'Profil'},
   ];
 
-  const handleTabClick = (id: any) => {
+  const handleTabClick = (id: number) => {
     setActiveTab(id);
   };
 
   return (
-    <div className="sc-bottom-bar"
-    // style={{
-    //     backgroundImage: `radial-gradient(circle at ${activeTab === 0 ? '48px' : `${activeTab * 30}%`} 6px, transparent 36px, #ffffff 37px)`
-    //   }}
-      style={{
-        backgroundImage: `radial-gradient(circle at ${activeTab === 0 ? '12.5%' : activeTab === 1 ? '38%' : activeTab === 2 ? '62.5%' : '87.5%'} 8px, transparent 36px, #ffffff 37px)`
-      }}
-      >
+    <div className='sc-bottom-bar'>
       {tabs.map((tab) => (
-        <a
+        <div
           key={tab.id}
-          className={`sc-menu-item ${activeTab === tab.id ? 'sc-current' : 'sc-not-used'}`}
-          onClick={() => handleTabClick(tab.id)}
-        >
-          {tab.icon}
-        </a>
+          className={`sc-menu-item ${
+            activeTab === tab.id ? 'sc-current' : 'sc-not-used'
+          }`}
+          onClick={() => handleTabClick(tab.id)}>
+          <div className='sc-icon-container'>
+            {tab.icon}
+            {activeTab === tab.id && (
+              <div className='sc-white-circle'>
+                <div className='sc-black-circle'></div>
+              </div>
+            )}
+          </div>
+          <a
+            className={`font-k2d font-bold ${
+              activeTab === tab.id ? 'sc-active-tab' : 'sc-inactive-tab'
+            }`}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
+            {tab.name}
+          </a>
+        </div>
       ))}
-      <div className="sc-nav-indicator" style={{ left: ` ${activeTab === 0 ? '5.5%' : activeTab === 1 ? '31%' : activeTab === 2 ? '56%' : '81%'}` }}></div>
     </div>
   );
 };
