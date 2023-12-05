@@ -12,7 +12,7 @@ body {
   overflow: hidden;
 }
 
-.sc-bottom-bar {
+.sc-bottom-barCOMPLETE {
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -23,11 +23,10 @@ body {
   border-top-left-radius: 20px;
   background-color: #e0e0e0;
   filter: drop-shadow(0px -1px 6px rgba(0, 0, 0, 0.08)) drop-shadow(0px -2px 12px rgba(0, 0, 0, 0.12));
-  transition: cubic-bezier(0.57, 0.23, 0.08, 0.96) 0.45s;
   bottom: 0;
 }
 
-.sc-icon-container {
+.sc-icon-containerCOMPLETE {
   position: relative;
   width: 56px;
   height: 56px;
@@ -38,7 +37,7 @@ body {
   margin-top: -35px;
 }
 
-.sc-black-circle {
+.sc-black-circleCOMPLETE {
   position: absolute;
   width: 75%;
   height: 75%;
@@ -47,7 +46,7 @@ body {
   z-index: -1;
   margin: 12.5%;
 }
-.sc-white-circle {
+.sc-white-circleCOMPLETE {
   position: absolute;
   width: 130%;
   height: 130%;
@@ -55,26 +54,26 @@ body {
   border-radius: 50%;
   z-index: -1;
 }
-.sc-current {
+.sc-currentCOMPLETE {
   transition: ease-in-out 0.5s;
   color: #ffffff;
   z-index: 3;
 }
-.sc-not-used {
+.sc-not-usedCOMPLETE {
   position: relative;
   color: #000000;
   transition: ease-out 0.5s;
   transform: translate3d(0px, 35px, 0px);
 }
 
-.sc-active-tab {
+.sc-active-tabCOMPLETE {
   color: #000;
   font-size: 18px;
   padding-top: 15px;
 }
 
-.sc-inactive-tab {
+.sc-inactive-tabCOMPLETE {
   color: #ffffff;
   font-size: 1px;
-  text-align: right;
+  /* text-align: right; */
 }
