@@ -1,5 +1,5 @@
 import {ChangeEvent, FormEvent, useState} from 'react';
-import logo from '../../asets/Logo.png';
+import logo from '../../assets/Logo.png';
 import {IoMdEye} from 'react-icons/io';
 import {IoMdEyeOff} from 'react-icons/io';
 import supabase from '../../config/SupabaseClient';
