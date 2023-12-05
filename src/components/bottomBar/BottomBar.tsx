@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import calendar from '../../assets/calendar.png';
-import chat from '../../assets/chat.png';
-import home from '../../assets/home.png';
-import user from '../../assets/user.png';
+import calendar from '../../assets/bottomBar/calendar.png';
+import chat from '../../assets/bottomBar/chat.png';
+import home from '../../assets/bottomBar/home.png';
+import user from '../../assets/bottomBar/user.png';
 
 const BottomBar = () => {
   const [activeTab, setActiveTab] = useState(0);

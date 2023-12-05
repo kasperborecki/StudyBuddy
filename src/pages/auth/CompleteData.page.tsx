@@ -1,13 +1,13 @@
 import {ChangeEvent, useState} from 'react';
 import logo from '../../asets/Logo.png';
 import {useNavigate} from 'react-router-dom';
-import UserData from '../../services/common/UserData';
-import { registeredUserEmail } from '../../atoms/RegistredUser.Atom';
-import { useRecoilState } from 'recoil';
+import UserData from '../../services/User/UserData';
+import {registeredUserEmail} from '../../atoms/RegistredUser.Atom';
+import {useRecoilState} from 'recoil';
 
 const CompleteDataPage = () => {
   const navigate = useNavigate();
-  const [registeredUser, ] = useRecoilState(registeredUserEmail);
+  const [registeredUser] = useRecoilState(registeredUserEmail);
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -23,12 +23,11 @@ const CompleteDataPage = () => {
     console.log(formData);
   };
   const handleSubmit = async () => {
-    const newData = { ...formData };
+    const newData = {...formData};
     console.log(registeredUser, newData);
     await UserData.completeUserData(newData, registeredUser);
     navigate('/');
   };
-  
 
   return (
     <div className='flex flex-col items-center justify-start h-screen bg-gradient-to-tr from-[#D687F3] via-[#F6AA80] to-[#FFDD94]'>
