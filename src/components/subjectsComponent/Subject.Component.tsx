@@ -5,18 +5,15 @@ import UiWhiteButtonLong from '../butons/UiWhiteBUttonLong';
 
 const SubjectsComponent: React.FC = () => {
   const [subjectsData, setSubjectsData] = useState<Subjects[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      setLoading(true);
       try {
         const subjectsRes = await SubjectsData.getSubjects();
         setSubjectsData(subjectsRes);
       } catch (error: any) {
         console.error(error.message);
       } finally {
-        setLoading(false);
       }
     };
 
