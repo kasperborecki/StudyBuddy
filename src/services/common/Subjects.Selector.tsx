@@ -1,5 +1,4 @@
 import supabase from '../../config/SupabaseClient';
-import { Subjects } from '../../interfaces/Subcjects.Interface';
 
 const getSubjects = async () => {
   const { data, error } = await supabase

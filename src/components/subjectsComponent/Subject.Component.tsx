@@ -23,19 +23,17 @@ const SubjectsComponent: React.FC = () => {
     fetchSubjects();
   }, []);
 
-  console.log('Subjects Data:', subjectsData);
-
   return (
-    <>
+    <div className='pb-24'>
       {subjectsData.map((subjectsData) => (
         <UiWhiteButtonLong
           key={subjectsData.id}
           subject={subjectsData.subject}
           colour={subjectsData.colour}
-          icon={subjectsData.icon}
+          icon={subjectsData.icon_url}
         />
       ))}
-    </>
+    </div>
   );
 };
 
