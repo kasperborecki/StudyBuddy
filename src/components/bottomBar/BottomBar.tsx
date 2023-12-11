@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import calendar from '../../assets/bottomBar/calendar.png';
 import chat from '../../assets/bottomBar/chat.png';
 import home from '../../assets/bottomBar/home.png';
 import user from '../../assets/bottomBar/user.png';
+import { useNavigate } from 'react-router';
+import { useRecoilState} from 'recoil';
+import { bottomBarTabId } from '../../atoms/BottomBarTab.Atom';
 
 const BottomBar = () => {
-  const [activeTab, setActiveTab] = useState(0);
-
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useRecoilState(bottomBarTabId);
   const tabs = [
     {
       icon: (
@@ -18,6 +21,7 @@ const BottomBar = () => {
       ),
       id: 0,
       name: 'Home',
+      route: '/home',
     },
     {
       icon: (
@@ -29,6 +33,7 @@ const BottomBar = () => {
       ),
       id: 1,
       name: 'Czat',
+      route: '',
     },
     {
       icon: (
@@ -40,6 +45,7 @@ const BottomBar = () => {
       ),
       id: 2,
       name: 'Plan',
+      route: '',
     },
     {
       icon: (
@@ -51,19 +57,21 @@ const BottomBar = () => {
       ),
       id: 3,
       name: 'Profil',
+      route: '/Profile',
     },
   ];
 
-  const handleTabClick = (id: number) => {
+  const handleTabClick = (id: number, route: string) => {
     setActiveTab(id);
+    navigate(route); // Use route instead of '{route}'
   };
 
   return (
     <div
-      className='absolute flex justify-between w-full text-[26px] pb-[16px] pl-[36px] pr-[36px] bottom-0 bg-[#e0e0e0]'
+    className='absolute flex justify-between w-full text-[26px] pb-[16px] pl-[36px] pr-[36px] bottom-0 bg-[#e0e0e0]'
       style={{
-        filter:
-          'drop-shadow(0px -1px 6px rgba(0, 0, 0, 0.08)) drop-shadow(0px -2px 12px rgba(0, 0, 0, 0.12))',
+         filter:
+            'drop-shadow(0px -1px 6px rgba(0, 0, 0, 0.08)) drop-shadow(0px -2px 12px rgba(0, 0, 0, 0.12))',
       }}>
       {tabs.map((tab) => (
         <div
@@ -77,7 +85,7 @@ const BottomBar = () => {
             transform:
               activeTab === tab.id ? 'none' : 'translate3d(0px, 35px, 0px)',
           }}
-          onClick={() => handleTabClick(tab.id)}>
+          onClick={() => handleTabClick(tab.id, tab.route)}>
           <div className='relative flex w-[56px] h-[56px] items-center justify-center text-center -mt-[20px]'>
             {tab.icon}
             {activeTab === tab.id && (
@@ -99,7 +107,7 @@ const BottomBar = () => {
             className={`font-k2d font-bold ${
               activeTab === tab.id
                 ? 'text-black text-[18px] pt-[15px]'
-                : 'text-white text-[0px]'
+                : 'text-black text-[0px]' // Change text-white to text-black
             }`}
             style={{
               display: 'flex',

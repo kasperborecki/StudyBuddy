@@ -7,6 +7,7 @@ import LoginPage from '../pages/auth/Login.Page';
 import RegistrationPage from '../pages/auth/Registration.Page';
 import { useAuth } from '../atoms/Route.Atom';
 import HomePage from '../pages/home/Home.Page';
+import ProfilePage from '../pages/profile/Profile.Page';
 // import CompleteDataPage from '../pages/auth/CompleteData.page';
 
 const AppRouter = () => {
@@ -17,7 +18,10 @@ const AppRouter = () => {
       <Router>
         <Routes>
           {session ? (
-            <Route path='/' element={<HomePage />} />
+            <>
+            <Route path='/home' element={<HomePage />} />
+            <Route path='/profile' element={<ProfilePage />} />
+            </>
             ) : (
               <>
               <Route path='/' element={<WelcomePage />} />
