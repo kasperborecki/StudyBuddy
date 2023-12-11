@@ -2,18 +2,22 @@ import React, { useEffect, useState } from 'react';
 import SubjectsData from '../../services/common/Subjects.Selector';
 import { Subjects } from '../../interfaces/Subcjects.Interface';
 import UiWhiteButtonLong from '../butons/UiWhiteBUttonLong';
+import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
 
 const SubjectsComponent: React.FC = () => {
   const [subjectsData, setSubjectsData] = useState<Subjects[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
+        setIsLoading(true);
         const subjectsRes = await SubjectsData.getSubjects();
         setSubjectsData(subjectsRes);
       } catch (error: any) {
         console.error(error.message);
       } finally {
+        setIsLoading(false);
       }
     };
 
@@ -21,16 +25,22 @@ const SubjectsComponent: React.FC = () => {
   }, []);
 
   return (
-    <div className='pb-24'>
-      {subjectsData.map((subjectsData) => (
-        <UiWhiteButtonLong
-          key={subjectsData.id}
-          subject={subjectsData.subject}
-          colour={subjectsData.colour}
-          icon={subjectsData.icon_url}
-        />
-      ))}
-    </div>
+    <>
+      {isLoading ? (
+        <LoadingSuspense />
+      ) : (
+        <div className='pb-24'>
+          {subjectsData.map((subjectData) => (
+            <UiWhiteButtonLong
+              key={subjectData.id}
+              subject={subjectData.subject}
+              colour={subjectData.colour}
+              icon={subjectData.icon_url}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
