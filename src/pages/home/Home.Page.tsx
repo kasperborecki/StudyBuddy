@@ -11,7 +11,7 @@ const HomePage = () => {
         <img
           src={logo}
           alt='Logo'
-          className='w-[150px] h-[150px]'
+          className='w-[150px] h-[150px] mx-auto my-auto mb-10'
         />
         <LoadingSuspense>
           <SubjectsComponent />

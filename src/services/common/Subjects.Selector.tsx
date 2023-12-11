@@ -1,10 +1,9 @@
 import supabase from '../../config/SupabaseClient';
-import { Subjects } from '../../interfaces/Subcjects.Interface';
 
 const getSubjects = async () => {
   const { data, error } = await supabase
     .from('subjects')
-    .select('*');
+    .select('id,subject, colour, icon_url');
 
   if (error) {
     console.error(error.message);
