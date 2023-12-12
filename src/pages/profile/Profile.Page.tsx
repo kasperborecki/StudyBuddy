@@ -6,8 +6,10 @@ import {IoSettingsOutline} from 'react-icons/io5';
 import icon1 from '../../assets/man.png';
 import icon2 from '../../assets/security-guard.png';
 import icon3 from '../../assets/bartender.png';
+import { useNavigate } from 'react-router';
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   const tabs = [
     {
       icon: (
@@ -50,6 +52,10 @@ const ProfilePage = () => {
       name: 'Karol',
     },
   ];
+  const handleSettingsClick = () => {
+    navigate('/profile-settings')
+  };
+
   return (
     <div className='relative min-h-screen flex flex-col items-center justify-start bg-[#FAEFFF]'>
       <img
@@ -61,7 +67,7 @@ const ProfilePage = () => {
         Twój Profil
       </a>
       <div className='absolute rounded-full w-3 h-3 bg-red-700 top-[2.5%] right-[5%]' />
-      <IoSettingsOutline className='absolute top-[3%] right-[5%] w-9 h-9' />
+      <IoSettingsOutline className='absolute top-[3%] right-[5%] w-9 h-9' onClick={handleSettingsClick}/>
       <img
         src={avatar}
         alt='avatar'

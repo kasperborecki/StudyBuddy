@@ -21,7 +21,7 @@ const BottomBar = () => {
       ),
       id: 0,
       name: 'Home',
-      route: '/home',
+      route: '/',
     },
     {
       icon: (
