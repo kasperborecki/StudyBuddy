@@ -7,8 +7,11 @@ import icon1 from '../../assets/man.png';
 import icon2 from '../../assets/security-guard.png';
 import icon3 from '../../assets/bartender.png';
 import { useNavigate } from 'react-router';
+import { useRecoilState } from 'recoil';
+import { DarkModeAtom } from '../../atoms/DarkModeAtom';
 
 const ProfilePage = () => {
+  const [isDarkMode, ] = useRecoilState(DarkModeAtom);
   const navigate = useNavigate();
   const tabs = [
     {
@@ -53,12 +56,12 @@ const ProfilePage = () => {
     },
   ];
   const handleSettingsClick = () => {
-    navigate('/profile-settings')
+    navigate('/profile-settings-page')
   };
 
   return (
-    <div className='relative min-h-screen flex flex-col items-center justify-start bg-[#FAEFFF]'>
-      <img
+    <div className={`relative min-h-screen flex flex-col items-center justify-start ${isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'}`}>
+        <img
         src={profileBg}
         alt='Profile Background'
         className='absolute w-full h-[40%] rounded-b-[66px]'
@@ -76,20 +79,20 @@ const ProfilePage = () => {
       <a className='absolute font-k2d text-[20px] text-black font-bold pt-60'>
         Kasper Borecki
       </a>
-      <div className='absolute h-[27%] w-[71%] bg-white mt-72 rounded-[37px]'>
+      <div className={`absolute h-[27%] w-[71%] mt-72 rounded-[37px] ${isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FFFFFF]'}`}>
         <div className='flex flex-col items-center justify-center h-full'>
-          <a className='font-k2d text-[20px] font-bold text-black my-3'>
+          <a className={` font-k2d text-[20px] font-bold my-3 ${isDarkMode ? 'text-white' : 'text-black'}`}>
             Ilość Zajęć :
           </a>
           <div className='w-[78px] h-[78px] bg-gradient-to-bl from-[#ffdd94] to-[#d687f3] rounded-full '>
-            <div className='w-[60px] h-[60px] bg-white rounded-full relative mt-[9px] mb-[9px] ml-[9px]'>
-              <a className='absolute inset-0 flex items-center justify-center font-k2d text-[20px] font-bold text-black'>
+            <div className={`w-[60px] h-[60px] rounded-full relative mt-[9px] mb-[9px] ml-[9px] ${isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FFFFFF]'}`}>
+              <a className={`absolute inset-0 flex items-center justify-center font-k2d text-[20px] font-bold ${isDarkMode ? 'text-white' : 'text-black'}`}>
                 85
               </a>
             </div>
           </div>
           <div className='flex flex-col items-center'>
-            <a className='font-k2d text-[20px] font-bold text-black mt-3'>
+            <a className={`font-k2d text-[20px] font-bold mt-3 ${isDarkMode ? 'text-white' : 'text-black'}`}>
               Średnia Ocena :
             </a>
             <div className='flex items-center'>
@@ -98,16 +101,16 @@ const ProfilePage = () => {
                 alt='stars'
                 className='w-[75px] h-[80px] ml-2'
               />
-              <a className='font-k2d text-[20px] font-bold text-black ml-2 '>
+              <a className={`font-k2d text-[20px] font-bold ml-2 ${isDarkMode ? 'text-white' : 'text-black'}`}>
                 / 4.6
               </a>
             </div>
           </div>
         </div>
       </div>
-      <div className='absolute h-[14%] w-[90%] bg-white mt-[37rem] rounded-[30px]'>
+      <div className={`absolute h-[14%] w-[90%] mt-[37rem] rounded-[30px] ${isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FFFFFF]'}`}>
         <div className='flex flex-col items-start justify-center h-full'>
-          <a className='font-k2d text-[20px] font-bold text-black my-2 text-center mx-auto'>
+          <a className={`font-k2d text-[20px] font-bold my-2 text-center mx-auto ${isDarkMode ? 'text-white' : 'text-black'}`}>
             Uczniowie
           </a>
           <div className='flex items-start mt-2'>
@@ -120,7 +123,7 @@ const ProfilePage = () => {
                   alt={tab.name}
                   className='w-[45px] h-[45px] rounded-full mb-2 ml'
                 />
-                <a className='font-k2d text-[16px] font-bold text-black'>
+                <a className={`font-k2d text-[16px] font-bold ${isDarkMode ? 'text-white' : 'text-black'}`}>
                   {tab.name}
                 </a>
               </div>

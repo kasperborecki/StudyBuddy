@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import SubjectsData from '../../services/common/Subjects.Selector';
-import { Subjects } from '../../interfaces/Subcjects.Interface';
-import UiWhiteButtonLong from '../butons/UiWhiteButtonLong';
+import {Subjects} from '../../interfaces/Subcjects.Interface';
+import UiWhiteButtonLong from '../uiButons/UiWhiteButtonLong';
 import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
 
 const SubjectsComponent: React.FC = () => {

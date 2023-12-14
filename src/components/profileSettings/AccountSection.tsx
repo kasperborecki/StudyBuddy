@@ -1,15 +1,30 @@
-import UiGradienButtonLong from "../butons/UIGradientButtonLong";
+import UiGradienButtonLong from '../uiButons/UIGradientButtonLong';
 
 const AccountSection = () => {
-    return (
-        <>
-        <UiGradienButtonLong text={'OPINIE'} push={'/opinions'}/>
-        <UiGradienButtonLong text={'POWIADOMIENIA'} push={'/paynaments'}/>
-        <UiGradienButtonLong text={'PRYWATNOŚĆ'} push={'/privacy'}/>
-        <UiGradienButtonLong text={'KONTO'} push={'/account'}/>
-        <UiGradienButtonLong text={'FAQ'} push={'/faq'}/>
-        </>
-    );
+  return (
+    <>
+      <UiGradienButtonLong
+        text={'OPINIE'}
+        push={'/opinions'}
+      />
+      <UiGradienButtonLong
+        text={'POWIADOMIENIA'}
+        push={'/paynaments'}
+      />
+      <UiGradienButtonLong
+        text={'PRYWATNOŚĆ'}
+        push={'/privacy'}
+      />
+      <UiGradienButtonLong
+        text={'KONTO'}
+        push={'/account-settings'}
+      />
+      <UiGradienButtonLong
+        text={'FAQ'}
+        push={'/faq'}
+      />
+    </>
+  );
 };
 
 export default AccountSection;
