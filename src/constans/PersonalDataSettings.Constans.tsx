@@ -10,13 +10,10 @@ export const EducationLevel: { id: number; name: string }[] = [
     { id: 3, name: 'hybrid' },
   ];
 
-  export const EducationType: { name: string }[] = [
-    { name: 'individually' },
-    { name: 'groups' },
+  export const EducationType: { id: number; name: string }[] = [
+    { id: 1, name: 'individually' },
+    { id: 2, name: 'groups' },
   ];
-  export const eduTypes = ['individualy', 'groups'].map(
-    item => ({ label: item, value: item })
-  );
 
   export const Cities: { id: number; name: string }[] = [
     { id: 1, name: 'bydgoszcz' },

@@ -1,7 +1,5 @@
 import {useRecoilState} from 'recoil';
 import BottomBar from '../../components/bottomBar/BottomBar';
-// import UiGradienButtonLong from '../../components/uiButons/UIGradientButtonLong';
-// import supabase from '../../config/SupabaseClient';
 import {DarkModeAtom} from '../../atoms/DarkModeAtom';
 import {useNavigate} from 'react-router';
 import {IoArrowBack} from 'react-icons/io5';
@@ -36,12 +34,16 @@ const PersonalDataSettings = () => {
         />
       </div>
       <AccoundHeader text={'DANE OSOBISTE'} />
+      <div className='w-full relative min-h-screen flex flex-col items-center justify-start mb-12'>
       <UiWhiteInput backgroundText={'Jan'} labelText={'Imie:'} type={'text'}/>
       <UiWhiteInput backgroundText={'Kowalski'} labelText={'Nazwisko:'} type={'text'}/>
       <UiWhiteInput backgroundText={'Warszawa'} labelText={'Miasto:'} type={'selectCities'}/>
       <UiWhiteInput backgroundText={'Szkoła Podstawowa'} labelText={'Poziom Nauczania:'} type={'selectEduLevel'} />
       <UiWhiteInput backgroundText={'Online'} labelText={'Forma Nauki:'} type={'selectEduMethod'} />
       <UiWhiteInput backgroundText={'Indywidualne'} labelText={'Typ Zajęć:'} type={'selectEduType'}/>
+      <UiWhiteInput backgroundText={''} labelText={'Cena:'} type={'slider'}/>
+      <UiWhiteInput backgroundText={''} labelText={'Opis:'} type={'description'}/>
+      </div>
       <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
         <BottomBar />
       </div>
