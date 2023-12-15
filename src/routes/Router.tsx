@@ -10,7 +10,7 @@ import HomePage from '../pages/home/Home.Page';
 import ProfilePage from '../pages/profile/Profile.Page';
 import ProfileSettingsPage from '../pages/profile/ProfileSettings.Page';
 import AccountSettings from '../pages/accountSettings/Account.Settings.Page';
-import PersonalDataSettings from '../pages/accountSettings/PrsonalData.Settings.Page';
+import PersonalDataSettings from '../components/userManagement/PrsonalData.Settings.Page';
 // import CompleteDataPage from '../pages/auth/CompleteData.page';
 
 const AppRouter = () => {
