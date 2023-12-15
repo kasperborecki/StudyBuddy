@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'k2d': ['K2D', 'sans-serif'],
+        'jua': ['Jua', 'sans-serif'],
       },
       colors: {
         primary: '#4673ce',

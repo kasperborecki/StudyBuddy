@@ -1,5 +1,5 @@
 import logo from '../../assets/Logo.png';
-import UiPurpleButtonLong from '../../components/butons/UiPurpleButtonLong';
+import UiPurpleButtonLong from '../../components/uiButons/UiPurpleButtonLong';
 
 const WelcomePage = () => {
   return (
@@ -12,9 +12,18 @@ const WelcomePage = () => {
         />
       </div>
       <div className='mt-[12%] w-screen flex flex-col items-center font-k2d font-bold'>
-        <UiPurpleButtonLong text='WEJDŹ JAKO GOŚĆ' push={'guest'} />
-        <UiPurpleButtonLong text='ZALOGUJ SIĘ' push={'login'} />
-        <UiPurpleButtonLong text='ZAREJESTRUJ SIĘ' push={'registration'} />
+        <UiPurpleButtonLong
+          text='WEJDŹ JAKO GOŚĆ'
+          push={'guest'}
+        />
+        <UiPurpleButtonLong
+          text='ZALOGUJ SIĘ'
+          push={'login'}
+        />
+        <UiPurpleButtonLong
+          text='ZAREJESTRUJ SIĘ'
+          push={'registration'}
+        />
       </div>
     </div>
   );

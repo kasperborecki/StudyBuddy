@@ -3,9 +3,12 @@ import BottomBar from '../../components/bottomBar/BottomBar';
 import AccountSection from '../../components/profileSettings/AccountSection';
 import PersonalSection from '../../components/profileSettings/PersonalSection';
 import {IoArrowBack} from 'react-icons/io5';
-import DarkModeSwitch from '../../components/switch/DarkModeSwitch';
+import DarkModeSwitch from '../../components/uiSwitch/DarkModeSwitch';
+import { useRecoilState } from 'recoil';
+import { DarkModeAtom } from '../../atoms/DarkModeAtom';
 
 const ProfileSettingsPage = () => {
+  const [isDarkMode, ] = useRecoilState(DarkModeAtom);
   const navigate = useNavigate();
 
   const handleBackButton = () => {
@@ -13,7 +16,7 @@ const ProfileSettingsPage = () => {
   };
 
   return (
-    <div className='relative min-h-screen flex flex-col items-center justify-start bg-[#FAEFFF]'>
+    <div className={`relative min-h-screen flex flex-col items-center justify-start ${isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'}`}>
       <div
       className='w-full pl-8 pr-8 mb-4'
         style={{
@@ -22,7 +25,7 @@ const ProfileSettingsPage = () => {
           alignItems: 'center',
         }}>
         <IoArrowBack
-          className='h-8 w-8 mb-6 mt-10'
+          className={`h-8 w-8 mb-6 mt-10 ${isDarkMode ? 'text-white' : 'text-black'}`}
           onClick={handleBackButton}
         />
         <DarkModeSwitch />

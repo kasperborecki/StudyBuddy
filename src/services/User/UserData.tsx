@@ -1,22 +1,29 @@
 import supabase from '../../config/SupabaseClient';
 
-const completeUserData = async (newData: any, registeredUser: string) => {
-  const {error} = await supabase
+const updateUserData = async (newData: any, userId: any) => {
+  const {data, error} = await supabase
     .from('profiles')
-    .insert([
+    .update([
       {
         name: newData.name,
         surname: newData.surname,
         city: newData.city,
-        birth_date: newData.birthDate,
+        education_level: newData.educationLevel,
+        education_type: newData.educationType,
+        education_method: newData.educationMethod,
+        price: newData.price,
+        description: newData.description,
       },
     ])
-    .eq('email', registeredUser);
+    .eq('user_id', userId);
+    console.log(userId);
+    console.log(data);
+    console.log(newData);
   if (error) throw error.message;
 };
 
 const UserData = {
-  completeUserData,
+  updateUserData,
 };
 
 export default UserData;
