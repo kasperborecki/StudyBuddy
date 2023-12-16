@@ -3,20 +3,27 @@ import {FaArrowRight} from 'react-icons/fa';
 import supabase from '../../config/SupabaseClient';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkModeAtom';
+import { subjectIdAtom, subjectNameAtom } from '../../atoms/Subject.Atom';
+import { useNavigate } from 'react-router';
 
 interface CustomButtonProps {
   subject: any;
   colour: any;
   icon: any;
+  subjectId: any;
 }
 
 const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
   subject,
   colour,
   icon,
+  subjectId,
 }) => {
   const [isDarkMode, ] = useRecoilState(DarkModeAtom);
   const [, setImages] = useState<any[]>([]);
+  const [selectedSubjectId,setSubjectId] = useRecoilState(subjectIdAtom);
+  const [subjectName, setSubjectName] = useRecoilState(subjectNameAtom);
+  const navigate = useNavigate();
 
   const CDNURL =
     'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/subjectsicons/';
@@ -39,8 +46,16 @@ const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
     getIcons();
   }, []);
 
+  const handleOfferPage = () =>{
+    setSubjectId(subjectId);
+    setSubjectName(subject);
+    // navigate('/offer')
+    console.log(selectedSubjectId);
+    console.log(subjectName);
+  }
+
   return (
-    <button className={`border-2 border-black w-[80%] h-[50px] rounded-3xl mb-[8%] mx-auto my-auto flex items-center ${isDarkMode ? 'bg-[#2B2B2B]' : ''}`}>
+    <button className={`border-2 border-black w-[80%] h-[50px] rounded-3xl mb-[8%] mx-auto my-auto flex items-center ${isDarkMode ? 'bg-[#2B2B2B]' : ''}`} onClick={handleOfferPage}>
       <div className='w-[10%] h-full ml-[15px]'>
         <div className='flex items-center justify-center w-full h-full overflow-hidden'>
           <img

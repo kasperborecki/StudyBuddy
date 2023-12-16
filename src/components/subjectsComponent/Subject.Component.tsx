@@ -36,6 +36,7 @@ const SubjectsComponent: React.FC = () => {
               subject={subjectData.subject}
               colour={subjectData.colour}
               icon={subjectData.icon_url}
+              subjectId={subjectData.id}
             />
           ))}
         </div>
