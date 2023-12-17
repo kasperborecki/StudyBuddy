@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import SubjectsData from '../../services/common/Subjects.Selector';
 import {Subjects} from '../../interfaces/Subcjects.Interface';
-import UiWhiteButtonLong from '../uiButons/UiWhiteButtonLong';
 import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
+import UiWhiteButtonLong from '../uiComponents/uiButons/UiWhiteButtonLong';
 
 const SubjectsComponent: React.FC = () => {
   const [subjectsData, setSubjectsData] = useState<Subjects[]>([]);
@@ -37,6 +37,7 @@ const SubjectsComponent: React.FC = () => {
               colour={subjectData.colour}
               icon={subjectData.icon_url}
               subjectId={subjectData.id}
+              CDNURL={'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/subjectsicons/'}
             />
           ))}
         </div>

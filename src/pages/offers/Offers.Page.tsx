@@ -1,18 +1,16 @@
 import {useNavigate} from 'react-router';
 import BottomBar from '../../components/bottomBar/BottomBar';
-import AccountSection from '../../components/profileSettings/AccountSection';
-import PersonalSection from '../../components/profileSettings/PersonalSection';
 import {IoArrowBack} from 'react-icons/io5';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
-import DarkModeSwitch from '../../components/uiComponents/uiSwitch/DarkModeSwitch';
+import OfferCard from '../../components/offerCard/OfferCard.Component';
 
-const ProfileSettingsPage = () => {
+const OffersPage = () => {
   const [isDarkMode, ] = useRecoilState(DarkModeAtom);
   const navigate = useNavigate();
 
   const handleBackButton = () => {
-    navigate('/profile');
+    navigate('/');
   };
 
   return (
@@ -28,12 +26,8 @@ const ProfileSettingsPage = () => {
           className={`h-8 w-8 mb-6 mt-10 ${isDarkMode ? 'text-white' : 'text-black'}`}
           onClick={handleBackButton}
         />
-        <DarkModeSwitch />
       </div>
-
-      <PersonalSection />
-      <hr className='h-[2px] bg-gray-400 w-[95%] mb-[8%]' />
-      <AccountSection />
+        <OfferCard />
       <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
         <BottomBar />
       </div>
@@ -41,4 +35,4 @@ const ProfileSettingsPage = () => {
   );
 };
 
-export default ProfileSettingsPage;
+export default OffersPage;

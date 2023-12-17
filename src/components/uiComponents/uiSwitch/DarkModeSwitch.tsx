@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import './darkModeSwitch.css';
 import { useRecoilState } from 'recoil';
-import { DarkModeAtom } from '../../atoms/DarkModeAtom';
+import { DarkModeAtom } from '../../../atoms/DarkMode.Atom';
 
 const DarkModeSwitch = () => {
     const [isDarkMode, setIsDarkMode] = useRecoilState(DarkModeAtom);

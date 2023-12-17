@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { DarkModeAtom } from '../../atoms/DarkModeAtom';
+import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 import { Cities, EducationLevel, EducationMethod, EducationType } from '../../constans/PersonalDataSettings.Constans';
 import { Slider } from 'rsuite';
 import './styles.css';
@@ -69,9 +69,7 @@ const UpdateUserData = () => {
     const newData = {...formData};
     await UserData.updateUserData(newData, userId);
     setisLoading(false);
-};
-// console.log(userId);
-   
+};   
 
   return (
     <div className='w-[70%]'>

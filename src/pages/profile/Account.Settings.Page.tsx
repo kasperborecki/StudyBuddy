@@ -1,11 +1,10 @@
 import {useRecoilState} from 'recoil';
 import BottomBar from '../../components/bottomBar/BottomBar';
-import UiGradienButtonLong from '../../components/uiButons/UIGradientButtonLong';
 import supabase from '../../config/SupabaseClient';
-import {DarkModeAtom} from '../../atoms/DarkModeAtom';
+import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import {useNavigate} from 'react-router';
 import {IoArrowBack} from 'react-icons/io5';
-import AccoundHeader from '../../components/uiHeaders/AccountHeader';
+import AccoundHeader from '../../components/uiComponents/uiHeaders/AccountHeader';
 
 const AccountSettings = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);

@@ -1,4 +1,4 @@
-import UiGradienButtonLong from '../uiButons/UIGradientButtonLong';
+import UiGradienButtonLong from "../uiComponents/uiButons/UIGradientButtonLong";
 
 const AccountSection = () => {
   return (
