@@ -34,7 +34,7 @@ const PersonalDataSettings = () => {
         />
       </div>
       <AccoundHeader text={'DANE OSOBISTE'} />
-      <div className='w-full relative min-h-screen flex flex-col items-center justify-start mb-40'>
+      <div className='w-full relative min-h-screen flex flex-col items-center justify-start'>
       <UpdateUserData />
       </div>
       <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
