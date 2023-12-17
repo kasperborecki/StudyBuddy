@@ -1,7 +1,7 @@
 import BottomBar from '../../components/bottomBar/BottomBar';
 import logo from '../../assets/Logo.png';
 import SubjectsComponent from '../../components/subjectsComponent/Subject.Component';
-import { DarkModeAtom } from '../../atoms/DarkModeAtom';
+import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 import { useRecoilState } from 'recoil';
 
 const HomePage = () => {

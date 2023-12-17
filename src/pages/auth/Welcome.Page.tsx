@@ -1,5 +1,5 @@
 import logo from '../../assets/Logo.png';
-import UiPurpleButtonLong from '../../components/uiButons/UiPurpleButtonLong';
+import UiPurpleButtonLong from '../../components/uiComponents/uiButons/UiPurpleButtonLong';
 
 const WelcomePage = () => {
   return (

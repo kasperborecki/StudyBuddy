@@ -1,9 +1,9 @@
 import {useRecoilState} from 'recoil';
 import BottomBar from '../bottomBar/BottomBar';
-import {DarkModeAtom} from '../../atoms/DarkModeAtom';
+import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import {useNavigate} from 'react-router';
 import {IoArrowBack} from 'react-icons/io5';
-import AccoundHeader from '../uiHeaders/AccountHeader';
+import AccoundHeader from '../uiComponents/uiHeaders/AccountHeader';
 import UpdateUserData from './updateUserData.component';
 
 const PersonalDataSettings = () => {

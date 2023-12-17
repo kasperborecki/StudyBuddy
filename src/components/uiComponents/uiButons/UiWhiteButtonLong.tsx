@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {FaArrowRight} from 'react-icons/fa';
-import supabase from '../../config/SupabaseClient';
 import { useRecoilState } from 'recoil';
-import { DarkModeAtom } from '../../atoms/DarkModeAtom';
-import { subjectIdAtom, subjectNameAtom } from '../../atoms/Subject.Atom';
 import { useNavigate } from 'react-router';
+import { DarkModeAtom } from '../../../atoms/DarkMode.Atom';
+import { subjectIdAtom, subjectNameAtom } from '../../../atoms/Subject.Atom';
+import supabase from '../../../config/SupabaseClient';
 
 interface CustomButtonProps {
   subject: any;
   colour: any;
   icon: any;
   subjectId: any;
+  CDNURL: string;
 }
 
 const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
@@ -18,6 +19,7 @@ const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
   colour,
   icon,
   subjectId,
+  CDNURL,
 }) => {
   const [isDarkMode, ] = useRecoilState(DarkModeAtom);
   const [, setImages] = useState<any[]>([]);
@@ -25,31 +27,10 @@ const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
   const [subjectName, setSubjectName] = useRecoilState(subjectNameAtom);
   const navigate = useNavigate();
 
-  const CDNURL =
-    'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/subjectsicons/';
-
-  async function getIcons() {
-    try {
-      const {data, error} = await supabase.storage.from('subjections').list();
-
-      if (data) {
-        setImages(data);
-      } else {
-        console.error(error);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    getIcons();
-  }, []);
-
   const handleOfferPage = () =>{
     setSubjectId(subjectId);
     setSubjectName(subject);
-    // navigate('/offer')
+    navigate('/offers')
     console.log(selectedSubjectId);
     console.log(subjectName);
   }

@@ -6,7 +6,7 @@ import user from '../../assets/bottomBar/user.png';
 import { useNavigate } from 'react-router';
 import { useRecoilState} from 'recoil';
 import { bottomBarTabId } from '../../atoms/BottomBarTab.Atom';
-import { DarkModeAtom } from '../../atoms/DarkModeAtom';
+import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 import { IoHomeOutline } from "react-icons/io5";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { IoCalendarOutline } from "react-icons/io5";

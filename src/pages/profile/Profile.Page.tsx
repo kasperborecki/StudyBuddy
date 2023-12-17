@@ -8,7 +8,7 @@ import icon2 from '../../assets/security-guard.png';
 import icon3 from '../../assets/bartender.png';
 import { useNavigate } from 'react-router';
 import { useRecoilState } from 'recoil';
-import { DarkModeAtom } from '../../atoms/DarkModeAtom';
+import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 
 const ProfilePage = () => {
   const [isDarkMode, ] = useRecoilState(DarkModeAtom);

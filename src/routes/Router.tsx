@@ -9,8 +9,9 @@ import { useAuth } from '../atoms/Route.Atom';
 import HomePage from '../pages/home/Home.Page';
 import ProfilePage from '../pages/profile/Profile.Page';
 import ProfileSettingsPage from '../pages/profile/ProfileSettings.Page';
-import AccountSettings from '../pages/accountSettings/Account.Settings.Page';
+import AccountSettings from '../pages/profile/Account.Settings.Page';
 import PersonalDataSettings from '../components/userManagement/PrsonalData.Settings.Page';
+import OffersPage from '../pages/offers/Offers.Page';
 // import CompleteDataPage from '../pages/auth/CompleteData.page';
 
 const AppRouter = () => {
@@ -27,6 +28,7 @@ const AppRouter = () => {
             <Route path='/profile-settings-page' element={<ProfileSettingsPage />} />
             <Route path='/account-settings' element={<AccountSettings />} />
             <Route path='/personal-data' element={<PersonalDataSettings />} />
+            <Route path='/offers' element={<OffersPage />} />
             </>
             ) : (
               <>
