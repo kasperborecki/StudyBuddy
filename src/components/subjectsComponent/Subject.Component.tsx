@@ -33,7 +33,7 @@ const SubjectsComponent: React.FC = () => {
           {subjectsData.map((subjectData) => (
             <UiWhiteButtonLong
               key={subjectData.id}
-              subject={subjectData.subject}
+              text={subjectData.subject}
               colour={subjectData.colour}
               icon={subjectData.icon_url}
               subjectId={subjectData.id}

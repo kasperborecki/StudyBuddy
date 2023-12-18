@@ -1,10 +1,10 @@
 import {useRecoilState} from 'recoil';
-import BottomBar from '../bottomBar/BottomBar';
+import BottomBar from '../../components/bottomBar/BottomBar';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import {useNavigate} from 'react-router';
 import {IoArrowBack} from 'react-icons/io5';
-import AccoundHeader from '../uiComponents/uiHeaders/AccountHeader';
-import UpdateUserData from './updateUserData.component';
+import AccoundHeader from '../../components/uiComponents/uiHeaders/AccountHeader';
+import UpdateUserData from '../../components/userManagement/updateUserData.component';
 
 const PersonalDataSettings = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);

@@ -1,13 +1,23 @@
 import supabase from "../../config/SupabaseClient";
 
-const getSelectedSubjectOffers = async (selectedSubject: string) => {
+const getSelectedSubjectOffers = async (selectedSubject: string, isEducationLevel: string, isEducationType: string, isEducationMethod: string, isPrice: string) => {
+  // const [isSortBy] = useRecoilState(sortBy);
+  // const [isRating] = useRecoilState(DarkModeAtom);
+
   try {
     // Initial query to fetch offers data
     const { data: offersData, error: offersError } = await supabase
       .from('offers')
       .select('offer_id, created_at, subject_id, user_id, education_level, education_type, education_method, price')
-      .eq('subject_id', selectedSubject);
+      .eq('subject_id', selectedSubject)
+      // .eq(isSortBy.length > 0 ? 'education_level' : '', sortBy)
+      .eq(isEducationLevel.length > 0 ? 'education_level' : '', isEducationLevel)
+      .eq(isEducationType.length > 0 ? 'education_type' : '', isEducationType)
+      .eq(isEducationMethod.length > 0 ? 'education_method' : '', isEducationMethod)
+      .eq(isPrice.length > 0 ? 'price' : '', isPrice)
+      // .eq(rating.length > 0 ? 'education_level' : '', rating)
 
+      
     if (offersError) {
       console.error(offersError.message);
       throw offersError.message;

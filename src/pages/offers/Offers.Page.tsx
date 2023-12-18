@@ -23,7 +23,7 @@ const OffersPage = () => {
           alignItems: 'center',
         }}>
         <IoArrowBack
-          className={`h-8 w-8 mb-6 mt-10 ${isDarkMode ? 'text-white' : 'text-black'}`}
+          className={`h-8 w-8 mb-2 mt-8 ${isDarkMode ? 'text-white' : 'text-black'}`}
           onClick={handleBackButton}
         />
       </div>

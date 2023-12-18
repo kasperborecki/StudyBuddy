@@ -1,18 +1,18 @@
 export const EducationLevel: { id: number; name: string }[] = [
-    { id: 1, name: 'primarySchool' },
-    { id: 2, name: 'secondarySchool' },
-    { id: 3, name: 'university' },
+    { id: 1, name: 'PrimarySchool' },
+    { id: 2, name: 'SecondarySchool' },
+    { id: 3, name: 'University' },
   ];
 
   export const EducationMethod: { id: number; name: string }[] = [
-    { id: 1, name: 'online' },
-    { id: 2, name: 'stationary' },
-    { id: 3, name: 'hybrid' },
+    { id: 1, name: 'Online' },
+    { id: 2, name: 'Stationary' },
+    { id: 3, name: 'Hybrid' },
   ];
 
   export const EducationType: { id: number; name: string }[] = [
-    { id: 1, name: 'individually' },
-    { id: 2, name: 'groups' },
+    { id: 1, name: 'Individually' },
+    { id: 2, name: 'Group' },
   ];
 
   export const Cities: { id: number; name: string }[] = [

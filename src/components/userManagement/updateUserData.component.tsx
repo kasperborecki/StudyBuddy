@@ -188,8 +188,8 @@ const UpdateUserData = () => {
                 {option.name}
               </option>
             ))}
-        </select> */}
-        {/* <label
+        </select>
+        <label
         className={`block text-sm font-bold mb-2 ${
           isDarkMode ? 'text-white' : 'text-black'
         }`}

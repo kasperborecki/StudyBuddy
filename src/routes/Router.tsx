@@ -10,8 +10,9 @@ import HomePage from '../pages/home/Home.Page';
 import ProfilePage from '../pages/profile/Profile.Page';
 import ProfileSettingsPage from '../pages/profile/ProfileSettings.Page';
 import AccountSettings from '../pages/profile/Account.Settings.Page';
-import PersonalDataSettings from '../components/userManagement/PrsonalData.Settings.Page';
+import PersonalDataSettings from '../pages/profile/PrsonalData.Settings.Page';
 import OffersPage from '../pages/offers/Offers.Page';
+import OfferFiltersPage from '../pages/offers/OfferFilters.Page';
 // import CompleteDataPage from '../pages/auth/CompleteData.page';
 
 const AppRouter = () => {
@@ -29,6 +30,7 @@ const AppRouter = () => {
             <Route path='/account-settings' element={<AccountSettings />} />
             <Route path='/personal-data' element={<PersonalDataSettings />} />
             <Route path='/offers' element={<OffersPage />} />
+            <Route path='/offers-filter' element={<OfferFiltersPage />} />
             </>
             ) : (
               <>
