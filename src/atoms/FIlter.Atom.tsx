@@ -29,3 +29,8 @@ export const rating = atom({
     key: 'rating',
     default: ''
   });
+
+export const ascending = atom({
+  key: 'ascending',
+  default: true
+})

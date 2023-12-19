@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { modalAtom } from '../../atoms/Modal.Atom';
-import { EducationType } from '../../constans/PersonalDataSettings.Constans';
+import { EducationLevel, EducationMethod, EducationType, SortBy } from '../../constans/PersonalDataSettings.Constans';
 import './Checkbox.css';
-import { educationType } from '../../atoms/FIlter.Atom';
+import { ascending, educationLevel, educationMethod, educationType, price, sortBy } from '../../atoms/FIlter.Atom';
 
 interface CustomModalProps {
   informationType: string;
@@ -12,16 +12,34 @@ interface CustomModalProps {
 const FilterModal: React.FC<CustomModalProps> = ({ informationType }) => {
   const [showModal, setShowModal] = useRecoilState<boolean>(modalAtom);
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const [isEducationLevel, setIsEducationType] = useRecoilState(educationType);
+  const [isEducationType, setIsEducationType] = useRecoilState(educationType);
+  const [isEducationLevel, setIsEducationLevel] = useRecoilState(educationLevel);
+  const [isEducationMethod, setIsEducationMethod] = useRecoilState(educationMethod);
+  const [, setSortBy] = useRecoilState(sortBy);
+  const [isPrice, setIsPrice] = useRecoilState(price);
+  const [,setIsAscending] = useRecoilState(ascending);
 
   useEffect(() => {
     console.log(isEducationLevel);
   }, [isEducationLevel]);
 
-  const handleCheckboxChange = (option: any) => {
+  const handleEducationTypeChange = (option: any) => {
     setSelectedValue(option.name);
     setIsEducationType((prevEducationType) => option.name);
   };
+  const handleEducationLevelChange = (option: any) => {
+    setSelectedValue(option.name);
+    setIsEducationType((prevEducationType) => option.name);
+  };
+  const handleEducationMethodChange = (option: any) => {
+    setSelectedValue(option.name);
+    setIsEducationMethod((prevEducationType) => option.name);
+  };
+  // const handleSortByChange = (option: any) => {
+  //   if (option.name == 'Newest') {
+  //     setSortBy()
+  //   }
+  // }
 
   return (
     showModal ? (
@@ -40,7 +58,7 @@ const FilterModal: React.FC<CustomModalProps> = ({ informationType }) => {
                       <input
                         type="checkbox"
                         checked={option.name === selectedValue}
-                        onChange={() => handleCheckboxChange(option)}
+                        onChange={() => handleEducationTypeChange(option)}
                       />
                       <div className="checkmark"></div>
                     </label>
@@ -48,9 +66,56 @@ const FilterModal: React.FC<CustomModalProps> = ({ informationType }) => {
                   </div>
                 ))}
               </>
-            ) : (
-              'essa'
-            )}
+            ) : informationType === 'educationLevel' ? (
+              <>
+                {EducationLevel.map((option: any) => (
+                  <div key={option.name} className='flex items-center space-x-4 mb-4'>
+                    <label className="container">
+                      <input
+                        type="checkbox"
+                        checked={option.name === selectedValue}
+                        onChange={() => handleEducationLevelChange(option)}
+                      />
+                      <div className="checkmark"></div>
+                    </label>
+                    <div className='absolute pl-12 pt-1 font-k2d font-bold text-[16px]'>{option.name}</div>
+                  </div>
+                ))}
+              </>
+            ) : informationType === 'educationMethod' ? (
+              <>
+                {EducationMethod.map((option: any) => (
+                  <div key={option.name} className='flex items-center space-x-4 mb-4'>
+                    <label className="container">
+                      <input
+                        type="checkbox"
+                        checked={option.name === selectedValue}
+                        onChange={() => handleEducationMethodChange(option)}
+                      />
+                      <div className="checkmark"></div>
+                    </label>
+                    <div className='absolute pl-12 pt-1 font-k2d font-bold text-[16px]'>{option.name}</div>
+                  </div>
+                ))}
+              </>
+            ) : informationType === 'sortBy' ? (
+              <>
+                {SortBy.map((option: any) => (
+                  <div key={option.name} className='flex items-center space-x-4 mb-4'>
+                    <label className="container">
+                      <input
+                        type="checkbox"
+                        checked={option.name === selectedValue}
+                        onChange={() => handleEducationMethodChange(option)}
+                      />
+                      <div className="checkmark"></div>
+                    </label>
+                    <div className='absolute pl-12 pt-1 font-k2d font-bold text-[16px]'>{option.name}</div>
+                  </div>
+                ))}
+              </>
+            ) : ('essa')
+            }
           </div>
           <div className="flex justify-end">
             <button

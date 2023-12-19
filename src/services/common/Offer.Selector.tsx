@@ -14,7 +14,7 @@ const getSelectedSubjectOffers = async (selectedSubject: string, isEducationLeve
       .eq(isEducationLevel.length > 0 ? 'education_level' : '', isEducationLevel)
       .eq(isEducationType.length > 0 ? 'education_type' : '', isEducationType)
       .eq(isEducationMethod.length > 0 ? 'education_method' : '', isEducationMethod)
-      .eq(isPrice.length > 0 ? 'price' : '', isPrice)
+      .lt(isPrice.length > 0 ? 'price' : '', isPrice)
       // .eq(rating.length > 0 ? 'education_level' : '', rating)
 
       

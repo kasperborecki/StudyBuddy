@@ -15,6 +15,13 @@ export const EducationLevel: { id: number; name: string }[] = [
     { id: 2, name: 'Group' },
   ];
 
+  export const SortBy: { id: number; name: string }[] = [
+    { id: 1, name: 'Newest' },
+    { id: 2, name: 'Oldest' },
+    { id: 1, name: 'Cheapest' },
+    { id: 2, name: 'Most Expensive' },
+  ];
+
   export const Cities: { id: number; name: string }[] = [
     { id: 1, name: 'Bydgoszcz' },
     { id: 2, name: 'Gdansk' },
