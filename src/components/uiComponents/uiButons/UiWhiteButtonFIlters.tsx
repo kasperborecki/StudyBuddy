@@ -20,7 +20,7 @@ const UiWhiteButtonFilters: React.FC<CustomButtonProps> = ({
       }`}
       style={{ backgroundColor: colour }}>
       <div
-        className='w-full h-full text-center text-k2b font-bold text-[20px] pt-[7px]'>
+        className={`w-full h-full text-center text-k2b font-bold text-[20px] pt-[7px] ${isDarkMode ? 'text-white' : 'text-black'}`}>
         {text}
       </div>
     </button>
