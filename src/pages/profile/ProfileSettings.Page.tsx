@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router';
 import BottomBar from '../../components/bottomBar/BottomBar';
-import AccountSection from '../../components/profileSettings/AccountSection';
-import PersonalSection from '../../components/profileSettings/PersonalSection';
+import AccountSection from '../../components/profileSettings/AccountSection.Component';
+import PersonalSection from '../../components/profileSettings/PersonalSection.Component';
 import {IoArrowBack} from 'react-icons/io5';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkMode.Atom';

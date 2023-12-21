@@ -1,10 +1,10 @@
 import {useRecoilState} from 'recoil';
-import BottomBar from '../bottomBar/BottomBar';
+import BottomBar from '../../components/bottomBar/BottomBar';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import {useNavigate} from 'react-router';
 import {IoArrowBack} from 'react-icons/io5';
-import AccoundHeader from '../uiComponents/uiHeaders/AccountHeader';
-import UpdateUserData from './updateUserData.component';
+import AccoundHeader from '../../components/uiComponents/uiHeaders/AccountHeader';
+import UpdateUserData from '../../components/userManagement/updateUserData.component';
 
 const PersonalDataSettings = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
@@ -34,7 +34,7 @@ const PersonalDataSettings = () => {
         />
       </div>
       <AccoundHeader text={'DANE OSOBISTE'} />
-      <div className='w-full relative min-h-screen flex flex-col items-center justify-start mb-40'>
+      <div className='w-full relative min-h-screen flex flex-col items-center justify-start'>
       <UpdateUserData />
       </div>
       <div className='fixed bottom-0 left-0 w-full bg-white z-20'>

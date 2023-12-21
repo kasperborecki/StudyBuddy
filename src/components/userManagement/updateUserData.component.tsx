@@ -14,35 +14,35 @@ const UpdateUserData = () => {
   const [isLoading, setisLoading] = useState<boolean>()
   const userId = session?.user.id
   const [isDarkMode] = useRecoilState(DarkModeAtom);
-  const [priceRange, setPriceRange] = useState<number>(0);
+  // const [priceRange, setPriceRange] = useState<number>(0);
   const [descriptionText, setDescriptionText] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
     city: '',
-    educationLevel: '',
-    educationType: '',
-    educationMethod: '',
-    price: '',
+    // educationLevel: '',
+    // educationType: '',
+    // educationMethod: '',
+    // price: '',
     description: '',
   });
 
-  const handleSliderChange = (value: number | [number, number] | undefined) => {
-    if (typeof value === 'number') {
-      setPriceRange(value);
-    }
-  };
+  // const handleSliderChange = (value: number | [number, number] | undefined) => {
+  //   if (typeof value === 'number') {
+  //     setPriceRange(value);
+  //   }
+  // };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(event.target.value);
-    if (!isNaN(value)) {
-      setPriceRange(value);
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [event.target.name]: event.target.value,
-      }));
-    }
-  };
+  // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = parseFloat(event.target.value);
+  //   if (!isNaN(value)) {
+  //     setPriceRange(value);
+  //     setFormData((prevFormData) => ({
+  //       ...prevFormData,
+  //       [event.target.name]: event.target.value,
+  //     }));
+  //   }
+  // };
 
   const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescriptionText(event.target.value);
@@ -128,6 +128,7 @@ const UpdateUserData = () => {
               </option>
             ))}
         </select>
+        {/* 
         <label
         className={`block text-sm font-bold mb-2 ${
           isDarkMode ? 'text-white' : 'text-black'
@@ -216,7 +217,7 @@ const UpdateUserData = () => {
             onChange={handleInputChange}
             maxLength={3}
           />
-        </div>
+        </div> */}
         <label
         className={`block text-sm font-bold mb-2 ${
           isDarkMode ? 'text-white' : 'text-black'
@@ -226,7 +227,7 @@ const UpdateUserData = () => {
       </label>
         <div className=' w-full h-[150px] relative'>
           <textarea
-            className={`border-2 border-black w-full h-full rounded-3xl mb-[30%] p-4  ${
+            className={`border-2 border-black w-full h-full rounded-3xl p-4  ${
               isDarkMode ? 'bg-[#2B2B2B] text-white' : 'bg-[#FFFFFF] text-black'
             }`}
             onChange={handleTextAreaChange}

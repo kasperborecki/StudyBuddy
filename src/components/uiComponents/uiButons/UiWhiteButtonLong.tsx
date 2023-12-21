@@ -7,15 +7,15 @@ import { subjectIdAtom, subjectNameAtom } from '../../../atoms/Subject.Atom';
 import supabase from '../../../config/SupabaseClient';
 
 interface CustomButtonProps {
-  subject: any;
-  colour: any;
-  icon: any;
-  subjectId: any;
-  CDNURL: string;
+  text?: any;
+  colour?: any;
+  icon?: any;
+  subjectId?: any;
+  CDNURL?: string;
 }
 
 const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
-  subject,
+  text,
   colour,
   icon,
   subjectId,
@@ -29,7 +29,7 @@ const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
 
   const handleOfferPage = () =>{
     setSubjectId(subjectId);
-    setSubjectName(subject);
+    setSubjectName(text);
     navigate('/offers')
     console.log(selectedSubjectId);
     console.log(subjectName);
@@ -49,7 +49,7 @@ const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
       <div
         style={{color: colour}}
         className='w-[80%] h-full text-center text-k2b font-bold text-[20px] pt-[7px]'>
-        {subject}
+        {text}
       </div>
       <div className={`w-[10%] h-full flex justify-end items-center mr-[15px] ${isDarkMode ? 'text-white' : 'text-black'}`}>
         <FaArrowRight />

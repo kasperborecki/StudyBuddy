@@ -7,6 +7,8 @@ import { subjectIdAtom, subjectNameAtom } from "../../atoms/Subject.Atom";
 import AccoundHeader from "../uiComponents/uiHeaders/AccountHeader";
 import { DarkModeAtom } from "../../atoms/DarkMode.Atom";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import OfferSubHeader from "../uiComponents/uiHeaders/OfferSubHeader";
+import { educationLevel, educationMethod, educationType, price } from "../../atoms/FIlter.Atom";
 
 
 const OfferCard = () => {
@@ -16,15 +18,21 @@ const OfferCard = () => {
   const [offerData, setOfferData] = useState<Offer[]>([]);
   const [, setImages] = useState<any[]>([]);
   const [isDarkMode, ] = useRecoilState(DarkModeAtom);
+  const [isEducationLevel] = useRecoilState(educationLevel);
+  const [isEducationType] = useRecoilState(educationType);
+  const [isEducationMethod] = useRecoilState(educationMethod);
+  const [isPrice] = useRecoilState(price);
 
 
   const CDNURL = 'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
+
+  
 
   useEffect(() => {
     const fetchOffers = async () => {
       try {
         setIsLoading(true);
-        const offerRes = await OffersData.getSelectedSubjectOffers(selectedSubject);
+        const offerRes = await OffersData.getSelectedSubjectOffers(selectedSubject, isEducationLevel, isEducationType, isEducationMethod, isPrice);
         setOfferData(offerRes);
       } catch (error: any) {
         console.error(error.message);
@@ -43,6 +51,7 @@ const OfferCard = () => {
       ) : (
         <>
           <AccoundHeader text={selectedSubjectName} />
+          <OfferSubHeader />
           {offerData.map((offer) => (
             <div key={offer.offer_id} className={` relative w-[80%] h-28 rounded-3xl border-2 border-black pl-4 mb-8 text-white ${isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'}`}>
               <div className="absolute h-32 py-6">
