@@ -5,8 +5,6 @@ import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 import { IoHomeOutline } from "react-icons/io5";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { IoCalendarOutline } from "react-icons/io5";
-import { IoPerson } from "react-icons/io5";
-import { FaPlus } from 'react-icons/fa';
 import { BsPlusCircle } from "react-icons/bs";
 import { GoPerson } from "react-icons/go";
 
