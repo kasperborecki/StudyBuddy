@@ -1,8 +1,3 @@
-import {useState} from 'react';
-import calendar from '../../assets/bottomBar/calendar.png';
-import chat from '../../assets/bottomBar/chat.png';
-import home from '../../assets/bottomBar/home.png';
-import user from '../../assets/bottomBar/user.png';
 import { useNavigate } from 'react-router';
 import { useRecoilState} from 'recoil';
 import { bottomBarTabId } from '../../atoms/BottomBarTab.Atom';
@@ -11,6 +6,10 @@ import { IoHomeOutline } from "react-icons/io5";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { IoCalendarOutline } from "react-icons/io5";
 import { IoPerson } from "react-icons/io5";
+import { FaPlus } from 'react-icons/fa';
+import { BsPlusCircle } from "react-icons/bs";
+import { GoPerson } from "react-icons/go";
+
 
 
 const BottomBar = () => {
@@ -41,21 +40,31 @@ const BottomBar = () => {
     },
     {
       icon: (
-        <IoCalendarOutline
+        <BsPlusCircle 
           className='w-[26px] h-[26px]'
         />
       ),
       id: 2,
+      name: 'Dodaj',
+      route: '',
+    },
+    {
+      icon: (
+        <IoCalendarOutline
+          className='w-[26px] h-[26px]'
+        />
+      ),
+      id: 3,
       name: 'Plan',
       route: '',
     },
     {
       icon: (
-        <IoPerson
+        <GoPerson
           className='w-[26px] h-[26px] color-white'
         />
       ),
-      id: 3,
+      id: 4,
       name: 'Profil',
       route: '/Profile',
     },

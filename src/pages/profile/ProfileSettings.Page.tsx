@@ -30,7 +30,6 @@ const ProfileSettingsPage = () => {
         />
         <DarkModeSwitch />
       </div>
-
       <PersonalSection />
       <hr className='h-[2px] bg-gray-400 w-[95%] mb-[8%]' />
       <AccountSection />
