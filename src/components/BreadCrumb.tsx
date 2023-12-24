@@ -1,14 +1,15 @@
+import { useRecoilState } from "recoil";
+import { addOfferPageAtom } from "../atoms/AddOfferPage.Atom";
+
 const BreadCrumb = () => {
+  const [page, ] = useRecoilState(addOfferPageAtom);
+
   return (
-    <ol
-      className='flex items-center whitespace-nowrap'
-      aria-label='Breadcrumb'>
-      <li className='inline-flex items-center'>
-        <a className='flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500'>
-          Przedmiot
-        </a>
-      </li>
-    </ol>
+    <div className="flex justify-end mb-2 -mt-10">
+    <p className="font-k2d font-bold text-xl mt-2 mr-2">Krok: </p>
+    <p className="font-k2d font-bold text-xl mr-2 text-red-600 ">{page}</p>
+    <p className="font-k2d font-bold text-xl ">z 8</p>
+  </div>
   );
 };
 

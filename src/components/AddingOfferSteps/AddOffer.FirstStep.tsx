@@ -9,12 +9,14 @@ import {MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
 import {addOfferSubject} from '../../atoms/AddOffer.Atom';
 import AddOfferButtonSelected from '../uiComponents/uiButons/AddOfferButtonSelected';
+import BreadCrumb from '../BreadCrumb';
+import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
 
 const AddOfferFirstStep = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [subjectsData, setSubjectsData] = useState<Subjects[]>([]);
   const [isDarkMode] = useRecoilState(DarkModeAtom);
-  const [isCollapsed, setIsCollapsed] = useState<boolean>();
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [subject, setSubject] = useRecoilState(addOfferSubject);
 
   useEffect(() => {
@@ -43,8 +45,9 @@ const AddOfferFirstStep = () => {
 
   return (
     <div>
+      <BreadCrumb />
       <p className='flex text-2xl font-jua font-semibold text-black pb-8'>
-        Jakiego <p className='text-red-600 px-2'>Przedmiotu</p> Uczysz?
+        Jakiego <p className='text-[#DF826C] px-2'>Przedmiotu</p> Uczysz?
       </p>
       {subject.length > 0 ? <button className='w-full' onClick={handleClearSubject}><AddOfferButtonSelected /></button> : <></>}
       <div
@@ -73,7 +76,9 @@ const AddOfferFirstStep = () => {
       </div>
 
       {isLoading ? (
+        <div className='ml-20'>
         <LoadingSuspense />
+        </div>
       ) : (
         <div>
           {isCollapsed == false ? (
@@ -87,6 +92,7 @@ const AddOfferFirstStep = () => {
           )}
         </div>
       )}
+      <AddOfferNavigationButtons />
     </div>
   );
 };
