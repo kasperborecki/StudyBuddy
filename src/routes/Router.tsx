@@ -13,6 +13,7 @@ import AccountSettings from '../pages/profile/Account.Settings.Page';
 import PersonalDataSettings from '../pages/profile/PrsonalData.Settings.Page';
 import OffersPage from '../pages/offers/Offers.Page';
 import OfferFiltersPage from '../pages/offers/OfferFilters.Page';
+import AddOfferPage from '../pages/offers/AddOffer.Page';
 // import CompleteDataPage from '../pages/auth/CompleteData.page';
 
 const AppRouter = () => {
@@ -31,6 +32,7 @@ const AppRouter = () => {
             <Route path='/personal-data' element={<PersonalDataSettings />} />
             <Route path='/offers' element={<OffersPage />} />
             <Route path='/offers-filter' element={<OfferFiltersPage />} />
+            <Route path='/add-offer' element={<AddOfferPage />} />
             </>
             ) : (
               <>

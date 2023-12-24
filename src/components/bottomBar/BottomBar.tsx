@@ -44,7 +44,7 @@ const BottomBar = () => {
       ),
       id: 2,
       name: 'Dodaj',
-      route: '',
+      route: '/add-offer',
     },
     {
       icon: (
