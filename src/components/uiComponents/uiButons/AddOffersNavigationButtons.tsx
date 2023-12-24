@@ -36,7 +36,7 @@ const AddOfferNavigationButtons = () => {
         )}
       <button
         className={`${buttonStyle.base} border-[#3e2e94] ${
-          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#7360DF]'
+          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#D687F3]'
         }`}
         onClick={handleNext}>
         <div className={buttonStyle.text}>Dalej</div>
