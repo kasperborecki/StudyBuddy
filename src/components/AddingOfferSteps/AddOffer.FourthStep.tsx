@@ -7,31 +7,31 @@ import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import AddOfferButtonUnSelected from '../uiComponents/uiButons/AddOfferButtonUnSelected';
 import {MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
-import {addOfferSubject, addOfferType} from '../../atoms/AddOffer.Atom';
+import {addOfferLevel} from '../../atoms/AddOffer.Atom';
 import AddOfferButtonSelected from '../uiComponents/uiButons/AddOfferButtonSelected';
 import BreadCrumb from '../BreadCrumb';
 import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
-import {EducationType} from '../../constans/PersonalDataSettings.Constans';
+import {EducationLevel} from '../../constans/PersonalDataSettings.Constans';
 
-const AddOfferSecondStep = () => {
+const AddOfferFourthStep = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-  const [type, setType] = useRecoilState(addOfferType);
+  const [level, setLevel] = useRecoilState(addOfferLevel);
 
   const handleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
   const handleClearSubject = () => {
-    setType('');
+    setLevel('');
   };
 
   return (
     <div className='w-[80%]'>
       <BreadCrumb />
-      <p className='flex w-full text-2xl font-jua font-semibold text-black pb-8 px-2'>
-        Jaki <p className='text-[#D687F3] px-2'>Typ</p> Zajęć Preferujesz?
+      <p className='flex text-2xl font-jua font-semibold text-black pb-8'>
+        Na Jakim <p className='text-[#D687F3] px-2'>Poziomie</p> Uczysz?
       </p>
-      {type.length > 0 ? (
+      {level.length > 0 ? (
         <button
           className='w-full'
           onClick={handleClearSubject}>
@@ -67,7 +67,7 @@ const AddOfferSecondStep = () => {
       <div>
         {isCollapsed === false ? (
           <div>
-            {EducationType.map((option) => (
+            {EducationLevel.map((option) => (
               <AddOfferButtonUnSelected text={option.name} />
             ))}
           </div>
@@ -80,4 +80,4 @@ const AddOfferSecondStep = () => {
   );
 };
 
-export default AddOfferSecondStep;
+export default AddOfferFourthStep;

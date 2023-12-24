@@ -7,6 +7,8 @@ import AddOfferFirstStep from '../../components/AddingOfferSteps/AddOffer.FirstS
 import {addOfferPageAtom} from '../../atoms/AddOfferPage.Atom';
 import AddOfferSecondStep from '../../components/AddingOfferSteps/AddOffer.SecondStep';
 import AddOfferThirdStep from '../../components/AddingOfferSteps/AddOffer.ThirdStep';
+import AddOfferFourthStep from '../../components/AddingOfferSteps/AddOffer.FourthStep';
+import AddOfferFifthStep from '../../components/AddingOfferSteps/AddOffer.FifthStep';
 
 const AddOfferPage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
@@ -42,7 +44,13 @@ const AddOfferPage = () => {
         <AddOfferSecondStep />
       ) : page === 3 ? (
         <AddOfferThirdStep />
-      ): (<></>)}
+      ) : page === 4 ? (
+        <AddOfferFourthStep />
+      ): page === 5 ? (
+        <AddOfferFifthStep />
+      ) : (
+        <></>
+      )}
       <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
         <BottomBar />
       </div>

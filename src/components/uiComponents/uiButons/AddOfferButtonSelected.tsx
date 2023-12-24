@@ -2,6 +2,9 @@ import React from 'react';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../../atoms/DarkMode.Atom';
 import {
+  addOfferCiteis,
+  addOfferCiteisId,
+  addOfferLevel,
   addOfferMethod,
   addOfferSubject,
   addOfferType,
@@ -14,6 +17,8 @@ const AddOfferButtonSelected = () => {
   const [subject] = useRecoilState(addOfferSubject);
   const [type] = useRecoilState(addOfferType);
   const [method] = useRecoilState(addOfferMethod);
+  const [level] = useRecoilState(addOfferLevel);
+  const [cities] = useRecoilState(addOfferCiteis);
   const [page] = useRecoilState(addOfferPageAtom);
   let text = '';
 
@@ -23,13 +28,18 @@ const AddOfferButtonSelected = () => {
     text = type;
   } else if (page === 3) {
     text = method;
+  } else if (page === 4) {
+    text = level;
+  } else if (page === 5) {
+    text = cities;
   }
+  console.log(cities);
 
   return (
     <button
       className={`w-full h-[50px] rounded-3xl mb-[8%] mx-auto my-auto flex
         ${
-          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FF6969] border-2 border-[#ff4f4f]'
+          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#D687F3] border-2 border-[#3e2e94]'
         }`}>
       <div
         className={`w-11/12 text-start text-k2b font-bold text-[18px] pt-[12px] pl-8 ${
