@@ -7,23 +7,23 @@ import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import AddOfferButtonUnSelected from '../uiComponents/uiButons/AddOfferButtonUnSelected';
 import {MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
-import {addOfferSubject, addOfferType} from '../../atoms/AddOffer.Atom';
+import {addOfferMethod, addOfferSubject, addOfferType} from '../../atoms/AddOffer.Atom';
 import AddOfferButtonSelected from '../uiComponents/uiButons/AddOfferButtonSelected';
 import BreadCrumb from '../BreadCrumb';
 import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
-import { EducationType } from '../../constans/PersonalDataSettings.Constans';
+import { EducationMethod, EducationType } from '../../constans/PersonalDataSettings.Constans';
 
-const AddOfferSecondStep = () => {
+const AddOfferThirdStep = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-  const [type, setType] = useRecoilState(addOfferType);
+  const [method, setMethod] = useRecoilState(addOfferMethod);
 
 
   const handleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
   const handleClearSubject = () => {
-    setType('');
+    setMethod('');
   };
 
   return (
@@ -32,7 +32,7 @@ const AddOfferSecondStep = () => {
       <p className='flex text-2xl font-jua font-semibold text-black pb-8'>
         Jakiego <p className='text-[#D687F3] px-2'>Przedmiotu</p> Uczysz?
       </p>
-      {type.length > 0 ? <button className='w-full' onClick={handleClearSubject}><AddOfferButtonSelected /></button> : <></>}
+      {method.length > 0 ? <button className='w-full' onClick={handleClearSubject}><AddOfferButtonSelected /></button> : <></>}
       <div
         className='flex w-64 mb-8'
         onClick={handleCollapse}>
@@ -60,7 +60,7 @@ const AddOfferSecondStep = () => {
         <div>
           {isCollapsed === false ? (
             <div>
-             {EducationType.map((option) => (
+             {EducationMethod.map((option) => (
                 <AddOfferButtonUnSelected text={option.name} />
               ))}
             </div>
@@ -73,4 +73,4 @@ const AddOfferSecondStep = () => {
   );
 };
 
-export default AddOfferSecondStep;
+export default AddOfferThirdStep;
