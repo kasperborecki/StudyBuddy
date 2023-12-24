@@ -11,36 +11,19 @@ import {addOfferSubject} from '../../atoms/AddOffer.Atom';
 import AddOfferButtonSelected from '../uiComponents/uiButons/AddOfferButtonSelected';
 import BreadCrumb from '../BreadCrumb';
 import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
+import { EducationType } from '../../constans/PersonalDataSettings.Constans';
 
-const AddOfferFirstStep = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [subjectsData, setSubjectsData] = useState<Subjects[]>([]);
+const AddOfferSecondStep = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [subject, setSubject] = useRecoilState(addOfferSubject);
 
-  useEffect(() => {
-    const fetchSubjects = async () => {
-      try {
-        setIsLoading(true);
-        const subjectsRes = await SubjectsData.getSubjects();
-        setSubjectsData(subjectsRes);
-      } catch (error: any) {
-        console.error(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchSubjects();
-  }, []);
 
   const handleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
   const handleClearSubject = () => {
     setSubject('');
-    console.log('essa');
   };
 
   return (
@@ -74,27 +57,20 @@ const AddOfferFirstStep = () => {
           </>
         )}
       </div>
-
-      {isLoading ? (
-        <div className='ml-20'>
-        <LoadingSuspense />
-        </div>
-      ) : (
         <div>
           {isCollapsed === false ? (
             <div>
-              {subjectsData.map((subjectData) => (
-                <AddOfferButtonUnSelected text={subjectData.subject} />
+             {EducationType.map((option) => (
+                <AddOfferButtonUnSelected text={option.name} />
               ))}
             </div>
           ) : (
             <></>
           )}
         </div>
-      )}
       <AddOfferNavigationButtons />
     </div>
   );
 };
 
-export default AddOfferFirstStep;
+export default AddOfferSecondStep;
