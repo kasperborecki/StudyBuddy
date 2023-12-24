@@ -47,7 +47,7 @@ const AddOfferFirstStep = () => {
     <div>
       <BreadCrumb />
       <p className='flex text-2xl font-jua font-semibold text-black pb-8'>
-        Jakiego <p className='text-[#DF826C] px-2'>Przedmiotu</p> Uczysz?
+        Jakiego <p className='text-[#D687F3] px-2'>Przedmiotu</p> Uczysz?
       </p>
       {subject.length > 0 ? <button className='w-full' onClick={handleClearSubject}><AddOfferButtonSelected /></button> : <></>}
       <div
