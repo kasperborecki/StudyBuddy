@@ -14,11 +14,11 @@ const FilterModal: React.FC<CustomModalProps> = ({ informationType }) => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [showModal, setShowModal] = useRecoilState<boolean>(modalAtom);
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const [isEducationType, setIsEducationType] = useRecoilState(educationType);
+  const [, setIsEducationType] = useRecoilState(educationType);
   const [isEducationLevel, setIsEducationLevel] = useRecoilState(educationLevel);
-  const [isEducationMethod, setIsEducationMethod] = useRecoilState(educationMethod);
+  const [, setIsEducationMethod] = useRecoilState(educationMethod);
   const [, setSortBy] = useRecoilState(sortBy);
-  const [isPrice, setIsPrice] = useRecoilState(price);
+  const [, setIsPrice] = useRecoilState(price);
   const [,setIsAscending] = useRecoilState(ascending);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const FilterModal: React.FC<CustomModalProps> = ({ informationType }) => {
   return (
     showModal ? (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-[2px]">
-        <div className={` p-8 rounded shadow-md w-[70%] h-68 rounded-3xl ${isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'}`}>
+        <div className={` p-8 shadow-md w-[70%] h-68 rounded-3xl ${isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'}`}>
           <div className="mb-4">
             <h2 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-black'}`}>{getTitle()}</h2>
           </div>

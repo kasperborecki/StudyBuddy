@@ -1,30 +1,30 @@
-import {useEffect, useState} from 'react';
-import SubjectsData from '../../services/common/Common.Selector';
+import {useState, useEffect} from 'react';
 import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
-import {Subjects} from '../../interfaces/Subcjects.Interface';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import AddOfferButtonUnSelected from '../uiComponents/uiButons/AddOfferButtonUnSelected';
-import {MdKeyboardArrowDown} from 'react-icons/md';
-import {MdKeyboardArrowUp} from 'react-icons/md';
-import {addOfferSubject} from '../../atoms/AddOffer.Atom';
+import {MdKeyboardArrowDown, MdKeyboardArrowUp} from 'react-icons/md';
+import {addOfferCiteis, addOfferSubject} from '../../atoms/AddOffer.Atom';
 import AddOfferButtonSelected from '../uiComponents/uiButons/AddOfferButtonSelected';
 import BreadCrumb from '../BreadCrumb';
 import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
+import {Cities} from '../../interfaces/Cities.Interface';
+import CommonData from '../../services/common/Common.Selector';
 
-const AddOfferFirstStep = () => {
+const AddOfferFifthStep = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [subjectsData, setSubjectsData] = useState<Subjects[]>([]);
+  const [citiesData, setCitiesData] = useState<Cities[]>([]);
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-  const [subject, setSubject] = useRecoilState(addOfferSubject);
+  const [cities, setCities] = useRecoilState(addOfferCiteis);
 
-  useEffect(() => {
-    const fetchSubjects = async () => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+    const fetchCities = async () => {
       try {
         setIsLoading(true);
-        const subjectsRes = await SubjectsData.getSubjects();
-        setSubjectsData(subjectsRes);
+        const citeisRes = await CommonData.getInputCities({inputValue});
+        setCitiesData(citeisRes);
       } catch (error: any) {
         console.error(error.message);
       } finally {
@@ -32,24 +32,24 @@ const AddOfferFirstStep = () => {
       }
     };
 
-    fetchSubjects();
-  }, []);
+    fetchCities();
+  };
 
   const handleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
+
   const handleClearSubject = () => {
-    setSubject('');
-    console.log('essa');
+    setCities('');
   };
 
   return (
     <div className='w-[80%]'>
       <BreadCrumb />
       <p className='flex text-2xl font-jua font-semibold text-black pb-8'>
-        Jakiego <p className='text-[#D687F3] px-2'>Przedmiotu</p> Uczysz?
+        W Jakim <p className='text-[#D687F3] px-2'>Mieście</p> Uczysz?
       </p>
-      {subject.length > 0 ? (
+      {cities.length > 0 ? (
         <button
           className='w-full'
           onClick={handleClearSubject}>
@@ -58,6 +58,12 @@ const AddOfferFirstStep = () => {
       ) : (
         <></>
       )}
+      <input
+        className={`w-full h-[50px] rounded-3xl mb-[8%] mx-auto my-auto flex
+       text-start text-k2b font-bold text-[18px] pl-4
+       ${isDarkMode ? 'bg-[#2B2B2B] text-white' : 'bg-[#eaeaea] text-black'}`}
+        onChange={handleInputChange}
+      />
       <div
         className='flex w-64 mb-8'
         onClick={handleCollapse}>
@@ -91,8 +97,12 @@ const AddOfferFirstStep = () => {
         <div>
           {isCollapsed === false ? (
             <div>
-              {subjectsData.map((subjectData) => (
-                <AddOfferButtonUnSelected text={subjectData.subject} />
+              {citiesData.map((cityData, index) => (
+                <AddOfferButtonUnSelected
+                  key={index}
+                  text={cityData.name}
+                  citiId={cityData.id}
+                />
               ))}
             </div>
           ) : (
@@ -105,4 +115,4 @@ const AddOfferFirstStep = () => {
   );
 };
 
-export default AddOfferFirstStep;
+export default AddOfferFifthStep;
