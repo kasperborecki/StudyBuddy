@@ -10,6 +10,7 @@ import BreadCrumb from '../BreadCrumb';
 import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
 import {Cities} from '../../interfaces/Cities.Interface';
 import CommonData from '../../services/common/Common.Selector';
+import {IoIosSearch} from 'react-icons/io';
 
 const AddOfferFifthStep = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -46,7 +47,10 @@ const AddOfferFifthStep = () => {
   return (
     <div className='w-[80%]'>
       <BreadCrumb />
-      <p className='flex text-2xl font-jua font-semibold text-black pb-8'>
+      <p
+        className={`flex text-2xl font-jua font-semibold text-black pb-8 ${
+          isDarkMode ? 'text-white' : 'text-black'
+        }`}>
         W Jakim <p className='text-[#D687F3] px-2'>Mieście</p> Uczysz?
       </p>
       {cities.length > 0 ? (
@@ -58,31 +62,57 @@ const AddOfferFifthStep = () => {
       ) : (
         <></>
       )}
-      <input
-        className={`w-full h-[50px] rounded-3xl mb-[8%] mx-auto my-auto flex
-       text-start text-k2b font-bold text-[18px] pl-4
-       ${isDarkMode ? 'bg-[#2B2B2B] text-white' : 'bg-[#eaeaea] text-black'}`}
-        onChange={handleInputChange}
-      />
+      <>
+        <div className='relative flex items-center'>
+          <input
+            className={`relative w-full h-[50px] rounded-3xl mb-[8%] mx-auto my-auto flex
+        text-start text-k2b font-bold text-[18px] pl-4 border-2
+        ${
+          isDarkMode
+            ? 'bg-[#2B2B2B] border-black text-white'
+            : 'bg-[#eaeaea] border-[#dadada] text-black'
+        }`}
+            onChange={handleInputChange}
+          />
+          <div
+            className={`absolute right-4 top-3 ${
+              isDarkMode ? 'text-white' : 'text-black'
+            }`}>
+            <IoIosSearch className='w-7 h-7' />
+          </div>
+        </div>
+      </>
       <div
         className='flex w-64 mb-8'
         onClick={handleCollapse}>
         <div className='relative my-2 border-t-2 mt-3 border-gray-600 w-full' />
         {isCollapsed ? (
           <>
-            <p className='absolute text-gray-700 text-[15px] font-bold right-16'>
+            <p
+              className={`absolute text-gray-700 text-[15px] font-bold right-16 ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
               Rozwiń
             </p>
-            <div className='absolute right-10 text-[22px]'>
+            <div
+              className={`absolute right-10 text-[22px] ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
               <MdKeyboardArrowDown />
             </div>
           </>
         ) : (
           <>
-            <p className='absolute text-gray-700 text-[15px] font-bold right-20'>
+            <p
+              className={`absolute text-gray-700 text-[15px] font-bold right-20 ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
               Zwiń
             </p>
-            <div className='absolute right-12 text-[22px]'>
+            <div
+              className={`absolute right-12 text-[22px] ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
               <MdKeyboardArrowUp />
             </div>
           </>

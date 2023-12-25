@@ -37,17 +37,16 @@ const AddOfferButtonSelected = () => {
 
   return (
     <button
-      className={`w-full h-[50px] rounded-3xl mb-[8%] mx-auto my-auto flex
-        ${
-          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#D687F3] border-2 border-[#3e2e94]'
-        }`}>
+      className='w-full h-[50px] rounded-3xl mb-[8%] mx-auto my-auto flex bg-[#b35ad3] border-2 border-[#3e2e94]'>
       <div
-        className={`w-11/12 text-start text-k2b font-bold text-[18px] pt-[12px] pl-8 ${
+        className={`w-11/12 text-start text-k2b font-bold text-[18px] pt-[10px] pl-8 ${
           isDarkMode ? 'text-white' : 'text-black'
         }`}>
         {text}
       </div>
-      <div className='text-end font-bold text-[18px] pt-[14px] pr-6 text-black'>
+      <div className={`text-end font-bold text-[18px] pt-[14px] pr-6 text-black${
+          isDarkMode ? 'text-white' : 'text-black'
+        }`}>
         <RxCross2 />
       </div>
     </button>
