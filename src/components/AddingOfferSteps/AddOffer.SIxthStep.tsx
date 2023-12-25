@@ -1,0 +1,89 @@
+import {useEffect, useState} from 'react';
+import SubjectsData from '../../services/common/Common.Selector';
+import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
+import {Subjects} from '../../interfaces/Subcjects.Interface';
+import {useRecoilState} from 'recoil';
+import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
+import {addOfferPrice} from '../../atoms/AddOffer.Atom';
+import BreadCrumb from '../BreadCrumb';
+import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
+import {Slider} from 'rsuite';
+import {FiPlus} from 'react-icons/fi';
+import {LuMinus} from 'react-icons/lu';
+
+const AddOfferSixthStep = () => {
+  const [isDarkMode] = useRecoilState(DarkModeAtom);
+  const [price, setPrice] = useRecoilState(addOfferPrice);
+  const [inputTime, setInputTime] = useState(50);
+
+  const handlePlus = () => {
+    if(inputTime < 120){
+    setInputTime((prevTime) => prevTime + 5);
+    setPrice(inputTime);
+    }
+  };
+
+  const handleMinus = () => {
+    if(inputTime > 15){
+    setInputTime((prevTime) => prevTime - 5);
+    setPrice(inputTime);
+    }
+  };
+
+  return (
+    <div className='w-[80%]'>
+      <BreadCrumb />
+      <p
+        className={`flex text-[22px] font-jua font-semibold text-black pb-8 ${
+          isDarkMode ? 'text-white' : 'text-black'
+        }`}>
+        Zaznacz <p className='text-[#D687F3] px-2'>Czas</p> Trwania Zajęć:
+      </p>
+      <div>
+        <div className='mb-8'>
+          <Slider
+            defaultValue={50}
+            value={inputTime}
+            max={120}
+            step={5}
+            min={15}
+            progress
+            onChange={(value) => {
+              setInputTime(value);
+              setPrice(value);
+            }}
+          />
+          <div className='py-4 mt-4 flex items-center justify-center'>
+            <div className='flex items-center gap-x-1.5'>
+              <button
+                type='button'
+                className={`w-9 h-9 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border-2 shadow-sm
+          ${isDarkMode ? 'bg-[#2B2B2B] text-white border-[#1a1a1a]' : 'bg-white border-[#dadada] text-black'}`}
+                onClick={handleMinus}>
+                <LuMinus />
+              </button>
+              <input
+                className={`p-0 w-9 bg-transparent border-0 text-center font-bold
+                ${isDarkMode ? 'text-white' : 'text-black'} `}
+                type='number'
+                value={inputTime}
+              />
+
+              <p className={`font-bold ${isDarkMode ? 'text-white' : 'text-black'} `}>min</p>
+              <button
+                type='button'
+                className={`w-9 h-9 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border-2 shadow-sm
+          ${isDarkMode ? 'bg-[#2B2B2B] text-white border-[#1a1a1a]' : 'bg-white border-[#dadada] text-black'}`}
+                onClick={handlePlus}>
+                <FiPlus />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <AddOfferNavigationButtons />
+    </div>
+  );
+};
+
+export default AddOfferSixthStep;

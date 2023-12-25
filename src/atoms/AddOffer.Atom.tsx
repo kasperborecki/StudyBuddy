@@ -30,3 +30,14 @@ export const addOfferCiteisId = atom({
   default: 0,
 });
 
+export const addOfferTime = atom({
+  key: 'addOfferTime',
+  default: 0,
+});
+
+export const addOfferPrice = atom({
+  key: 'addOfferPrice',
+  default: 0,
+});
+
+

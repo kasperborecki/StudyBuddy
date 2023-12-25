@@ -9,6 +9,7 @@ import AddOfferSecondStep from '../../components/AddingOfferSteps/AddOffer.Secon
 import AddOfferThirdStep from '../../components/AddingOfferSteps/AddOffer.ThirdStep';
 import AddOfferFourthStep from '../../components/AddingOfferSteps/AddOffer.FourthStep';
 import AddOfferFifthStep from '../../components/AddingOfferSteps/AddOffer.FifthStep';
+import AddOfferSixthStep from '../../components/AddingOfferSteps/AddOffer.SIxthStep';
 
 const AddOfferPage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
@@ -46,8 +47,10 @@ const AddOfferPage = () => {
         <AddOfferThirdStep />
       ) : page === 4 ? (
         <AddOfferFourthStep />
-      ): page === 5 ? (
+      ) : page === 5 ? (
         <AddOfferFifthStep />
+      ) : page === 6 ? (
+        <AddOfferSixthStep />
       ) : (
         <></>
       )}
