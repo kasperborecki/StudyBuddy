@@ -27,7 +27,10 @@ const AddOfferThirdStep = () => {
   return (
     <div className='w-[80%]'>
       <BreadCrumb />
-      <p className='flex text-2xl font-jua font-semibold text-black pb-8'>
+      <p
+        className={`flex text-2xl font-jua font-semibold text-black pb-8 ${
+          isDarkMode ? 'text-white' : 'text-black'
+        }`}>
         Jaki <p className='text-[#D687F3] px-2'>Tryb</p> Preferujesz?
       </p>
       {method.length > 0 ? (
@@ -45,19 +48,31 @@ const AddOfferThirdStep = () => {
         <div className='relative my-2 border-t-2 mt-3 border-gray-600 w-full' />
         {isCollapsed ? (
           <>
-            <p className='absolute text-gray-700 text-[15px] font-bold right-16'>
+            <p
+              className={`absolute text-gray-700 text-[15px] font-bold right-16 ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
               Rozwiń
             </p>
-            <div className='absolute right-10 text-[22px]'>
+            <div
+              className={`absolute right-10 text-[22px] ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
               <MdKeyboardArrowDown />
             </div>
           </>
         ) : (
           <>
-            <p className='absolute text-gray-700 text-[15px] font-bold right-20'>
+            <p
+              className={`absolute text-gray-700 text-[15px] font-bold right-20 ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
               Zwiń
             </p>
-            <div className='absolute right-12 text-[22px]'>
+            <div
+              className={`absolute right-12 text-[22px] ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
               <MdKeyboardArrowUp />
             </div>
           </>

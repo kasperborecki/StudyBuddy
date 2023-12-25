@@ -27,8 +27,8 @@ const AddOfferNavigationButtons = () => {
     <div className='flex mb-32'>
         {page === 1 ? (<></>) :(
             <button
-        className={`${buttonStyle.base} border-[#dadada] ${
-          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FFFFFF]'
+        className={`${buttonStyle.base} ${
+          isDarkMode ? 'bg-[#2B2B2B] border-[#1a1a1a]' : 'bg-[#FFFFFF] border-[#dadada]'
         }`}
         onClick={handleBack}>
         <div className={buttonStyle.text}>Wróć</div>
@@ -36,7 +36,7 @@ const AddOfferNavigationButtons = () => {
         )}
       <button
         className={`${buttonStyle.base} border-[#3e2e94] ${
-          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#D687F3]'
+          isDarkMode ? 'bg-[#b35ad3]' : 'bg-[#D687F3]'
         }`}
         onClick={handleNext}>
         <div className={buttonStyle.text}>Dalej</div>
