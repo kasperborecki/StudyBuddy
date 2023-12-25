@@ -34,7 +34,7 @@ const AddOfferSixthStep = () => {
     <div className='w-[80%]'>
       <BreadCrumb />
       <p
-        className={`flex text-[22px] font-jua font-semibold text-black pb-8 ${
+        className={`flex text-xl font-jua font-semibold text-black pb-8 ${
           isDarkMode ? 'text-white' : 'text-black'
         }`}>
         Zaznacz <p className='text-[#D687F3] px-2'>Czas</p> Trwania Zajęć:

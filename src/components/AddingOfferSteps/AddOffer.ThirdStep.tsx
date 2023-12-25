@@ -28,7 +28,7 @@ const AddOfferThirdStep = () => {
     <div className='w-[80%]'>
       <BreadCrumb />
       <p
-        className={`flex text-2xl font-jua font-semibold text-black pb-8 ${
+        className={`flex text-xl font-jua font-semibold text-black pb-8 ${
           isDarkMode ? 'text-white' : 'text-black'
         }`}>
         Jaki <p className='text-[#D687F3] px-2'>Tryb</p> Preferujesz?
@@ -49,8 +49,10 @@ const AddOfferThirdStep = () => {
         {isCollapsed ? (
           <>
             <p
-              className={`absolute text-gray-700 text-[15px] font-bold right-16 ${
-                isDarkMode ? 'text-white' : 'text-black'
+              className={`absolute text-gray-700 text-[15px] font-bold pl-2 right-16 ${
+                isDarkMode
+                  ? 'text-white bg-[#212121]'
+                  : 'text-black bg-[#FAEFFF]'
               }`}>
               Rozwiń
             </p>
@@ -64,8 +66,10 @@ const AddOfferThirdStep = () => {
         ) : (
           <>
             <p
-              className={`absolute text-gray-700 text-[15px] font-bold right-20 ${
-                isDarkMode ? 'text-white' : 'text-black'
+              className={`absolute text-gray-700 text-[15px] font-bold px-2 right-16 ${
+                isDarkMode
+                  ? 'text-white bg-[#212121]'
+                  : 'text-black bg-[#FAEFFF]'
               }`}>
               Zwiń
             </p>
