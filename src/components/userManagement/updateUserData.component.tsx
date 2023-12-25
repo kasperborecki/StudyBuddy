@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 import { Cities, EducationLevel, EducationMethod, EducationType } from '../../constans/PersonalDataSettings.Constans';
-import { Slider } from 'rsuite';
 import './styles.css';
 import './slider.less';
 import UserData from '../../services/User/UserData';
