@@ -53,10 +53,12 @@ const AddOfferPage = () => {
         <AddOfferFifthStep />
       ) : page === 6 ? (
         <AddOfferSixthStep />
-      ): page === 7 ? (
+      ) : page === 7 ? (
         <AddOfferSeventhStep />
-      ) : (
+      ) : page === 8 ? (
         <AddOfferEighthStep />
+      ) : (
+        <></>
       )}
       <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
         <BottomBar />
