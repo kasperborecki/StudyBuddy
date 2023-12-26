@@ -1,4 +1,4 @@
-import UiGradienButtonLong from "../uiComponents/uiButons/UIGradientButtonLong";
+import UiGradienButtonLong from '../uiComponents/uiButons/UIProfileSettingsButton';
 
 const PersonalSection = () => {
   return (

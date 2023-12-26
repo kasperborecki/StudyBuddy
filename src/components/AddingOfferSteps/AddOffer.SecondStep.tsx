@@ -1,13 +1,10 @@
-import {useEffect, useState} from 'react';
-import SubjectsData from '../../services/common/Common.Selector';
-import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
-import {Subjects} from '../../interfaces/Subcjects.Interface';
+import {useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import AddOfferButtonUnSelected from '../uiComponents/uiButons/AddOfferButtonUnSelected';
 import {MdKeyboardArrowDown} from 'react-icons/md';
 import {MdKeyboardArrowUp} from 'react-icons/md';
-import {addOfferSubject, addOfferType} from '../../atoms/AddOffer.Atom';
+import {addOfferType} from '../../atoms/AddOffer.Atom';
 import AddOfferButtonSelected from '../uiComponents/uiButons/AddOfferButtonSelected';
 import BreadCrumb from '../BreadCrumb';
 import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';

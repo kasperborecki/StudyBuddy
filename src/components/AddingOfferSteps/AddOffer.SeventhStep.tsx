@@ -1,29 +1,29 @@
 import {useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
-import {addOfferTime} from '../../atoms/AddOffer.Atom';
+import {addOfferPrice} from '../../atoms/AddOffer.Atom';
 import BreadCrumb from '../BreadCrumb';
 import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
 import {Slider} from 'rsuite';
 import {FiPlus} from 'react-icons/fi';
 import {LuMinus} from 'react-icons/lu';
 
-const AddOfferSixthStep = () => {
+const AddOfferSeventhStep = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
-  const [, setTime] = useRecoilState(addOfferTime);
-  const [inputTime, setInputTime] = useState(50);
+  const [, setPrice] = useRecoilState(addOfferPrice);
+  const [inputPrice, setInputPrice] = useState(100);
 
   const handlePlus = () => {
-    if (inputTime < 120) {
-      setInputTime((prevTime) => prevTime + 5);
-      setTime(inputTime);
+    if (inputPrice < 500) {
+      setInputPrice((prevPrice) => prevPrice + 10);
+      setPrice(inputPrice);
     }
   };
 
   const handleMinus = () => {
-    if (inputTime > 15) {
-      setInputTime((prevTime) => prevTime - 5);
-      setTime(inputTime);
+    if (inputPrice > 10) {
+      setInputPrice((prevPrice) => prevPrice - 10);
+      setPrice(inputPrice);
     }
   };
 
@@ -39,15 +39,15 @@ const AddOfferSixthStep = () => {
       <div>
         <div className='mb-8'>
           <Slider
-            defaultValue={50}
-            value={inputTime}
-            max={120}
-            step={5}
+            defaultValue={100}
+            value={inputPrice}
+            max={500}
+            step={10}
             min={15}
             progress
             onChange={(value) => {
-              setInputTime(value);
-              setTime(value);
+              setInputPrice(value);
+              setPrice(value);
             }}
           />
           <div className='py-4 mt-4 flex items-center justify-center'>
@@ -67,18 +67,18 @@ const AddOfferSixthStep = () => {
                 className={`p-0 w-9 bg-transparent border-0 text-center font-bold
     ${isDarkMode ? 'text-white' : 'text-black'} `}
                 type='number'
-                value={inputTime}
+                value={inputPrice}
                 onChange={(e) => {
                   const value = parseInt(e.target.value, 10);
-                  setInputTime(value);
-                  setTime(value);
+                  setInputPrice(value);
+                  setPrice(value);
                 }}
               />
               <p
                 className={`font-bold ${
                   isDarkMode ? 'text-white' : 'text-black'
                 } `}>
-                min
+                PLN
               </p>
               <button
                 type='button'
@@ -100,4 +100,4 @@ const AddOfferSixthStep = () => {
   );
 };
 
-export default AddOfferSixthStep;
+export default AddOfferSeventhStep;

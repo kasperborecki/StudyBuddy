@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SubjectsData from '../../services/common/Common.Selector';
 import {Subjects} from '../../interfaces/Subcjects.Interface';
 import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
-import UiWhiteButtonLong from '../uiComponents/uiButons/UiWhiteButtonLong';
+import UiWhiteButtonLong from '../uiComponents/uiButons/UiSubjectsButton';
 
 const SubjectsComponent: React.FC = () => {
   const [subjectsData, setSubjectsData] = useState<Subjects[]>([]);
