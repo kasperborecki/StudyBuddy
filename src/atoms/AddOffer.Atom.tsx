@@ -32,12 +32,17 @@ export const addOfferCiteisId = atom({
 
 export const addOfferTime = atom({
   key: 'addOfferTime',
-  default: 0,
+  default: 50,
 });
 
 export const addOfferPrice = atom({
   key: 'addOfferPrice',
-  default: 0,
+  default: 100,
+});
+
+export const addOfferDescription = atom({
+  key: 'addOfferPrice',
+  default: '',
 });
 
 

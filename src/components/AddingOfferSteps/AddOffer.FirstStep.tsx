@@ -84,7 +84,7 @@ const AddOfferFirstStep = () => {
         ) : (
           <>
             <p
-              className={`absolute text-gray-700 text-[15px] font-bold pl-2 right-16 ${
+              className={`absolute text-gray-700 text-[15px] font-bold px-2 right-16 ${
                 isDarkMode
                   ? 'text-white bg-[#212121]'
                   : 'text-black bg-[#FAEFFF]'

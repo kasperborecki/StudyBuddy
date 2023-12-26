@@ -1,6 +1,4 @@
 import {useState} from 'react';
-import SubjectsData from '../../services/common/Common.Selector';
-import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import AddOfferButtonUnSelected from '../uiComponents/uiButons/AddOfferButtonUnSelected';

@@ -4,7 +4,7 @@ import { IoArrowBack } from 'react-icons/io5';
 import BottomBar from '../../components/bottomBar/BottomBar';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
-import UiWhiteButtonFilters from '../../components/uiComponents/uiButons/UiWhiteButtonFIlters';
+import UiWhiteButtonFilters from '../../components/uiComponents/uiButons/UiFIltersFButton';
 import { educationLevel, educationMethod, educationType, price } from '../../atoms/FIlter.Atom';
 import FilterModal from '../../components/modal/FilterModal.Component';
 import { modalAtom } from '../../atoms/Modal.Atom';
