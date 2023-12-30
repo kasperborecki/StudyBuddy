@@ -2,39 +2,40 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../../atoms/DarkMode.Atom';
 import { FaRegSquarePlus } from "react-icons/fa6";
-import { addOfferCiteis, addOfferCiteisId, addOfferLevel, addOfferMethod, addOfferSubject, addOfferType } from '../../../atoms/AddOffer.Atom';
+import { addOfferCiteis, addOfferCiteisId, addOfferLevel, addOfferMethod, addOfferSubject, addOfferSubjectId } from '../../../atoms/AddOffer.Atom';
 import { addOfferPageAtom } from '../../../atoms/AddOfferPage.Atom';
 
 
 interface CustomButtonProps {
   text?: any;
   citiId?: any
+  id?: any;
 }
 
 const AddOfferButtonUnSelected: React.FC<CustomButtonProps> = ({
   text,
   citiId,
+  id,
 }) => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [,setSubject] = useRecoilState(addOfferSubject);
-  const [,setType] = useRecoilState(addOfferType);
+  const [,setSubjectId] = useRecoilState(addOfferSubjectId);
   const [,setMethod] = useRecoilState(addOfferMethod);
   const [,setLevel] = useRecoilState(addOfferLevel);
-  const [citeis,setCities] = useRecoilState(addOfferCiteis);
-  const [iscitiId ,setCitiesId] = useRecoilState(addOfferCiteisId);
+  const [,setCities] = useRecoilState(addOfferCiteis);
+  const [ ,setCitiesId] = useRecoilState(addOfferCiteisId);
   const [page] = useRecoilState(addOfferPageAtom);
 
 
   const handleSelect = () => {
     if(page === 1){
     setSubject(text);
+    setSubjectId(id);
     } else if( page === 2 ){
-      setType(text);
-    } else if( page === 3 ){
       setMethod(text);
-    } else if( page === 4 ){
+    } else if( page === 3 ){
       setLevel(text);
-    } else if( page === 5 ){
+    } else if( page === 4 ){
       setCities(text);
       setCitiesId(citiId);
     }

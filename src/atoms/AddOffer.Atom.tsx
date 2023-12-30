@@ -5,6 +5,11 @@ export const addOfferSubject = atom({
   default: '',
 });
 
+export const addOfferSubjectId = atom({
+  key: 'addOfferSubjectId',
+  default: '',
+});
+
 export const addOfferType = atom({
   key: 'addOfferType',
   default: '',
@@ -41,8 +46,20 @@ export const addOfferPrice = atom({
 });
 
 export const addOfferDescription = atom({
-  key: 'addOfferPrice',
+  key: 'addOfferDescription',
   default: '',
 });
 
 
+export const addOfferAvability = atom({
+  key: 'addOfferAvability',
+  default: [
+    ['1', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['2', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['3', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['4', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['5', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['6', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['7', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+  ]
+});

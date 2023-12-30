@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LoadingSuspense from "../loadingSuspense/LoadingSuspense";
-import OffersData from "../../services/common/Offer.Selector";
-import { Offer } from "../../interfaces/Offers";
+import OffersData from "../../services/common/Offer.Service";
+import { Offer } from "../../interfaces/Offers.Interface";
 import { useRecoilState } from "recoil";
 import { subjectIdAtom, subjectNameAtom } from "../../atoms/Subject.Atom";
 import AccoundHeader from "../uiComponents/uiHeaders/AccountHeader";
@@ -16,7 +16,7 @@ const OfferCard = () => {
   const [selectedSubject,] = useRecoilState(subjectIdAtom);
   const [selectedSubjectName, ] = useRecoilState(subjectNameAtom);
   const [offerData, setOfferData] = useState<Offer[]>([]);
-  const [, setImages] = useState<any[]>([]);
+  // const [, setImages] = useState<any[]>([]);
   const [isDarkMode, ] = useRecoilState(DarkModeAtom);
   const [isEducationLevel] = useRecoilState(educationLevel);
   const [isEducationType] = useRecoilState(educationType);
@@ -64,11 +64,8 @@ const OfferCard = () => {
               <div>
                 <div className={`absolute ml-16 font-k2d font-bold text-[14px] flex py-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
                   <div className="mr-2">
-                  {offer.profile?.name} 
+                  {offer.profile?.nickName} 
                   </div>
-                  <>
-                  {offer.profile?.surname}
-                  </>
                 </div>
                 <div className='absolute right-4 font-k2d font-bold text-[14px] flex py-4'>
                 <div className="text-[#edb72d] flex">

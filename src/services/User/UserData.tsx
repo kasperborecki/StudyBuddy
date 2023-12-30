@@ -5,8 +5,7 @@ const updateUserData = async (newData: any, userId: any) => {
     .from('profiles')
     .update([
       {
-        name: newData.name,
-        surname: newData.surname,
+        nickName: newData.nickName,
         city: newData.city,
         // education_level: newData.educationLevel,
         // education_type: newData.educationType,
@@ -22,8 +21,21 @@ const updateUserData = async (newData: any, userId: any) => {
   if (error) throw error.message;
 };
 
+const getUserData = async (userId: any) => {
+  console.log("UserId:", userId);
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('user_id, nickName, avatar_url, experience')
+    .eq('user_id', userId);
+
+    if (error) throw error.message;
+
+    return data || [];
+};
+
 const UserData = {
   updateUserData,
+  getUserData,
 };
 
 export default UserData;

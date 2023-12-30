@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
-import {addOfferPrice} from '../../atoms/AddOffer.Atom';
+import {addOfferPrice, addOfferTime} from '../../atoms/AddOffer.Atom';
 import BreadCrumb from '../BreadCrumb';
 import AddOfferNavigationButtons from '../uiComponents/uiButons/AddOffersNavigationButtons';
 import {Slider} from 'rsuite';
@@ -10,13 +10,16 @@ import {LuMinus} from 'react-icons/lu';
 
 const AddOfferSeventhStep = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
-  const [, setPrice] = useRecoilState(addOfferPrice);
+  const [price, setPrice] = useRecoilState(addOfferPrice);
   const [inputPrice, setInputPrice] = useState(100);
+  const [time] = useRecoilState(addOfferTime);
+
 
   const handlePlus = () => {
     if (inputPrice < 500) {
       setInputPrice((prevPrice) => prevPrice + 10);
       setPrice(inputPrice);
+      console.log(price);
     }
   };
 
@@ -24,6 +27,7 @@ const AddOfferSeventhStep = () => {
     if (inputPrice > 10) {
       setInputPrice((prevPrice) => prevPrice - 10);
       setPrice(inputPrice);
+      console.log(price);
     }
   };
 
@@ -34,7 +38,7 @@ const AddOfferSeventhStep = () => {
         className={`flex text-xl font-jua font-semibold text-black pb-8 ${
           isDarkMode ? 'text-white' : 'text-black'
         }`}>
-        Zaznacz <p className='text-[#D687F3] px-2'>Czas</p> Trwania Zajęć:
+        Zaznacz <p className='text-[#D687F3] px-2'>Cene</p> Za {time} minut:
       </p>
       <div>
         <div className='mb-8'>

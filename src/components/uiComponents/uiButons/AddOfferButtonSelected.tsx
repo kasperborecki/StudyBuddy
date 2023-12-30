@@ -3,11 +3,9 @@ import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../../atoms/DarkMode.Atom';
 import {
   addOfferCiteis,
-  addOfferCiteisId,
   addOfferLevel,
   addOfferMethod,
   addOfferSubject,
-  addOfferType,
 } from '../../../atoms/AddOffer.Atom';
 import {RxCross2} from 'react-icons/rx';
 import {addOfferPageAtom} from '../../../atoms/AddOfferPage.Atom';
@@ -15,7 +13,6 @@ import {addOfferPageAtom} from '../../../atoms/AddOfferPage.Atom';
 const AddOfferButtonSelected = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [subject] = useRecoilState(addOfferSubject);
-  const [type] = useRecoilState(addOfferType);
   const [method] = useRecoilState(addOfferMethod);
   const [level] = useRecoilState(addOfferLevel);
   const [cities] = useRecoilState(addOfferCiteis);
@@ -25,12 +22,10 @@ const AddOfferButtonSelected = () => {
   if (page === 1) {
     text = subject;
   } else if (page === 2) {
-    text = type;
-  } else if (page === 3) {
     text = method;
-  } else if (page === 4) {
+  } else if (page === 3) {
     text = level;
-  } else if (page === 5) {
+  } else if (page === 4) {
     text = cities;
   }
   console.log(cities);
