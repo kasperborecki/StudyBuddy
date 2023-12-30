@@ -110,7 +110,7 @@ const BottomBar = () => {
               </div>
             )}
           </div>
-          <a
+          <p
              className={`font-k2d font-bold ${
               activeTab === tab.id
                 ? `text-[18px] pt-[15px] ${isDarkMode ? 'text-white' : 'text-black'}`
@@ -122,7 +122,7 @@ const BottomBar = () => {
               alignItems: 'center',
             }}>
             {tab.name}
-          </a>
+          </p>
         </div>
       ))}
     </div>

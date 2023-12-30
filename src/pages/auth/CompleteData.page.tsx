@@ -9,8 +9,7 @@ const CompleteDataPage = () => {
   const navigate = useNavigate();
   const [registeredUser] = useRecoilState(registeredUserEmail);
   const [formData, setFormData] = useState({
-    name: '',
-    surname: '',
+    nickName: '',
     city: '',
     birthDate: '',
   });
@@ -46,17 +45,11 @@ const CompleteDataPage = () => {
           <input
             className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
             placeholder='Jan'
-            name='name'
+            name='nickName'
             onChange={handleChange}
           />
           <label className='ml-4'>Nazwisko:</label>
           <div className='relative'>
-            <input
-              className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
-              placeholder='Kowalski'
-              name='surname'
-              onChange={handleChange}
-            />
             <label className='ml-4'>Miasto:</label>
             <div className='relative'>
               <input

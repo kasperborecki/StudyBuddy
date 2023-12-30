@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
-import { Cities, EducationLevel, EducationMethod, EducationType } from '../../constans/PersonalDataSettings.Constans';
+import { Cities } from '../../constans/PersonalDataSettings.Constans';
 import './styles.css';
 import './slider.less';
 import UserData from '../../services/User/UserData';
@@ -233,9 +233,9 @@ const UpdateUserData = () => {
             maxLength={150}
             name='description'
           />
-          <a className={`absolute bottom-2 right-4 ${isDarkMode ? 'text-white' : 'text-black'} countText`}>
+          <p className={`absolute bottom-2 right-4 ${isDarkMode ? 'text-white' : 'text-black'} countText`}>
             {descriptionText.length}/150
-          </a>
+          </p>
         </div>
         <button
           className='bg-[#ccabd8] border-2 border-black w-[90%] h-[50px] ml-[5%] rounded-3xl mt-[8%]'

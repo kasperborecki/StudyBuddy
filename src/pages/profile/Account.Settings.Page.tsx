@@ -16,6 +16,7 @@ const AccountSettings = () => {
 
   const handleLogOut = async () => {
     let {error} = await supabase.auth.signOut();
+    if (error) throw error.message;
     navigate('/');
   };
   return (

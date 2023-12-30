@@ -14,15 +14,14 @@ const BreadCrumb = () => {
     <p className={`font-k2d font-bold text-xl ${isDarkMode ? 'text-white' : 'text-gray-400'}`}>z 9</p>
   </div>
   <div className="flex mb-4">
-  <div className={`w-[11%] h-1 ${page >= 1 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
-  <div className={`w-[11%] h-1 ${page >= 2 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
-  <div className={`w-[11%] h-1 ${page >= 3 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
-  <div className={`w-[11%] h-1 ${page >= 4 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
-  <div className={`w-[11%] h-1 ${page >= 5 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
-  <div className={`w-[11%] h-1 ${page >= 6 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
-  <div className={`w-[11%] h-1 ${page >= 7 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
-  <div className={`w-[11%] h-1 ${page >= 8 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
-  <div className={`w-[11%] h-1 ${page >= 9 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
+  <div className={`w-[12%] h-1 ${page >= 1 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
+  <div className={`w-[12%] h-1 ${page >= 2 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
+  <div className={`w-[12%] h-1 ${page >= 3 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
+  <div className={`w-[12%] h-1 ${page >= 4 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
+  <div className={`w-[12%] h-1 ${page >= 5 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
+  <div className={`w-[12%] h-1 ${page >= 6 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
+  <div className={`w-[12%] h-1 ${page >= 7 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
+  <div className={`w-[12%] h-1 ${page >= 8 ? 'bg-[#D687F3]' : 'bg-gray-300' }`} />
   </div>
   </div>
   );

@@ -110,7 +110,7 @@ const AddOfferFirstStep = () => {
           {isCollapsed === false ? (
             <div>
               {subjectsData.map((subjectData) => (
-                <AddOfferButtonUnSelected text={subjectData.subject} />
+                <AddOfferButtonUnSelected text={subjectData.subject} id={subjectData.id} />
               ))}
             </div>
           ) : (

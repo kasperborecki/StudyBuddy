@@ -5,13 +5,14 @@ import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import AddOfferFirstStep from '../../components/AddingOfferSteps/AddOffer.FirstStep';
 import {addOfferPageAtom} from '../../atoms/AddOfferPage.Atom';
-import AddOfferSecondStep from '../../components/AddingOfferSteps/AddOffer.SecondStep';
 import AddOfferThirdStep from '../../components/AddingOfferSteps/AddOffer.ThirdStep';
 import AddOfferFourthStep from '../../components/AddingOfferSteps/AddOffer.FourthStep';
 import AddOfferFifthStep from '../../components/AddingOfferSteps/AddOffer.FifthStep';
 import AddOfferSixthStep from '../../components/AddingOfferSteps/AddOffer.SIxthStep';
 import AddOfferSeventhStep from '../../components/AddingOfferSteps/AddOffer.SeventhStep';
 import AddOfferEighthStep from '../../components/AddingOfferSteps/AddOffer.EightStep';
+import AddOfferNinthStep from '../../components/AddingOfferSteps/AddOffer.NinthStep';
+import AddOfferTenthStep from '../../components/AddingOfferSteps/AddOffer.TenthStep';
 
 const AddOfferPage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
@@ -44,21 +45,21 @@ const AddOfferPage = () => {
       {page === 1 ? (
         <AddOfferFirstStep />
       ) : page === 2 ? (
-        <AddOfferSecondStep />
-      ) : page === 3 ? (
         <AddOfferThirdStep />
-      ) : page === 4 ? (
+      ) : page === 3 ? (
         <AddOfferFourthStep />
-      ) : page === 5 ? (
+      ) : page === 4 ? (
         <AddOfferFifthStep />
-      ) : page === 6 ? (
+      ) : page === 5 ? (
         <AddOfferSixthStep />
-      ) : page === 7 ? (
+      ): page === 6 ? (
         <AddOfferSeventhStep />
-      ) : page === 8 ? (
+      ) : page === 7 ?(
         <AddOfferEighthStep />
+      ) : page === 8 ?(
+        <AddOfferNinthStep />
       ) : (
-        <></>
+        <AddOfferTenthStep />
       )}
       <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
         <BottomBar />
