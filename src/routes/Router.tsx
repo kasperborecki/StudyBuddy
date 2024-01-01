@@ -1,5 +1,5 @@
 import React from 'react';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilState } from 'recoil';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import WelcomePage from '../pages/auth/Welcome.Page';
@@ -14,10 +14,13 @@ import PersonalDataSettings from '../pages/profile/PrsonalData.Settings.Page';
 import OffersPage from '../pages/offers/Offers.Page';
 import OfferFiltersPage from '../pages/offers/OfferFilters.Page';
 import AddOfferPage from '../pages/offers/AddOffer.Page';
+import { offerId } from '../atoms/SelectedOfferId.Atom';
+import OfferDetailsPage from '../pages/offers/OfferDetails.Page';
 // import CompleteDataPage from '../pages/auth/CompleteData.page';
 
 const AppRouter = () => {
   const { session } = useAuth();
+  const [selectedOfferId] = useRecoilState(offerId);
   
   return (
     <RecoilRoot>
@@ -33,6 +36,7 @@ const AppRouter = () => {
             <Route path='/offers' element={<OffersPage />} />
             <Route path='/offers-filter' element={<OfferFiltersPage />} />
             <Route path='/add-offer' element={<AddOfferPage />} />
+            <Route path='/offerDetail/:selectedOfferId' element={<OfferDetailsPage />} />
             </>
             ) : (
               <>

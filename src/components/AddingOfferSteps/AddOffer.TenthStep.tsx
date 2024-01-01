@@ -32,7 +32,7 @@ const AddOfferTenthStep = () => {
   const {session} = useAuth();
   const [isLoading, setIsLoading] = useState<boolean>();
   const [userData, setUserData] = useState<User[]>([]);
-  console.log(session);
+
 
   const [subject] = useRecoilState(addOfferSubject);
   const [subjectId] = useRecoilState(addOfferSubjectId);
