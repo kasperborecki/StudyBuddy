@@ -1,5 +1,7 @@
 import supabase from '../../config/SupabaseClient';
 
+// Get Offers From Selected Subject With Or Without Filtering
+
 const getSelectedSubjectOffers = async (
   selectedSubject: string,
   isEducationLevel: string,
@@ -15,7 +17,7 @@ const getSelectedSubjectOffers = async (
     const {data: offersData, error: offersError} = await supabase
       .from('offers')
       .select(
-        'offer_id, created_at, subject_id, user_id, education_level, education_type, education_method, price',
+        'offer_id, created_at, subject_id, user_id, education_level, education_method, price, time, city, description',
       )
       .eq('subject_id', selectedSubject)
       // .eq(isSortBy.length > 0 ? 'education_level' : '', sortBy)
@@ -44,7 +46,9 @@ const getSelectedSubjectOffers = async (
 
     const {data: profilesData, error: profilesError} = await supabase
       .from('profiles')
-      .select('user_id, nickName, avatar_url')
+      .select(
+        'user_id, nickName, avatar_url, experience_years, experience_info, verificated',
+      )
       .in('user_id', userIds);
 
     if (profilesError) {
@@ -62,13 +66,66 @@ const getSelectedSubjectOffers = async (
       };
     });
 
-    console.log(combinedData);
     return combinedData;
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
+
+// Get Selected Offer By Id
+
+const getOffer = async (selectedOfferId: any) => {
+  try {
+    // Initial query to fetch offers data
+    const {data: offersData, error: offersError} = await supabase
+      .from('offers')
+      .select(
+        'offer_id, created_at, subject_id, user_id, education_level, education_method, price, time, city, description',
+      )
+      .in('offer_id', [selectedOfferId]); // Convert to array
+
+    if (offersError) {
+      console.error(offersError.message);
+      throw offersError.message;
+    }
+
+    if (!offersData || offersData.length === 0) {
+      return [];
+    }
+
+    const userIds = offersData.map((offer) => offer.user_id);
+
+    const {data: profilesData, error: profilesError} = await supabase
+      .from('profiles')
+      .select(
+        'user_id, nickName, avatar_url, experience_years, experience_info, verificated',
+      )
+      .in('user_id', userIds);
+
+    if (profilesError) {
+      console.error(profilesError.message);
+      throw profilesError.message;
+    }
+
+    const combinedData = offersData.map((offer) => {
+      const matchingProfile = profilesData.find(
+        (profile) => profile.user_id === offer.user_id,
+      );
+      return {
+        ...offer,
+        ...(matchingProfile && {profile: matchingProfile}),
+      };
+    });
+
+    return combinedData;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+// Add New Offer
 
 const addNewOffer = async (
   userId: string,
@@ -83,7 +140,7 @@ const addNewOffer = async (
 ) => {
   let i = 0;
   try {
-    const { data: addOfferData, error: addOfferError } = await supabase
+    const {data: addOfferData, error: addOfferError} = await supabase
       .from('offers')
       .insert([
         {
@@ -101,7 +158,7 @@ const addNewOffer = async (
     if (addOfferError) throw addOfferError.message;
 
     do {
-      const { error } = await supabase.from('availability').insert([
+      const {error} = await supabase.from('availability').insert([
         {
           day: avability[i][0],
           eight: avability[i][1],
@@ -134,6 +191,7 @@ const addNewOffer = async (
 
 const OffersData = {
   getSelectedSubjectOffers,
+  getOffer,
   addNewOffer,
 };
 
