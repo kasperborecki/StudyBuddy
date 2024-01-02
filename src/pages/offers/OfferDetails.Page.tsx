@@ -8,6 +8,8 @@ import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
 import { MdOutlinePlayLesson } from 'react-icons/md';
 import { LuGraduationCap } from 'react-icons/lu';
 import { FaRegClock, FaRegMoneyBillAlt } from 'react-icons/fa';
+import BottomBar from '../../components/bottomBar/BottomBar';
+import AvailabilityCalendar from '../../components/availabilityCalendar/AvailabilityCalendar.Component';
 
 
 const CDNURL =
@@ -37,7 +39,7 @@ const OfferDetailsPage = () => {
   }, [selectedOfferId]);
 
   return (
-    <div className='w-[80%] mx-auto relative'>
+    <div className='relative min-h-screen mx-[8%]'>
       {isLoading ? (
         <div className='ml-20'>
           <LoadingSuspense />
@@ -83,7 +85,7 @@ const OfferDetailsPage = () => {
                       <FaRegMoneyBillAlt />
                     </div>
                     <p>
-                      Cena: {offer.price} ZŁ / {offer.time}min
+                      Cena: {offer.price} ZŁ / {offer.time} min
                     </p>
                   </div>
                 </div>
@@ -106,6 +108,10 @@ const OfferDetailsPage = () => {
           ))}
         </div>
       )}
+      <AvailabilityCalendar />
+      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
+        <BottomBar />
+      </div>
     </div>
   );
 };

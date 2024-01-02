@@ -182,17 +182,33 @@ const addNewOffer = async (
       if (error) throw error.message;
 
       i = i + 1;
-    } while (i < 6);
+    } while (i < 7);
   } catch (error) {
     console.error('Exception in addNewOffer:', error);
     throw error;
   }
 };
 
+// Get Availability Of Offer
+
+const getAvailability = async (selectedOfferId: any) => {
+  const { data, error } = await supabase
+    .from('availability')
+    .select('*')
+    .eq('offer_id', selectedOfferId);
+
+  if (error) throw error.message;
+
+  console.log(data);
+  return data || [];
+};
+
+
 const OffersData = {
   getSelectedSubjectOffers,
   getOffer,
   addNewOffer,
+  getAvailability,
 };
 
 export default OffersData;

@@ -79,7 +79,7 @@ const OfferCard = () => {
             <div
               key={offer.offer_id}
               className={` relative w-[80%] h-40 rounded-3xl border-2 border-black pl-4 mb-8 text-white ${
-                isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'
+                isDarkMode ? 'bg-[#212121]' : 'bg-[#FFFFFF]'
               }`}
               onClick={() => handleOpenOffer(offer.offer_id)}>
               <div

@@ -21,3 +21,24 @@ export interface Offer {
   description: string;
   profile?: Profile | undefined;
 }
+
+export interface Availability {
+  id: number;
+  day: string;
+  eight: boolean;
+  nine: boolean;
+  ten: boolean;
+  eleven: boolean;
+  twelve: boolean;
+  thirteen: boolean;
+  fourteen: boolean;
+  fifteen: boolean;
+  sixteen: boolean;
+  seventeen: boolean;
+  eighteen: boolean;
+  nineteen: boolean;
+  twenty: boolean;
+  twentyOne: boolean;
+  twentyTwo: boolean;
+  offer_id: string;
+}
