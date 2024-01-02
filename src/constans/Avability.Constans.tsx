@@ -25,3 +25,21 @@ export const AvabilityHours: { id: number; name: string }[] = [
     { id: 6, name: 'Sob.' },
     { id: 7, name: 'Niedz.' },
   ];
+
+  export const AvabilityHoursNames: { id: number; name: string }[] = [
+    { id: 1, name: 'eight' },
+    { id: 2, name: 'nine' },
+    { id: 3, name: 'ten' },
+    { id: 4, name: 'eleven' },
+    { id: 5, name: 'twelve' },
+    { id: 6, name: 'thirteen' },
+    { id: 7, name: 'fourteen' },
+    { id: 8, name: 'fifteen' },
+    { id: 9, name: 'sixteen' },
+    { id: 10, name: 'seventeen' },
+    { id: 11, name: 'eighteen' },
+    { id: 12, name: 'nineteen' },
+    { id: 13, name: 'twenty' },
+    { id: 14, name: 'twentyOne' },
+    { id: 15, name: 'twentyTwo' },
+  ];

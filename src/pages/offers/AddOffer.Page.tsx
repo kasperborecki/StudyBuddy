@@ -3,16 +3,16 @@ import BottomBar from '../../components/bottomBar/BottomBar';
 import {RxCross2} from 'react-icons/rx';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
-import AddOfferFirstStep from '../../components/AddingOfferSteps/AddOffer.FirstStep';
+import AddOfferFirstStep from '../../components/addingOfferSteps/AddOffer.FirstStep';
 import {addOfferPageAtom} from '../../atoms/AddOfferPage.Atom';
-import AddOfferThirdStep from '../../components/AddingOfferSteps/AddOffer.ThirdStep';
-import AddOfferFourthStep from '../../components/AddingOfferSteps/AddOffer.FourthStep';
-import AddOfferFifthStep from '../../components/AddingOfferSteps/AddOffer.FifthStep';
-import AddOfferSixthStep from '../../components/AddingOfferSteps/AddOffer.SIxthStep';
-import AddOfferSeventhStep from '../../components/AddingOfferSteps/AddOffer.SeventhStep';
-import AddOfferEighthStep from '../../components/AddingOfferSteps/AddOffer.EightStep';
-import AddOfferNinthStep from '../../components/AddingOfferSteps/AddOffer.NinthStep';
-import AddOfferTenthStep from '../../components/AddingOfferSteps/AddOffer.TenthStep';
+import AddOfferThirdStep from '../../components/addingOfferSteps/AddOffer.ThirdStep';
+import AddOfferFourthStep from '../../components/addingOfferSteps/AddOffer.FourthStep';
+import AddOfferFifthStep from '../../components/addingOfferSteps/AddOffer.FifthStep';
+import AddOfferSixthStep from '../../components/addingOfferSteps/AddOffer.SIxthStep';
+import AddOfferSeventhStep from '../../components/addingOfferSteps/AddOffer.SeventhStep';
+import AddOfferEighthStep from '../../components/addingOfferSteps/AddOffer.EightStep';
+import AddOfferNinthStep from '../../components/addingOfferSteps/AddOffer.NinthStep';
+import AddOfferTenthStep from '../../components/addingOfferSteps/AddOffer.TenthStep';
 
 const AddOfferPage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);

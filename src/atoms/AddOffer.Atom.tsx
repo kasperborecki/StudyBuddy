@@ -54,12 +54,12 @@ export const addOfferDescription = atom({
 export const addOfferAvability = atom({
   key: 'addOfferAvability',
   default: [
-    ['1', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    ['2', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    ['3', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    ['4', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    ['5', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    ['6', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-    ['7', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['po', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['wt', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['śr', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['cz', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['pt', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['so', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+    ['ni', false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
   ]
 });

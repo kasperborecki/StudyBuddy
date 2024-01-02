@@ -13,10 +13,6 @@ const WelcomePage = () => {
       </div>
       <div className='mt-[12%] w-screen flex flex-col items-center font-k2d font-bold'>
         <UiPurpleButtonLong
-          text='WEJDŹ JAKO GOŚĆ'
-          push={'guest'}
-        />
-        <UiPurpleButtonLong
           text='ZALOGUJ SIĘ'
           push={'login'}
         />
