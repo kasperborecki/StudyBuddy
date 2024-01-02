@@ -83,7 +83,7 @@ const getOffer = async (selectedOfferId: any) => {
       .select(
         'offer_id, created_at, subject_id, user_id, education_level, education_method, price, time, city, description',
       )
-      .in('offer_id', [selectedOfferId]); // Convert to array
+      .in('offer_id', [selectedOfferId]);
 
     if (offersError) {
       console.error(offersError.message);
