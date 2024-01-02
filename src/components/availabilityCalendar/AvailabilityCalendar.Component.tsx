@@ -1,13 +1,9 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import {useEffect, useState, useCallback} from 'react';
 import {MdArrowBackIos, MdArrowForwardIos} from 'react-icons/md';
-import {
-  AvabilityHours,
-  AvabilityHoursNames,
-} from '../../constans/Avability.Constans';
 import OffersData from '../../services/common/Offer.Service';
 import {useRecoilState} from 'recoil';
 import {offerId} from '../../atoms/SelectedOfferId.Atom';
-import {Availability} from '../../interfaces/Offers.Interface';
+import {Availability, Requests} from '../../interfaces/Offers.Interface';
 import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
 
 const AvailabilityCalendar = () => {
@@ -17,6 +13,7 @@ const AvailabilityCalendar = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedOfferId] = useRecoilState(offerId);
   const [availabilityData, setAvailabilityData] = useState<Availability[]>([]);
+  const [requestedData, setRequestedData] = useState<Requests[]>([]);
   const [currentYear, setCurrentYear] = useState<number>(
     new Date().getFullYear(),
   );
@@ -42,7 +39,6 @@ const AvailabilityCalendar = () => {
     setWeekDays(daysOfWeek);
     setIsDisabled(firstDayValue < 0);
 
-    // Calculate current month and year based on the first day of the week
     const firstDayOfWeek = new Date();
     firstDayOfWeek.setDate(firstDayOfWeek.getDate() + firstDayValue);
     setCurrentMonth(
@@ -90,8 +86,29 @@ const AvailabilityCalendar = () => {
       }
     };
 
+    const fetchRequests = async () => {
+      try {
+        setIsLoading(true);
+        const requestRes = await OffersData.getRequests(selectedOfferId);
+        setRequestedData(requestRes);
+        // console.log(requestedData[0].week_day = weekDays);
+      } catch (error: any) {
+        console.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     fetchAvailability();
+    fetchRequests();
   }, [selectedOfferId]);
+
+  // console.log(requestedData[0].week_day);
+  if (requestedData[0].week_day === weekDays[2]) {
+    console.log('prawda');
+  } else {
+    console.log('nie prawda');
+  }
 
   const handlePrevWeek = () => {
     if (firstDayValue >= 7) {
@@ -147,26 +164,70 @@ const AvailabilityCalendar = () => {
               <div>
                 {availabilityData.map((data) => (
                   <div key={data.id}>
-                    {data.day.toLowerCase() ===
-                      weekDay.slice(0, 2).toLowerCase() && (
-                      <>
-                        {data.eight && <p className={hourStyle}>8:00</p>}
-                        {data.nine && <p className={hourStyle}>9:00</p>}
-                        {data.ten && <p className={hourStyle}>10:00</p>}
-                        {data.eleven && <p className={hourStyle}>11:00</p>}
-                        {data.twelve && <p className={hourStyle}>12:00</p>}
-                        {data.thirteen && <p className={hourStyle}>13:00</p>}
-                        {data.fourteen && <p className={hourStyle}>14:00</p>}
-                        {data.fifteen && <p className={hourStyle}>15:00</p>}
-                        {data.sixteen && <p className={hourStyle}>16:00</p>}
-                        {data.seventeen && <p className={hourStyle}>17:00</p>}
-                        {data.eighteen && <p className={hourStyle}>18:00</p>}
-                        {data.nineteen && <p className={hourStyle}>19:00</p>}
-                        {data.twenty && <p className={hourStyle}>20:00</p>}
-                        {data.twentyOne && <p className={hourStyle}>21:00</p>}
-                        {data.twentyTwo && <p className={hourStyle}>22:00</p>}
-                      </>
-                    )}
+                    {requestedData.map((request) => (
+                      <div key={request.request_id}>
+                        {data.day.toLowerCase() ===
+                          weekDay.slice(0, 2).toLowerCase() && (
+                          <>
+                            {data.eight && request.hour !== '8:00' && (
+                              <p className={hourStyle}>8:00</p>
+                            )}
+                            {data.nine && request.week_day !== weekDay && (
+                              <p className={hourStyle}>9:00</p>
+                            )}
+                            {data.ten && request.week_day !== weekDay && (
+                              <p className={hourStyle}>10:00</p>
+                            )}
+                            {data.eleven && request.week_day !== weekDay && (
+                              <p className={hourStyle}>11:00</p>
+                            )}
+                            {data.twelve && request.week_day !== weekDay && (
+                              <p className={hourStyle}>12:00</p>
+                            )}
+                            {data.thirteen && request.week_day !== weekDay && (
+                              <p className={hourStyle}>13:00</p>
+                            )}
+                            {data.fourteen && request.week_day !== weekDay && (
+                              <p className={hourStyle}>14:00</p>
+                            )}
+                            {data.fifteen && request.week_day !== weekDay && (
+                              <p className={hourStyle}>15:00</p>
+                            )}
+                            {data.sixteen && request.week_day !== weekDay && (
+                              <p className={hourStyle}>16:00</p>
+                            )}
+                            {data.seventeen && (
+                              <>
+                                {request.week_day === weekDay &&
+                                request.hour !== '17:00' ? (
+                                  <p className={hourStyle}>17:00</p>
+                                ) : null}
+                              </>
+                            )}
+                            {data.eighteen && (
+                              <>
+                                {request.week_day === weekDay &&
+                                request.hour !== '18:00' ? (
+                                  <p className={hourStyle}>18:00</p>
+                                ) : null}
+                              </>
+                            )}
+                            {data.nineteen && request.week_day !== weekDay && (
+                              <p className={hourStyle}>19:00</p>
+                            )}
+                            {data.twenty && request.week_day !== weekDay && (
+                              <p className={hourStyle}>20:00</p>
+                            )}
+                            {data.twentyOne && request.week_day !== weekDay && (
+                              <p className={hourStyle}>21:00</p>
+                            )}
+                            {data.twentyTwo && request.week_day !== weekDay && (
+                              <p className={hourStyle}>22:00</p>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>

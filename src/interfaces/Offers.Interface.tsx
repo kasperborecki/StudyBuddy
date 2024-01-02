@@ -42,3 +42,14 @@ export interface Availability {
   twentyTwo: boolean;
   offer_id: string;
 }
+
+export interface Requests {
+  request_id?: string;
+  offer_id: string;
+  participant_id: string;
+  stage: string;
+  month: string;
+  week_day: string;
+  hour: string;
+  created_at: any;
+}
