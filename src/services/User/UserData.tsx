@@ -15,14 +15,10 @@ const updateUserData = async (newData: any, userId: any) => {
       },
     ])
     .eq('user_id', userId);
-    console.log(userId);
-    console.log(data);
-    console.log(newData);
   if (error) throw error.message;
 };
 
 const getUserData = async (userId: any) => {
-  console.log("UserId:", userId);
   const { data, error } = await supabase
     .from('profiles')
     .select('user_id, nickName, avatar_url, experience')

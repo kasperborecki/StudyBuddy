@@ -52,8 +52,6 @@ const AddOfferTenthStep = () => {
         try {
           setIsLoading(true);
           const userId = session.user.id;
-          console.log(userId);
-
           const subjectsRes = await UserData.getUserData(userId);
           setUserData(subjectsRes);
         } catch (error: any) {

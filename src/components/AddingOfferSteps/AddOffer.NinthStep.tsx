@@ -14,7 +14,6 @@ const AddOfferNinthStep = () => {
     setAvability((prevAvability) => {
       const newAvability = [...prevAvability.map((r) => [...r])];
       newAvability[dayId - 1][hourId] = !avability[dayId - 1][hourId];
-      console.log(avability);
       return newAvability;
     });
   };

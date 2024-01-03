@@ -19,7 +19,6 @@ const CompleteDataPage = () => {
       ...prevFormData,
       [event.target.name]: event.target.value,
     }));
-    console.log(formData);
   };
   const handleSubmit = async () => {
     const newData = {...formData};

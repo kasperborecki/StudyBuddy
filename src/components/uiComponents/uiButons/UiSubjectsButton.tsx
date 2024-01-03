@@ -28,8 +28,6 @@ const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
     setSubjectId(subjectId);
     setSubjectName(text);
     navigate('/offers');
-    console.log(selectedSubjectId);
-    console.log(subjectName);
   };
 
   return (

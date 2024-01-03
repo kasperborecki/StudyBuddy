@@ -19,7 +19,6 @@ const AddOfferSeventhStep = () => {
     if (inputPrice < 500) {
       setInputPrice((prevPrice) => prevPrice + 10);
       setPrice(inputPrice);
-      console.log(price);
     }
   };
 
@@ -27,7 +26,6 @@ const AddOfferSeventhStep = () => {
     if (inputPrice > 10) {
       setInputPrice((prevPrice) => prevPrice - 10);
       setPrice(inputPrice);
-      console.log(price);
     }
   };
 

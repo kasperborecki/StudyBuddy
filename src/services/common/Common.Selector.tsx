@@ -9,8 +9,6 @@ const getSubjects = async () => {
     console.error(error.message);
     throw error.message;
   }
-
-  console.log(data);
   return data || [];
 };
 
@@ -26,8 +24,6 @@ const getInputCities = async ({ inputValue }: { inputValue: string }) => {
       console.error(error.message);
       throw error.message;
     }
-
-    console.log(data);
     return data || [];
   } catch (error: any) {
     console.error(error.message);

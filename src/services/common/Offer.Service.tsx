@@ -198,8 +198,17 @@ const getAvailability = async (selectedOfferId: any) => {
     .eq('offer_id', selectedOfferId);
 
   if (error) throw error.message;
+  return data || [];
+};
 
-  console.log(data);
+const getRequests = async (selectedOfferId: any) => {
+  const { data, error } = await supabase
+    .from('offer_requests')
+    .select('*')
+    .eq('offer_id', selectedOfferId);
+
+  if (error) throw error.message;
+
   return data || [];
 };
 
@@ -209,6 +218,7 @@ const OffersData = {
   getOffer,
   addNewOffer,
   getAvailability,
+  getRequests,
 };
 
 export default OffersData;
