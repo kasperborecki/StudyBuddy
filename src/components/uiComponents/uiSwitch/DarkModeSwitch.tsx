@@ -7,7 +7,6 @@ const DarkModeSwitch = () => {
 
     const handleChange = () => {
         setIsDarkMode(!isDarkMode);
-        console.log(isDarkMode);
     };
     
     return (

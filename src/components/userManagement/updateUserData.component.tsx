@@ -59,7 +59,6 @@ const UpdateUserData = () => {
     }));
   
     setFormData((updatedFormData) => {
-      console.log(updatedFormData);
       return updatedFormData;
     });
   };

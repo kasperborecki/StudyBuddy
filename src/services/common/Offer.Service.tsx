@@ -198,8 +198,6 @@ const getAvailability = async (selectedOfferId: any) => {
     .eq('offer_id', selectedOfferId);
 
   if (error) throw error.message;
-
-  console.log(data);
   return data || [];
 };
 
@@ -211,7 +209,6 @@ const getRequests = async (selectedOfferId: any) => {
 
   if (error) throw error.message;
 
-  console.log(data);
   return data || [];
 };
 

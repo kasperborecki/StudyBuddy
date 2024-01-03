@@ -17,8 +17,6 @@ const AddOfferSixthStep = () => {
     if (inputTime < 120) {
       setInputTime((prevTime) => prevTime + 5);
       setTime(inputTime);
-      console.log(time);
-
     }
   };
 
@@ -26,7 +24,6 @@ const AddOfferSixthStep = () => {
     if (inputTime > 15) {
       setInputTime((prevTime) => prevTime - 5);
       setTime(inputTime);
-      console.log(time);
     }
   };
 

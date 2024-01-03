@@ -27,7 +27,6 @@ const OfferDetailsPage = () => {
         setIsLoading(true);
         const offerRes = await OffersData.getOffer(selectedOfferId);
         setOfferData(offerRes);
-        console.log(offerRes);
       } catch (error: any) {
         console.error(error.message);
       } finally {

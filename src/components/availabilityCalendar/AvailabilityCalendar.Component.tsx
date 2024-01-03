@@ -92,7 +92,6 @@ const AvailabilityCalendar = () => {
         setIsLoading(true);
         const requestRes = await OffersData.getRequests(selectedOfferId);
         setRequestedData(requestRes);
-        // console.log(requestedData[0].week_day = weekDays);
       } catch (error: any) {
         console.error(error.message);
       } finally {
