@@ -21,7 +21,7 @@ const updateUserData = async (newData: any, userId: any) => {
 const getUserData = async (userId: any) => {
   const { data, error } = await supabase
     .from('profiles')
-    .select('user_id, nickName, avatar_url, experience')
+    .select('user_id, nickName, avatar_url, experience_years')
     .eq('user_id', userId);
 
     if (error) throw error.message;

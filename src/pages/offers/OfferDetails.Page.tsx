@@ -10,6 +10,7 @@ import { LuGraduationCap } from 'react-icons/lu';
 import { FaRegClock, FaRegMoneyBillAlt } from 'react-icons/fa';
 import BottomBar from '../../components/bottomBar/BottomBar';
 import AvailabilityCalendar from '../../components/availabilityCalendar/AvailabilityCalendar.Component';
+import ContactModal from '../../components/modal/ContactModal.Component';
 
 
 const CDNURL =
@@ -103,6 +104,7 @@ const OfferDetailsPage = () => {
                   Forma Nauki: <p className='font-normal pl-2'>{offer.education_method}</p>
                 </p>
               </div>
+              <ContactModal profilePic={offer.profile?.avatar_url} nickName={offer.profile?.nickName}/>
             </div>
           ))}
         </div>

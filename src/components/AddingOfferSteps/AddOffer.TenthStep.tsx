@@ -133,7 +133,7 @@ const AddOfferTenthStep = () => {
                   <div className='pr-2 text-xl'>
                     <LuGraduationCap />
                   </div>
-                  <p>Doświadczenie {user.experience} Lat</p>
+                  <p>Doświadczenie {user.experience_years} Lat</p>
                 </div>
               ))}
               <div className='flex text-md font-k2d font-medium pb-1'>
