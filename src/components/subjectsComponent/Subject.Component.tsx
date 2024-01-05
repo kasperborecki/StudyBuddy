@@ -1,12 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import SubjectsData from '../../services/common/Common.Selector';
-import {Subjects} from '../../interfaces/Subcjects.Interface';
+import { Subjects } from '../../interfaces/Subcjects.Interface';
 import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
-import UiWhiteButtonLong from '../uiComponents/uiButons/UiSubjectsButton';
+import UISubjectButton from '../uiComponents/uiButons/UiSubjectsButton';
+import { useRecoilState } from 'recoil';
+import { studyFieldAtom } from '../../atoms/StudyField.Atom';
 
 const SubjectsComponent: React.FC = () => {
   const [subjectsData, setSubjectsData] = useState<Subjects[]>([]);
+  const [languagesData, setLanguagesData] = useState<Subjects[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [studyField] = useRecoilState(studyFieldAtom);
+
 
   useEffect(() => {
     const fetchSubjects = async () => {
@@ -21,7 +26,20 @@ const SubjectsComponent: React.FC = () => {
       }
     };
 
+    const fetchLanguages = async () => {
+      try {
+        setIsLoading(true);
+        const languagesRes = await SubjectsData.getLanguages();
+        setLanguagesData(languagesRes);
+      } catch (error: any) {
+        console.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     fetchSubjects();
+    fetchLanguages();
   }, []);
 
   return (
@@ -30,22 +48,44 @@ const SubjectsComponent: React.FC = () => {
         <LoadingSuspense />
       ) : (
         <div className='pb-24'>
-          {subjectsData.map((subjectData) => (
-            <UiWhiteButtonLong
-              key={subjectData.id}
-              text={subjectData.subject}
-              colour={subjectData.colour}
-              icon={subjectData.icon_url}
-              subjectId={subjectData.id}
-              CDNURL={
-                'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/subjectsicons/'
-              }
-            />
-          ))}
+          <div className='flex flex-wrap justify-center'>
+            {studyField === 1 ? (
+              <>
+                {subjectsData.map((subjectData) => (
+                  <UISubjectButton
+                    key={subjectData.id}
+                    text={subjectData.subject}
+                    colour={subjectData.colour}
+                    icon={subjectData.icon_url}
+                    subjectId={subjectData.id}
+                    CDNURL={
+                      'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/subjectsicons/'
+                    }
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                {languagesData.map((languageData) => (
+                  <UISubjectButton
+                    key={languageData.id}
+                    text={languageData.subject}
+                    colour={languageData.colour}
+                    icon={languageData.icon_url}
+                    subjectId={languageData.id}
+                    CDNURL={
+                      'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/subjectsicons/'
+                    }
+                  />
+                ))}
+              </>
+            )}
+          </div>
         </div>
       )}
     </>
   );
+  
 };
 
 export default SubjectsComponent;

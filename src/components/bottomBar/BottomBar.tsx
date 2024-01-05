@@ -7,6 +7,7 @@ import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { IoCalendarOutline } from "react-icons/io5";
 import { BsPlusCircle } from "react-icons/bs";
 import { GoPerson } from "react-icons/go";
+import {IoSettingsOutline} from 'react-icons/io5';
 
 
 
@@ -58,13 +59,13 @@ const BottomBar = () => {
     },
     {
       icon: (
-        <GoPerson
+        <IoSettingsOutline
           className='w-[26px] h-[26px] color-white'
         />
       ),
       id: 4,
-      name: 'Profil',
-      route: '/Profile',
+      name: 'Settings',
+      route: '/profile-settings-page',
     },
   ];
 
@@ -75,7 +76,7 @@ const BottomBar = () => {
 
   return (
     <div
-    className={`absolute flex justify-between w-full text-[26px] pb-[16px] pl-[36px] pr-[36px] bottom-0 ${isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#e0e0e0]'}`}
+    className={`absolute flex justify-between w-full text-[26px] pb-[16px] pl-[36px] pr-[36px] bottom-0 h-22 ${isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#e0e0e0]'}`}
       style={{
          filter:
             'drop-shadow(0px -1px 6px rgba(0, 0, 0, 0.08)) drop-shadow(0px -2px 12px rgba(0, 0, 0, 0.12))',
