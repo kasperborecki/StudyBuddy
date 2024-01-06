@@ -1,27 +1,23 @@
-import BottomBar from '../../components/bottomBar/BottomBar';
-import logo from '../../assets/Logo.png';
-import SubjectsComponent from '../../components/subjectsComponent/Subject.Component';
-import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import UiChoseStudyField from '../../components/uiComponents/uiButons/UiChoseStudyField.Button';
+import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 import { studyFieldAtom } from '../../atoms/StudyField.Atom';
-import { useEffect, useState } from 'react';
-import { User } from '../../interfaces/User.Interface';
 import { useAuth } from '../../atoms/Route.Atom';
 import UserData from '../../services/User/UserData';
 import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
+import BottomBar from '../../components/bottomBar/BottomBar';
+import SubjectsComponent from '../../components/subjectsComponent/Subject.Component';
+import UiChoseStudyField from '../../components/uiComponents/uiButons/UiChoseStudyField.Button';
+import { User } from '../../interfaces/User.Interface';
 
 const HomePage = () => {
   const { session } = useAuth();
-
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [studyField] = useRecoilState(studyFieldAtom);
   const [userData, setUserData] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const CDNURL =
-  'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
-
+  const CDNURL = 'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -56,26 +52,25 @@ const HomePage = () => {
               isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'
             }`}
           >
-            <div>
-              <div className='mb-10 right-8 top-8 absolute'>
-                <img
-                  src={CDNURL + user.avatar_url}
-                  alt={'profileAvatar'}
-                  className='flex w-14 h-14 rounded-full'
-                />
-              </div>
-              <div className={`font-k2d text-lg ml-10 mb-8 mt-24 ${isDarkMode ? 'text-[#dddddd]' : 'text-black'}`}>
-                <p className='font-bold'>Witaj {user.nickName}!</p>
-                <p className='font-'>
-                  Jakiego {studyField === 1 ? 'Przedmiotu' : 'Języka'} Szukasz
-                </p>
-              </div>
-              <UiChoseStudyField />
-              <SubjectsComponent />
+            <div className='mb-10 right-8 top-8 absolute'>
+              <img
+                src={CDNURL + user.avatar_url}
+                alt='profileAvatar'
+                className='flex w-14 h-14 rounded-full'
+              />
             </div>
-            <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-              <BottomBar />
+            <div
+              className={`font-k2d text-lg -ml-12 mb-8 mt-24 ${
+                isDarkMode ? 'text-[#dddddd]' : 'text-black'
+              }`}
+            >
+              <p className='font-bold'>Witaj {user.nickName}!</p>
+              <p className='font-'>
+                Jakiego {studyField === 1 ? 'Przedmiotu' : 'Języka'} Szukasz
+              </p>
             </div>
+            <UiChoseStudyField />
+            <SubjectsComponent />
           </div>
         ))
       )}

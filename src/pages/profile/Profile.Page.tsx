@@ -1,4 +1,3 @@
-import BottomBar from '../../components/bottomBar/BottomBar';
 import profileBg from '../../assets/profileBg.png';
 import avatar from '../../assets/WIN_20231211_14_27_19_Pro.jpg';
 import stars from '../../assets/rating.png';
@@ -6,7 +5,7 @@ import {IoSettingsOutline} from 'react-icons/io5';
 import icon1 from '../../assets/man.png';
 import icon2 from '../../assets/security-guard.png';
 import icon3 from '../../assets/bartender.png';
-import { useNavigate } from 'react-router';
+import {useNavigate} from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 
@@ -131,9 +130,6 @@ const ProfilePage = () => {
             <button className=' bg-[#FFDD94] border-2 border-[#EBCA85] ml-4 font-bold font-k2d rounded-[10px] w-[90px] h-[25px] mt-3'>Zobacz</button>
           </div>
         </div>
-      </div>
-      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
       </div>
     </div>
   );

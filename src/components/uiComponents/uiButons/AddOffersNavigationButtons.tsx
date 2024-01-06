@@ -1,4 +1,3 @@
-import React from 'react';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../../atoms/DarkMode.Atom';
 import {addOfferPageAtom} from '../../../atoms/AddOfferPage.Atom';
@@ -10,14 +9,12 @@ import {
   addOfferPrice,
   addOfferSubject,
   addOfferTime,
-  addOfferType,
 } from '../../../atoms/AddOffer.Atom';
 
 const AddOfferNavigationButtons = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [page, setPage] = useRecoilState(addOfferPageAtom);
   const [subject] = useRecoilState(addOfferSubject);
-  const [type] = useRecoilState(addOfferType);
   const [time] = useRecoilState(addOfferTime);
   const [price] = useRecoilState(addOfferPrice);
   const [cities] = useRecoilState(addOfferCiteis);

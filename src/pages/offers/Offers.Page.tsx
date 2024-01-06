@@ -1,5 +1,4 @@
-import {useNavigate} from 'react-router';
-import BottomBar from '../../components/bottomBar/BottomBar';
+import {useNavigate} from 'react-router-dom';
 import {IoArrowBack} from 'react-icons/io5';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
@@ -28,9 +27,6 @@ const OffersPage = () => {
         />
       </div>
         <OfferCard />
-      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
-      </div>
     </div>
   );
 };

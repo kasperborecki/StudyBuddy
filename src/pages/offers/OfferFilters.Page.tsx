@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
-import BottomBar from '../../components/bottomBar/BottomBar';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 import UiWhiteButtonFilters from '../../components/uiComponents/uiButons/UiFIltersFButton';
@@ -62,9 +61,6 @@ const OfferFiltersPage = () => {
         <UiWhiteButtonFilters text={'Cena'} colour={isPrice.length > 0 ? '#363bf7' : ''} />
       </button>
       {showModal && <FilterModal informationType={informationType} />}
-      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
-      </div>
     </div>
   );
 };

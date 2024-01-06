@@ -15,7 +15,7 @@ const UiChoseStudyField = () => {
   return (
     <div className='flex justify-center mb-8 mx-auto'>
       <button
-        className={`relative duration-500 group cursor-pointer text-sky-50 overflow-hidden h-10 w-40 rounded-l-xl bg-sky-800 p-2 flex justify-center items-center font-extrabold ${
+        className={`relative duration-500 group cursor-pointer text-sky-50 overflow-hidden h-10 w-40 rounded-l-xl p-2 flex justify-center items-center font-extrabold ${
           studyField === 1 ? 'z-10' : 'z-0'
         }`}
         onClick={handleSetSubjects}>
@@ -42,7 +42,7 @@ const UiChoseStudyField = () => {
         <p className='z-10'>Subjects</p>
       </button>
       <button
-        className={`relative duration-500 group cursor-pointer text-sky-50 -ml-2 overflow-hidden h-10 w-40 rounded-r-xl bg-sky-800 p-2 flex justify-center items-center font-extrabold
+        className={`relative duration-500 group cursor-pointer text-sky-50 -ml-2 overflow-hidden h-10 w-40 rounded-r-xl p-2 flex justify-center items-center font-extrabold
         ${studyField === 2 ? 'z-10' : 'z-0'}`}
         onClick={handleSetLanguages}>
         <div
