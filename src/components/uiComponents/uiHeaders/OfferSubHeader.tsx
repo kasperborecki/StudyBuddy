@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import {useNavigate} from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../../atoms/DarkMode.Atom';
 import { IoIosSearch } from "react-icons/io";

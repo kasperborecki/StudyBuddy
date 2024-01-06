@@ -21,7 +21,7 @@ import {IoGlobeOutline} from 'react-icons/io5';
 import {MdOutlineMessage} from 'react-icons/md';
 import {HiBadgeCheck} from 'react-icons/hi';
 import {offerId} from '../../atoms/SelectedOfferId.Atom';
-import {useNavigate} from 'react-router';
+import {useNavigate} from 'react-router-dom';
 
 const OfferCard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -29,7 +29,6 @@ const OfferCard = () => {
   const [selectedSubject] = useRecoilState(subjectIdAtom);
   const [selectedSubjectName] = useRecoilState(subjectNameAtom);
   const [offerData, setOfferData] = useState<Offer[]>([]);
-  // const [, setImages] = useState<any[]>([]);
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isEducationLevel] = useRecoilState(educationLevel);
   const [isEducationType] = useRecoilState(educationType);

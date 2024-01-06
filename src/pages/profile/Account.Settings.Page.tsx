@@ -1,8 +1,7 @@
 import {useRecoilState} from 'recoil';
-import BottomBar from '../../components/bottomBar/BottomBar';
 import supabase from '../../config/SupabaseClient';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
-import {useNavigate} from 'react-router';
+import {useNavigate} from 'react-router-dom';
 import {IoArrowBack} from 'react-icons/io5';
 import AccoundHeader from '../../components/uiComponents/uiHeaders/AccountHeader';
 
@@ -44,9 +43,6 @@ const AccountSettings = () => {
         onClick={handleLogOut}>
         Wyloguj
       </button>
-      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
-      </div>
       {/* <UiGradienButtonLong text={'PŁATNOSCI'} push={'/paynaments'}/>
       <UiGradienButtonLong text={'HISTORIA ZAJĘĆ'} push={'/lessons-history'}/> */}
     </div>

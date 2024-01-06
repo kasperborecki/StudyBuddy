@@ -1,18 +1,14 @@
 import './darkModeSwitch.css';
-import { useRecoilState } from 'recoil';
-import { DarkModeAtom } from '../../../atoms/DarkMode.Atom';
+import { useDarkTheme } from '../../../atoms/DarkMode.Atom';
 
 const DarkModeSwitch = () => {
-    const [isDarkMode, setIsDarkMode] = useRecoilState(DarkModeAtom);
+  const { isDarkMode, toggleDarkTheme } = useDarkTheme();
 
-    const handleChange = () => {
-        setIsDarkMode(!isDarkMode);
-    };
     
     return (
         <>
         <label id="theme-toggle-button">
-  <input type="checkbox" id="toggle" onClick={handleChange} checked={isDarkMode}/>
+  <input type="checkbox" id="toggle" onClick={toggleDarkTheme} checked={isDarkMode}/>
   <svg viewBox="0 0 69.667 44" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
     <g transform="translate(3.5 3.5)" data-name="Component 15 – 1" id="Component_15_1">
       <g filter="url(#container)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">

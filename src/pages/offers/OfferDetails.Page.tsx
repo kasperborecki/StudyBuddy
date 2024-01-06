@@ -8,7 +8,6 @@ import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
 import { MdOutlinePlayLesson } from 'react-icons/md';
 import { LuGraduationCap } from 'react-icons/lu';
 import { FaRegClock, FaRegMoneyBillAlt } from 'react-icons/fa';
-import BottomBar from '../../components/bottomBar/BottomBar';
 import AvailabilityCalendar from '../../components/availabilityCalendar/AvailabilityCalendar.Component';
 import ContactModal from '../../components/modal/ContactModal.Component';
 
@@ -110,9 +109,6 @@ const OfferDetailsPage = () => {
         </div>
       )}
       <AvailabilityCalendar />
-      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
-      </div>
     </div>
   );
 };

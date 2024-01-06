@@ -1,7 +1,6 @@
 import {useRecoilState} from 'recoil';
-import BottomBar from '../../components/bottomBar/BottomBar';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
-import {useNavigate} from 'react-router';
+import {useNavigate} from 'react-router-dom';
 import {IoArrowBack} from 'react-icons/io5';
 import AccoundHeader from '../../components/uiComponents/uiHeaders/AccountHeader';
 import UpdateUserData from '../../components/userManagement/updateUserData.component';
@@ -36,9 +35,6 @@ const PersonalDataSettings = () => {
       <AccoundHeader text={'DANE OSOBISTE'} />
       <div className='w-full relative min-h-screen flex flex-col items-center justify-start'>
       <UpdateUserData />
-      </div>
-      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
       </div>
     </div>
   );

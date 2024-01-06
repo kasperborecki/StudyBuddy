@@ -1,7 +1,7 @@
 import supabase from '../../config/SupabaseClient';
 
 const updateUserData = async (newData: any, userId: any) => {
-  const {data, error} = await supabase
+  const {error} = await supabase
     .from('profiles')
     .update([
       {

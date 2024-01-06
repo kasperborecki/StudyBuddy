@@ -10,7 +10,7 @@ import {LuMinus} from 'react-icons/lu';
 
 const AddOfferSeventhStep = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
-  const [price, setPrice] = useRecoilState(addOfferPrice);
+  const [, setPrice] = useRecoilState(addOfferPrice);
   const [inputPrice, setInputPrice] = useState(100);
   const [time] = useRecoilState(addOfferTime);
 

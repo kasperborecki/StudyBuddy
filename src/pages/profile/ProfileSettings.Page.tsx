@@ -1,5 +1,4 @@
-import {useNavigate} from 'react-router';
-import BottomBar from '../../components/bottomBar/BottomBar';
+import {useNavigate} from 'react-router-dom';
 import AccountSection from '../../components/profileSettings/AccountSection.Component';
 import PersonalSection from '../../components/profileSettings/PersonalSection.Component';
 import {IoArrowBack} from 'react-icons/io5';
@@ -33,9 +32,6 @@ const ProfileSettingsPage = () => {
       <PersonalSection />
       <hr className='h-[2px] bg-gray-400 w-[95%] mb-[8%]' />
       <AccountSection />
-      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
-      </div>
     </div>
   );
 };

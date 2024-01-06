@@ -1,5 +1,4 @@
-import {useNavigate} from 'react-router';
-import BottomBar from '../../components/bottomBar/BottomBar';
+import {useNavigate} from 'react-router-dom';
 import {RxCross2} from 'react-icons/rx';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
@@ -61,9 +60,6 @@ const AddOfferPage = () => {
       ) : (
         <AddOfferTenthStep />
       )}
-      <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
-      </div>
     </div>
   );
 };
