@@ -24,10 +24,13 @@ const AppRouter = () => {
     <>
       <RecoilRoot>
         <Router>
-          <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-            <BottomBar />
-          </div>
-
+          {session ? (
+        <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
+        <BottomBar />
+      </div>
+          ) : (
+            <></>
+          )}
           <Routes>
             {session ? (
               <>
@@ -44,7 +47,7 @@ const AppRouter = () => {
             ) : (
               <>
                 <Route path='/' element={<WelcomePage />} />
-                <Route path='/login' element={<LoginPage />} />
+                <Route path='/login-by-email' element={<LoginPage />} />
                 <Route path='/registration' element={<RegistrationPage />} />
                 {/* <Route path='Complete-Data' element={<CompleteDataPage />} /> */}
               </>
