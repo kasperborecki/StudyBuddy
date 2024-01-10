@@ -10,6 +10,13 @@ export const EducationLevel: { id: number; name: string }[] = [
     { id: 3, name: 'Hybrid' },
   ];
 
+  export const BasicSortingMetod: { id: number; name: string }[] = [
+    { id: 1, name: 'Najnowsze' },
+    { id: 2, name: 'Najstarsze' },
+    { id: 3, name: 'Cena Rosnąco' },
+    { id: 4, name: 'Cena Malejąco' },
+  ];
+
   export const EducationType: { id: number; name: string }[] = [
     { id: 1, name: 'Individually' },
     { id: 2, name: 'Group' },
