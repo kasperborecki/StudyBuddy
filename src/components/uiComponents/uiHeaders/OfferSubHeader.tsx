@@ -1,17 +1,21 @@
-import {useNavigate} from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { DarkModeAtom } from '../../../atoms/DarkMode.Atom';
 import { IoIosSearch } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
+import { modalAtom } from '../../../atoms/Modal.Atom';
+import { bottomBarClosed } from '../../../atoms/BottomBarClosed.Atom';
 
 
 const OfferSubHeader = () => {
-  const navigate = useNavigate();
   const [isDarkMode] = useRecoilState(DarkModeAtom);
+  const [, setShowModal] = useRecoilState<boolean>(modalAtom);
+  const [, setIsBottomBarClosed] = useRecoilState(bottomBarClosed);
 
-  const handleFilters = () => {
-    navigate('/offers-filter')
-  }
+
+  const handleFilters = (type: any) => {
+    setShowModal(true);
+    setIsBottomBarClosed(true);
+  };
 
   
   return (
