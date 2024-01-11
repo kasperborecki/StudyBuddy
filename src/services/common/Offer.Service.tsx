@@ -5,7 +5,6 @@ import supabase from '../../config/SupabaseClient';
 const getSelectedSubjectOffers = async (
   selectedSubject: string,
   isEducationLevel: string,
-  isEducationType: string,
   isEducationMethod: string,
   isPrice: string,
 ) => {
@@ -25,7 +24,6 @@ const getSelectedSubjectOffers = async (
         isEducationLevel.length > 0 ? 'education_level' : '',
         isEducationLevel,
       )
-      .eq(isEducationType.length > 0 ? 'education_type' : '', isEducationType)
       .eq(
         isEducationMethod.length > 0 ? 'education_method' : '',
         isEducationMethod,

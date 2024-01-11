@@ -17,18 +17,18 @@ import {
   EducationLevel,
   EducationMethod,
 } from '../../constans/PersonalDataSettings.Constans';
+import { bottomBarClosed } from '../../atoms/BottomBarClosed.Atom';
 
 const OfferFiltersPage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isEducationLevel, setIsEducationLevel] =
     useRecoilState(educationLevel);
   const [isEducationType] = useRecoilState(educationType);
-  const [isEducationMethod] = useRecoilState(educationMethod);
+  const [isEducationMethod,setIsEducationMethod] = useRecoilState(educationMethod);
   const [isPrice, setIsPrice] = useRecoilState(price);
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useRecoilState<boolean>(modalAtom);
   const [informationType, setInformationType] = useState('');
-  const [highestPrice, setHighestPrice] = useState<number>(500);
+  const [highestPrice, setHighestPrice] = useState<number>(100);
   const [lowestPrice, setLowestPrice] = useState<number>(0);
   const [isRating, setIsRating] = useState<number>(5);
   const [selectedValueEduLevel, setSelectedValueEduLevel] =
@@ -37,14 +37,17 @@ const OfferFiltersPage = () => {
     useState<string>('');
   const [selectedValueBasicSorting, setSelectedValueBasicSorting] =
     useState<string>('');
+    const [, setShowModal] = useRecoilState<boolean>(modalAtom);
+    const [, setIsBottomBarClosed] = useRecoilState(bottomBarClosed);
+  
+  
+    const handleFilters = (type: any) => {
+      setShowModal(false);
+      setIsBottomBarClosed(false);
+    };
 
   const handleBackButton = () => {
     navigate('/offers');
-  };
-
-  const handleShowModal = (type: any) => {
-    setShowModal(true);
-    setInformationType(type);
   };
 
   const handleEducationLevelChange = (option: any) => {
@@ -54,7 +57,8 @@ const OfferFiltersPage = () => {
 
   const handleEducationMethodChange = (option: any) => {
     setSelectedValueEduMethod(option.name);
-    setIsEducationLevel((prevEducationMethod) => option.name);
+    setIsEducationMethod((prevEducationMethod) => option.name);
+    console.log(isEducationMethod);
   };
 
   const handleBasicSortingChange = (option: any) => {
@@ -68,7 +72,7 @@ const OfferFiltersPage = () => {
 
   return (
     <div
-      className={`relative min-h-screen flex flex-col items-center justify-start rounded-t-xl ${
+      className={`relative min-h-screen flex flex-col items-center justify-start rounded-t-3xl border-2 border-black ${
         isDarkMode ? 'bg-[#212121]' : 'bg-[#FAFFFF]'
       }`}>
       <div
@@ -82,8 +86,9 @@ const OfferFiltersPage = () => {
           className={`h-8 w-8 mb-2 mt-8 ${
             isDarkMode ? 'text-white' : 'text-[#212427]'
           }`}
-          onClick={handleBackButton}
+          onClick={handleFilters}
         />
+        <button className="btn btn-sm btn-outline btn-error mt-7">Wyczyść filtry</button>
       </div>
       {/* 
       <button onClick={() => handleShowModal('localization')} className='w-[100%]'>
@@ -95,7 +100,11 @@ const OfferFiltersPage = () => {
       {showModal && <FilterModal informationType={informationType} />}
 
       {/* Price Range Filter */}
-      <div className='w-full h-[1500px] flex justify-around'>
+      <button className="btn btn-success w-2/3 my-4 text-[#212427] text-lg">
+        Wyszukaj Pasujące Oferty
+        </button>
+
+      <div className='w-full h-[950px] flex justify-around'>
         <p className='absolute left-4 text-xl font-bold text-[#212427]'>Cena</p>
         <div className='mt-10 mx-4 relative'>
           <p className='font-semibold'>Cena Min</p>
@@ -139,7 +148,7 @@ const OfferFiltersPage = () => {
       </div>
 
       {/* Sort By newest... */}
-      <div className='absolute mt-[280px] left-6 '>
+      <div className='absolute mt-[360px] left-6 '>
         <p className='text-xl font-bold text-[#212427] mb-4'>Sortuj Od</p>
         {BasicSortingMetod.map((option: any) => (
           <div
@@ -159,7 +168,7 @@ const OfferFiltersPage = () => {
       </div>
 
       {/* Education Level Filter */}
-      <div className='absolute mt-[500px] left-6 '>
+      <div className='absolute mt-[570px] left-6 '>
         <p className='text-xl font-bold text-[#212427] mb-4'>
           Poziom Nauczania
         </p>
@@ -181,7 +190,7 @@ const OfferFiltersPage = () => {
       </div>
 
       {/* Education Method Filter */}
-      <div className='absolute mt-[680px] left-6 '>
+      <div className='absolute mt-[740px] left-6 '>
         <p className='text-xl font-bold text-[#212427] mb-4'>
           Mejsce Zajęć
         </p>
@@ -203,7 +212,7 @@ const OfferFiltersPage = () => {
       </div>
 
       {/* Rting */}
-      <div className='absolute mt-[850px] left-6'>
+      <div className='absolute mt-[910px] left-6'>
         <p className='text-xl font-bold text-[#212427] mb-4'>
           Średnia Ocen
         </p>

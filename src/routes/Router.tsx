@@ -1,5 +1,5 @@
 import React from 'react';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilState } from 'recoil';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import WelcomePage from '../pages/auth/Welcome.Page';
@@ -16,9 +16,11 @@ import OfferFiltersPage from '../pages/offers/OfferFilters.Page';
 import AddOfferPage from '../pages/offers/AddOffer.Page';
 import OfferDetailsPage from '../pages/offers/OfferDetails.Page';
 import BottomBar from '../components/bottomBar/BottomBar';
+import { bottomBarClosed } from '../atoms/BottomBarClosed.Atom';
 
 const AppRouter = () => {
   const { session } = useAuth();
+  const [isBottomBarClosed] = useRecoilState(bottomBarClosed);
 
   return (
     <>
@@ -26,7 +28,7 @@ const AppRouter = () => {
         <Router>
           {session ? (
         <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-        <BottomBar />
+         {isBottomBarClosed ? null : <BottomBar />}
       </div>
           ) : (
             <></>
