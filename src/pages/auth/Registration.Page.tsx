@@ -65,7 +65,7 @@ return (
         <LoginBackgroundComponent />
       </div>
       <div className='w-full h-[600px] mt-60 bg-[#DDDDDD] rounded-t-3xl absolute z-10 '>
-        <p className='text-center text-[#212427b0] mt-3 text-lg font-bold'>Zaloguj się na swoje konto</p>
+        <p className='text-center text-[#212427b0] mt-3 text-lg font-bold'>Stwórz nowe konto</p>
       </div>
       <div className='w-full h-[640px] mt-72 bg-[#FFFFFF] rounded-t-3xl absolute z-10 '>
         <div className='flex flex-row gap-4 justify-between p-10 mt-5 px-24 w-full'>
