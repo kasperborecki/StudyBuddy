@@ -17,13 +17,6 @@ const WelcomePage = () => {
         <LoginBackgroundComponent />
       </div>
       <div className='absolute flex flex-col items-start justify-start w-full'>
-        <div className='mt-8 ml-10'>
-          <img
-            src={logo}
-            alt='Logo'
-            className='w-[150px] h-[150px]'
-          />
-        </div>
         <div className='mt-40 mx-auto'>
           <div className='flex flex-col gap-2 min-h-screen p-10 w-full'>
             <button className='flex place-items-center h-14 w-80 mb-3 bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-14 py-2 text-md font-semibold text-gray-800 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400'>
