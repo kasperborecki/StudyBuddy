@@ -7,12 +7,17 @@ import {useNavigate} from 'react-router-dom';
 import {useRecoilState} from 'recoil';
 import {registeredUserEmail} from '../../atoms/RegistredUser.Atom';
 import LoginBackgroundComponent from '../../components/LoginBackground.Component';
+import { FcGoogle } from 'react-icons/fc';
+import { SiFacebook } from "react-icons/si";
+import { FaApple } from "react-icons/fa";
+import MailConfirmModal from '../../components/modal/MailConfirmModal.Component';
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [, setRegisteredUser] = useRecoilState(registeredUserEmail);
   const [registerError, setRegisterError] = useState<boolean>(false);
+  const [isModalShown, setIsModalShow] = useState<boolean>(false);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -49,81 +54,46 @@ const RegistrationPage = () => {
         console.error('Authentication error:', error);
       }
     }
+    setIsModalShow(true);
   };
 
-  return (
-    <>
-      <div className='z-0'>
+return (
+  <div className='bg-[#FFFFFF]'>
+    {isModalShown ? <MailConfirmModal /> : null}
+    <div className={` relative bg-[#295d13] ${isModalShown ? 'opacity-30' : ''} `} >
+      <div className='absolute inset-0 z-0'>
         <LoginBackgroundComponent />
       </div>
-      <div className='absolute flex flex-col items-start justify-start'>
-        <div className='absolute mt-12 ml-8 text-white z-10'>
-          <p className='text-xl'>Jesteś nowy?</p>
-          <p className='text-4xl'>Zarejestruj się!</p>
+      <div className='w-full h-[600px] mt-60 bg-[#DDDDDD] rounded-t-3xl absolute z-10 '>
+        <p className='text-center text-[#212427b0] mt-3 text-lg font-bold'>Zaloguj się na swoje konto</p>
+      </div>
+      <div className='w-full h-[640px] mt-72 bg-[#FFFFFF] rounded-t-3xl absolute z-10 '>
+        <div className='flex flex-row gap-4 justify-between p-10 mt-5 px-24 w-full'>
+          <button className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400'>
+            <SiFacebook className='w-8 h-8 text-blue-600'/>
+          </button>
+          <button className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'>
+            <FcGoogle className='w-8 h-8'/>
+          </button>
+          <button className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'>
+            <FaApple className='w-8 h-8'/>
+          </button>
         </div>
-        <form
-          className='mt-72 pt-8 flex flex-col items-center font-k2d font-bold h-[400px] w-full mx-11 z-10 rounded-xl'
-          onSubmit={handleSubmit}>
-          <div className='w-[80%]'>
-            {/* <label className='ml-4'>Email:</label>
-          <input
-            className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
-            placeholder='Przykład@gmail.com'
-            name='email'
-            onChange={handleChange}
-          />
-          <label className='ml-4'>Hasło:</label>
-          <div className='relative'>
-            <input
-              type={isPasswordVisible ? 'text' : 'password'}
-              className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
-              placeholder='Przykład123!'
-              name='password'
-              onChange={handleChange}
-            />
-            <button
-              type='button'
-              onClick={handleTogglePasswordVisibility}
-              className='absolute top-3 right-5'>
-              {isPasswordVisible ? (
-                <IoMdEye className='w-6 h-6' />
-              ) : (
-                <IoMdEyeOff className='w-6 h-6' />
-              )}
-            </button>
-            <label className='ml-4'>Powtórz Hasło:</label>
-            <div className='relative'>
-              <input
-                type={isPasswordVisible ? 'text' : 'password'}
-                className='bg-[#ccabd8] border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 focus:outline-none focus:border-purple-500'
-                placeholder='Przykład123!'
-                name='passwordSecond'
-                onChange={handleChange}
-              />
-              <button
-                type='button'
-                onClick={handleTogglePasswordVisibility}
-                className='absolute top-3 right-5'>
-                {isPasswordVisible ? (
-                  <IoMdEye className='w-6 h-6' />
-                ) : (
-                  <IoMdEyeOff className='w-6 h-6' />
-                )}
-              </button>
-            </div>
+        <div>
+        <hr className='flex absolute top-[15%] flex-col w-[90%] z-10 h-[1px] bg-[#00000060] mx-5 mt-12'/>
+          <p className='flex absolute top-[15%] flex-col z-20 h-4 w-12 px-2.5 bg-[#FFFFFF] mx-[44%] text-[#212427] font-semibold mt-9 text-[17px]'>LUB</p>
           </div>
-          <button
-          className='bg-[#ccabd8] border-2 border-black w-[50%] h-[50px] rounded-3xl mt-[8%]'
-          type='submit'>
-          ZAREJESTRUJ SIĘ
-        </button> */}
+        <form
+            className='pt-8 flex absolute top-[15%] flex-col items-center font-k2d font-bold h-[400px] w-full z-10 rounded-xl mt-16'
+            onSubmit={handleSubmit}>
+          <div className='w-[80%]'>
             <div className='mb-4'>
               <div className='relative mb-6'>
                 <input
                   id='email'
                   name='email'
                   type='text'
-                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-black ${
+                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-[#212427] ${
                     registerError
                       ? 'border-[#ff0000] focus:border-[#ff0000]'
                       : 'border-gray-300 focus:border-[#893EFF]'
@@ -139,7 +109,7 @@ const RegistrationPage = () => {
                       : registerError
                       ? 'peer-focus:text-xs ml-2 mt-1'
                       : 'peer-focus:text-xs ml-2 mt-1'
-                  } text-black`}>
+                  } text-[#212427]`}>
                   Email
                 </label>
               </div>
@@ -149,7 +119,7 @@ const RegistrationPage = () => {
                   id='password'
                   name='password'
                   type={isPasswordVisible ? 'text' : 'password'}
-                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-black ${
+                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-[#212427] ${
                     registerError
                       ? 'border-[#ff0000] focus:border-[#ff0000]'
                       : 'border-gray-300 focus:border-[#893EFF]'
@@ -165,7 +135,7 @@ const RegistrationPage = () => {
                       : registerError
                         ? 'peer-focus:text-xs ml-2 mt-1'
                         : 'peer-focus:text-xs ml-2 mt-1'
-                  } text-black`}>
+                  } text-[#212427]`}>
                   Password
                 </label>
                 <button
@@ -184,7 +154,7 @@ const RegistrationPage = () => {
                   id='passwordSecond'
                   name='passwordSecond'
                   type={isPasswordVisible ? 'text' : 'password'}
-                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-black ${
+                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-[#212427] ${
                     registerError
                       ? 'border-[#ff0000] focus:border-[#ff0000]'
                       : 'border-gray-300 focus:border-[#893EFF]'
@@ -200,7 +170,7 @@ const RegistrationPage = () => {
                       : registerError
                         ? 'peer-focus:text-xs ml-2 mt-1'
                         : 'peer-focus:text-xs ml-2 mt-1'
-                  } text-black`}>
+                  } text-[#212427]`}>
                   Password
                 </label>
                 {registerError ? (
@@ -228,10 +198,14 @@ const RegistrationPage = () => {
             type='submit'>
             ZAREJESTRUJ SIĘ
           </button>
+          <p onClick={() => navigate('/')}>
+            Masz już konto?
+          </p>
         </form>
       </div>
-    </>
-  );
+    </div>
+  </div>
+);
 };
 
 export default RegistrationPage;
