@@ -1,7 +1,8 @@
 // Offers.ts
 export interface Profile {
   user_id: string;
-  nickName?: string;
+  name?: string;
+  surname?: string;
   avatar_url?: string;
   experience_years?: string;
   experience_info?: string;

@@ -5,7 +5,7 @@ import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 import OfferCard from '../../components/offerCard/OfferCard.Component';
 import OfferFiltersPage from './OfferFilters.Page';
 import { modalAtom } from '../../atoms/Modal.Atom';
-import { bottomBarClosed } from '../../atoms/BottomBarClosed.Atom';
+
 
 const OffersPage = () => {
   const [isDarkMode, ] = useRecoilState(DarkModeAtom);
@@ -15,7 +15,6 @@ const OffersPage = () => {
   const handleBackButton = () => {
     navigate('/');
   };
-
 
   return (
     <div className={`relative min-h-screen flex flex-col items-center justify-start ${isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'}`}>

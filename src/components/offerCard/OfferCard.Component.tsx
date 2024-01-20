@@ -108,7 +108,7 @@ const OfferCard = () => {
                   className={`absolute ml-20 font-jua font-bold text-[14px] flex py-2 ${
                     isDarkMode ? 'text-white' : 'text-black'
                   }`}>
-                  <div className='mr-2 ml-1'>{offer.profile?.nickName}</div>
+                  <div className='mr-2 ml-1'>{offer.profile?.name}{offer.profile?.surname}</div>
                 </div>
                 <div className='absolute left-4 -bottom-1 font-k2d font-bold text-[12px] flex py-2'>
                   <div className='text-[#edb72d] flex pt-[1px]'>

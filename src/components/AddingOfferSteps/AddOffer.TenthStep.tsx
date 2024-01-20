@@ -114,7 +114,8 @@ const AddOfferTenthStep = () => {
                 className='absolute w-24 h-24 rounded-lg'
               />
               <p className='text-lg ml-32 font-k2d font-bold'>
-                {user.nickName}
+                {user.name}
+                {user.surname}
               </p>
             </div>
           ))}
