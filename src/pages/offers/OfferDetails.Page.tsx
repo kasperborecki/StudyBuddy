@@ -54,7 +54,8 @@ const OfferDetailsPage = () => {
                   className='absolute w-24 h-24 rounded-lg'
                 />
                 <p className='text-lg ml-32 font-k2d font-bold'>
-                  {offer.profile?.nickName}
+                  {offer.profile?.name}
+                  {offer.profile?.surname}
                 </p>
               </div>
               <div>
@@ -103,7 +104,7 @@ const OfferDetailsPage = () => {
                   Forma Nauki: <p className='font-normal pl-2'>{offer.education_method}</p>
                 </p>
               </div>
-              <ContactModal profilePic={offer.profile?.avatar_url} nickName={offer.profile?.nickName}/>
+              <ContactModal profilePic={offer.profile?.avatar_url} name={offer.profile?.name} surname={offer.profile?.surname}/>
             </div>
           ))}
         </div>

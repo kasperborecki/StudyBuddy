@@ -9,6 +9,9 @@ import BottomBar from '../../components/bottomBar/BottomBar';
 import SubjectsComponent from '../../components/subjectsComponent/Subject.Component';
 import UiChoseStudyField from '../../components/uiComponents/uiButons/UiChoseStudyField.Button';
 import { User } from '../../interfaces/User.Interface';
+import supabase from '../../config/SupabaseClient';
+import { UserIdentity } from '@supabase/supabase-js';
+import getUserDataFromProvider from '../../services/User/UserDataProvider';
 
 const HomePage = () => {
   const { session } = useAuth();
@@ -24,6 +27,7 @@ const HomePage = () => {
       if (session?.user.id) {
         try {
           setIsLoading(true);
+          await getUserDataFromProvider();
           const userId = session.user.id;
           const userRes = await UserData.getUserData(userId);
           setUserData(userRes);
@@ -34,9 +38,11 @@ const HomePage = () => {
         }
       }
     };
-
+  
     fetchUser();
   }, [session?.user.id]);
+
+  
 
   return (
     <>
@@ -64,7 +70,7 @@ const HomePage = () => {
                 isDarkMode ? 'text-[#dddddd]' : 'text-black'
               }`}
             >
-              <p className='font-bold'>Witaj {user.nickName}!</p>
+              <p className='font-bold'>Witaj {user.name}{user.surname}!</p>
               <p className='font-'>
                 Jakiego {studyField === 1 ? 'Przedmiotu' : 'Języka'} Szukasz
               </p>

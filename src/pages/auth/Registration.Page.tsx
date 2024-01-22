@@ -11,6 +11,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { SiFacebook } from "react-icons/si";
 import { FaApple } from "react-icons/fa";
 import MailConfirmModal from '../../components/modal/MailConfirmModal.Component';
+import { createClient } from '@supabase/supabase-js';
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
@@ -57,6 +58,20 @@ const RegistrationPage = () => {
     setIsModalShow(true);
   };
 
+
+  async function handleGoogleSignIn() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+
+    if (data) {
+      console.log("data: ", data);
+    }
+    if (error) {
+      console.log("error: ", error);
+    }
+  }
+
 return (
   <div className='bg-[#FFFFFF]'>
     {isModalShown ? <MailConfirmModal /> : null}
@@ -72,7 +87,8 @@ return (
           <button className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400'>
             <SiFacebook className='w-8 h-8 text-blue-600'/>
           </button>
-          <button className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'>
+          <button className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+          onClick={handleGoogleSignIn}>
             <FcGoogle className='w-8 h-8'/>
           </button>
           <button className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'>

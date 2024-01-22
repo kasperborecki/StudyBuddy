@@ -5,7 +5,8 @@ import { requestModalLessonAtom } from '../../atoms/RequestLesson.Atom';
 
 interface ContactModalProps {
   profilePic: any;
-  nickName: any;
+  name: any;
+  surname: any;
 }
 
 const ContactModal: React.FC<ContactModalProps> = ({}) => {

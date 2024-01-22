@@ -1,6 +1,7 @@
 export interface User {
     user_id: string;
-    nickName?: string;
+    name?: string;
+    surname?: string;
     avatar_url?: string;
     experience_years?: number;
   }
