@@ -13,30 +13,32 @@ async function getUserDataFromProvider() {
 
         if (email && avatarUrl && fullName) {
           try {
-            // Fetch the image blob
             const imageBlob = await fetch(avatarUrl).then((res) => res.blob());
+            const fileName = `${email}_${Date.now()}.png`;
 
-            // Create a unique file name
-            const fileName = `${email}_${Date.now()}.png`; // You can customize the file name as needed
+            const { data: existingProfile, error: profileError } = await supabase
+            .from('profiles')
+            .select('avatar_url')
+            .eq('email', email);
+          
+          if (!existingProfile || existingProfile.length >= 0) {
 
-            // Upload the image to Supabase Storage
             const { data: storageData, error: storageError } = await supabase
               .storage.from('avatars')
               .upload(fileName, imageBlob);
+              if (storageError) {
+                console.error('Error uploading image to Supabase Storage', storageError);
+                return;
+              }
 
-            if (storageError) {
-              console.error('Error uploading image to Supabase Storage', storageError);
-              return;
-            }
+              const { error: updateError } = await supabase
+                .from('profiles')
+                .update({ avatar_url: fileName, name: fullName })
+                .eq('email', email);
 
-            // Update 'avatar_url' and 'name' columns in the 'profiles' table
-            const { error: updateError } = await supabase
-              .from('profiles')
-              .update({ avatar_url: fileName, name: fullName })
-              .eq('email', email);
-
-            if (updateError) {
-              console.error('Error updating "avatar_url" and "name" columns', updateError);
+              if (updateError) {
+                console.error('Error updating "avatar_url" and "name" columns', updateError);
+              }
             }
           } catch (error) {
             console.error('Error processing user identity', error);
