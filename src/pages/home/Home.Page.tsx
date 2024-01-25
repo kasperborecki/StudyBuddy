@@ -12,6 +12,8 @@ import { User } from '../../interfaces/User.Interface';
 import supabase from '../../config/SupabaseClient';
 import { UserIdentity } from '@supabase/supabase-js';
 import getUserDataFromProvider from '../../services/User/UserDataProvider';
+import AlertComponent from '../../components/alerts/Alert.Component';
+import { alertTypeAtom } from '../../atoms/AlertState.Atom';
 
 const HomePage = () => {
   const { session } = useAuth();
@@ -19,6 +21,7 @@ const HomePage = () => {
   const [studyField] = useRecoilState(studyFieldAtom);
   const [userData, setUserData] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alertType, setAlertType] = useRecoilState(alertTypeAtom);
 
   const CDNURL = 'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
 
@@ -38,8 +41,14 @@ const HomePage = () => {
         }
       }
     };
+
+    const timeoutId = setTimeout(() => {
+      setAlertType(0);
+    }, 5000);
+
   
     fetchUser();
+    return () => clearTimeout(timeoutId);
   }, [session?.user.id]);
 
   
@@ -76,6 +85,7 @@ const HomePage = () => {
               </p>
             </div>
             <UiChoseStudyField />
+            <div className='absolute w-full mt-5 z-30'>{alertType === 1 ? <AlertComponent /> : null}</div>
             <SubjectsComponent />
           </div>
         ))

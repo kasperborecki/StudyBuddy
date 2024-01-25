@@ -25,11 +25,14 @@ import {LuGraduationCap} from 'react-icons/lu';
 import {AvabilityDays, AvabilityHours} from '../../constans/Avability.Constans';
 import {addOfferPageAtom} from '../../atoms/AddOfferPage.Atom';
 import OffersData from '../../services/common/Offer.Service';
+import { useNavigate } from 'react-router';
+import { alertTypeAtom } from '../../atoms/AlertState.Atom';
 
 const AddOfferTenthStep = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
 
   const {session} = useAuth();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>();
   const [userData, setUserData] = useState<User[]>([]);
 
@@ -45,6 +48,7 @@ const AddOfferTenthStep = () => {
   const [description] = useRecoilState(addOfferDescription);
   const [avability] = useRecoilState(addOfferAvability);
   const [page, setPage] = useRecoilState(addOfferPageAtom);
+  const [,setAlertType] = useRecoilState(alertTypeAtom)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,19 +80,28 @@ const AddOfferTenthStep = () => {
     setIsLoading(true);
     if (session?.user.id) {
       const userId = session.user.id;
-      await OffersData.addNewOffer(
-        userId,
-        subjectId,
-        time,
-        price,
-        cityId,
-        level,
-        method,
-        description,
-        avability,
-      );
+      try {
+        await OffersData.addNewOffer(
+          userId,
+          subjectId,
+          time,
+          price,
+          cityId,
+          level,
+          method,
+          description,
+          avability,
+        );
+        setAlertType(1);
+
+        navigate('/');
+      } catch (error) {
+        console.error('Error while adding offer:', error);
+        setAlertType(3);
+      } finally {
+        setIsLoading(false);
+      }
     }
-    setIsLoading(false);
   };
 
   return (

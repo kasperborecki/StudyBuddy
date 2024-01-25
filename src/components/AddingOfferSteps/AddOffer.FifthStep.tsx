@@ -106,7 +106,7 @@ const AddOfferFifthStep = () => {
         ) : (
           <>
             <p
-              className={`absolute text-gray-700 text-[15px] font-bold px-2 right-16 ${
+              className={`absolute text-gray-700 text-[15px] font-bold px-2 right-12 ${
                 isDarkMode
                   ? 'text-white bg-[#212121]'
                   : 'text-black bg-[#FAEFFF]'
@@ -114,7 +114,7 @@ const AddOfferFifthStep = () => {
               Zwiń
             </p>
             <div
-              className={`absolute right-12 text-[22px] ${
+              className={`absolute right-8 text-[22px] ${
                 isDarkMode ? 'text-white' : 'text-black'
               }`}>
               <MdKeyboardArrowUp />
