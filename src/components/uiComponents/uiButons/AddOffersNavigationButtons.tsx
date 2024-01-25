@@ -64,7 +64,7 @@ const AddOfferNavigationButtons = () => {
       enabled = price > 1;
       break;
     case 7:
-      enabled = description.length > 200;
+      enabled = description.length > 150;
       break;
     case 8:
       enabled = true;

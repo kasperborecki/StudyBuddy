@@ -7,7 +7,7 @@ import {addOfferPageAtom} from '../../atoms/AddOfferPage.Atom';
 import AddOfferThirdStep from '../../components/addingOfferSteps/AddOffer.ThirdStep';
 import AddOfferFourthStep from '../../components/addingOfferSteps/AddOffer.FourthStep';
 import AddOfferFifthStep from '../../components/addingOfferSteps/AddOffer.FifthStep';
-import AddOfferSixthStep from '../../components/addingOfferSteps/AddOffer.SIxthStep';
+import AddOfferSixthStep from '../../components/addingOfferSteps/AddOffer.SixthStep';
 import AddOfferSeventhStep from '../../components/addingOfferSteps/AddOffer.SeventhStep';
 import AddOfferEighthStep from '../../components/addingOfferSteps/AddOffer.EightStep';
 import AddOfferNinthStep from '../../components/addingOfferSteps/AddOffer.NinthStep';

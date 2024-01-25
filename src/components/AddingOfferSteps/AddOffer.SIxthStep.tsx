@@ -10,23 +10,28 @@ import {LuMinus} from 'react-icons/lu';
 
 const AddOfferSixthStep = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
-  const [time, setTime] = useRecoilState(addOfferTime);
+  const [, setTime] = useRecoilState(addOfferTime);
   const [inputTime, setInputTime] = useState(50);
 
   const handlePlus = () => {
     if (inputTime < 120) {
-      setInputTime((prevTime) => prevTime + 5);
-      setTime(inputTime);
+      setInputTime((prevTime) => {
+        const newTime = prevTime + 5;
+        setTime(newTime);
+        return newTime;
+      });
     }
   };
-
+  
   const handleMinus = () => {
     if (inputTime > 15) {
-      setInputTime((prevTime) => prevTime - 5);
-      setTime(inputTime);
+      setInputTime((prevTime) => {
+        const newTime = prevTime - 5;
+        setTime(newTime);
+        return newTime;
+      });
     }
   };
-
   return (
     <div className='w-[80%]'>
       <BreadCrumb />
