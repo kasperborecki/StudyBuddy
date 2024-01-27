@@ -17,6 +17,7 @@ import AddOfferPage from '../pages/offers/AddOffer.Page';
 import OfferDetailsPage from '../pages/offers/OfferDetails.Page';
 import BottomBar from '../components/bottomBar/BottomBar';
 import { bottomBarClosed } from '../atoms/BottomBarClosed.Atom';
+import ChatsPage from '../pages/chats/Chats.Page';
 
 const AppRouter = () => {
   const { session } = useAuth();
@@ -45,6 +46,7 @@ const AppRouter = () => {
                 <Route path='/offers-filter' element={<OfferFiltersPage />} />
                 <Route path='/add-offer' element={<AddOfferPage />} />
                 <Route path='/offerDetail/:selectedOfferId' element={<OfferDetailsPage />} />
+                <Route path='/chats' element={<ChatsPage />} />
               </>
             ) : (
               <>
