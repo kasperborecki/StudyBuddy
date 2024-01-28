@@ -1,6 +1,6 @@
 import React from 'react';
 import { RecoilRoot, useRecoilState } from 'recoil';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 import WelcomePage from '../pages/auth/Welcome.Page';
 import LoginPage from '../pages/auth/Login.Page';
@@ -17,7 +17,8 @@ import AddOfferPage from '../pages/offers/AddOffer.Page';
 import OfferDetailsPage from '../pages/offers/OfferDetails.Page';
 import BottomBar from '../components/bottomBar/BottomBar';
 import { bottomBarClosed } from '../atoms/BottomBarClosed.Atom';
-import ChatsPage from '../pages/chats/Chats.Page';
+import ContactsPage from '../pages/chats/Contacts.Page';
+import ChatPage from '../pages/chats/Chat.page';
 
 const AppRouter = () => {
   const { session } = useAuth();
@@ -27,12 +28,10 @@ const AppRouter = () => {
     <>
       <RecoilRoot>
         <Router>
-          {session ? (
-        <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
-         {isBottomBarClosed ? null : <BottomBar />}
-      </div>
-          ) : (
-            <></>
+          {session &&  (
+            <div className='fixed bottom-0 left-0 w-full bg-white z-20'>
+              <BottomBar />
+            </div>
           )}
           <Routes>
             {session ? (
@@ -46,14 +45,13 @@ const AppRouter = () => {
                 <Route path='/offers-filter' element={<OfferFiltersPage />} />
                 <Route path='/add-offer' element={<AddOfferPage />} />
                 <Route path='/offerDetail/:selectedOfferId' element={<OfferDetailsPage />} />
-                <Route path='/chats' element={<ChatsPage />} />
+                <Route path='/contacts' element={<ContactsPage />} />
+                <Route path='/chat/:chatId' element={<ChatPage />} />
               </>
             ) : (
               <>
-                {/* <Route path='/' element={<WelcomePage />} /> */}
                 <Route path='/' element={<LoginPage />} />
                 <Route path='/registration' element={<RegistrationPage />} />
-                {/* <Route path='Complete-Data' element={<CompleteDataPage />} /> */}
               </>
             )}
           </Routes>
