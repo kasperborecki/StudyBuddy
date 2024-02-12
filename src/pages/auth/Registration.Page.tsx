@@ -65,10 +65,10 @@ const RegistrationPage = () => {
     });
 
     if (data) {
-      console.log("data: ", data);
+      // console.log("data: ", data);
     }
     if (error) {
-      console.log("error: ", error);
+      // console.log("error: ", error);
     }
   }
 

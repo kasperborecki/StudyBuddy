@@ -41,7 +41,6 @@ const OfferCard = () => {
 
   useEffect(() => {
     const fetchOffers = async () => {
-      console.log(isEducationMethod);
       try {
         setIsLoading(true);
         const offerRes = await OffersData.getSelectedSubjectOffers(

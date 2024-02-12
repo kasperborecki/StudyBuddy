@@ -6,13 +6,22 @@ import ChatsData from '../../services/common/Chats.Selector';
 import {Chats} from '../../interfaces/Chats.Interfaces';
 import {useAuth} from '../../atoms/Route.Atom';
 import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
+import { useNavigate } from 'react-router';
+import { avatarUrl, chatId, chatStyling, userName } from '../../atoms/ChatInformaion.Atom';
 
 const ChatsPage = () => {
   const {session} = useAuth();
+  const navigate = useNavigate();
 
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [chatsData, setChatsData] = useState<Chats[]>([]);
+  const [, setUsername] = useRecoilState(userName);
+  const [, setAvatarUrl] = useRecoilState(avatarUrl);
+  const [, setChatId] = useRecoilState(chatId);
+  const [,setChatStyle] = useRecoilState(chatStyling);
+
+  
 
   const CDNURL =
   'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
@@ -36,10 +45,13 @@ const ChatsPage = () => {
     fetchChats();
   }, [session?.user.id]);
 
-  // const handleOpenChat = (offerId: any) => {
-  //   setSelectedOfferId(offerId);
-  //   navigate(`/offerDetail/${offerId}`);
-  // };
+  const handleOpenChat = (chatsId: any, avatarUrl: any, userName: any, chatBackground: any) => {
+    navigate(`/chat/${chatsId}`);
+    setAvatarUrl(avatarUrl);
+    setUsername(userName);
+    setChatId(chatsId);
+    setChatStyle(chatBackground);
+  };
 
   return (
     <div className='relative min-h-screen'>
@@ -68,7 +80,7 @@ const ChatsPage = () => {
           </div>
           <div className='mx-6 px-3 pt-1 my-auto bg-[#f2e7f7] rounded-xl'>
             {chatsData.map((chats) => (
-              <>
+              <div onClick={(() => handleOpenChat(chats.id, chats.profile?.avatar_url, chats.profile?.name, chats.background_style ))}>
                 <div
                   className='flex bg-[#f2e7f7] px-4 rounded-lg max-w-xs h-16 w-full items-center'>
                   <div className='flex-shrink-0'>
@@ -97,7 +109,7 @@ const ChatsPage = () => {
                   </div>
                 </div>
                 <hr className='bg-[#727272] h-[1px]'></hr>
-              </>
+              </div>
             ))}
           </div>
         </div>

@@ -58,7 +58,6 @@ const OfferFiltersPage = () => {
   const handleEducationMethodChange = (option: any) => {
     setSelectedValueEduMethod(option.name);
     setIsEducationMethod((prevEducationMethod) => option.name);
-    console.log(isEducationMethod);
   };
 
   const handleBasicSortingChange = (option: any) => {

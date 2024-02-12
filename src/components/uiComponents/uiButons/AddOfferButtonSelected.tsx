@@ -28,7 +28,6 @@ const AddOfferButtonSelected = () => {
   } else if (page === 4) {
     text = cities;
   }
-  console.log(cities);
 
   return (
     <button

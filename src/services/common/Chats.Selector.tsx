@@ -1,10 +1,12 @@
 import supabase from "../../config/SupabaseClient";
 
+// get all curen user chats
+
 const getAllUserChats = async (userId: any) => {
   try {
     const { data: chatsData, error: chatsError } = await supabase
       .from('chats')
-      .select('id, first_participant, second_participant')
+      .select('id, first_participant, second_participant, background_style')
       .or(`first_participant.eq.${userId},second_participant.eq.${userId}`);
 
     if (chatsError) {
@@ -91,8 +93,57 @@ const getAllUserChats = async (userId: any) => {
   }
 };
 
+// get all curent chat messages
+
+const getAllCurentChatMsg = async (chatId: any) => {
+  const { data, error } = await supabase
+    .from('messages')
+    .select('message_id, chat_id, user_id, delivered_date, is_read, context')
+    .order('delivered_date', { ascending: false })
+    .eq('chat_id', chatId);
+
+  if (error) throw error.message;
+  return data || [];
+};
+
+// get chat background styleing
+
+const getChatStyle = async (chatId: any): Promise<string> => {
+  const { data, error } = await supabase
+    .from('chats')
+    .select('background_style')
+    .eq('id', chatId)
+    .single();
+  
+  if (error) throw error.message;
+  return data?.background_style || '';
+};
+
+
+// create new message
+
+const addNewMessage = async (newData: string, userId: any, chatId: string) => {
+  const { data, error } = await supabase
+    .from('messages')
+    .insert([
+      {
+        chat_id: chatId,
+        user_id: userId,
+        context: newData,
+      },
+    ])
+    .select('message_id');
+
+
+  if (error) throw error.message;
+};
+
+
 const ChatsData = {
   getAllUserChats,
+  getAllCurentChatMsg,
+  getChatStyle,
+  addNewMessage,
 };
 
 export default ChatsData;
