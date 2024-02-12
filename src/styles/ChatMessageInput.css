@@ -68,6 +68,10 @@
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.596);
     transition: all 0.3s;
   }
+  .messageBox input::placeholder {
+    color: black;
+  }
+  
   #messageInput {
     width: 300px;
     height: 100%;
@@ -79,7 +83,6 @@
   }
   #messageInput:focus ~ #sendButton svg path,
   #messageInput:valid ~ #sendButton svg path {
-    fill: white;
     stroke: #212427;
   }
   

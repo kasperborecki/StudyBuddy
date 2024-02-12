@@ -10,7 +10,12 @@ export const avatarUrl = atom({
     default: '',
   });
 
-  export const chatId = atom({
-    key: 'chatId',
-    default: '',
-  });
+export const chatId = atom({
+  key: 'chatId',
+  default: '',
+});
+
+export const chatStyling = atom({
+  key: 'chatStyling',
+  default: '',
+});

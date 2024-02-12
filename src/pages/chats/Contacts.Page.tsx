@@ -7,7 +7,7 @@ import {Chats} from '../../interfaces/Chats.Interfaces';
 import {useAuth} from '../../atoms/Route.Atom';
 import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
 import { useNavigate } from 'react-router';
-import { avatarUrl, chatId, userName } from '../../atoms/ChatInformaion.Atom';
+import { avatarUrl, chatId, chatStyling, userName } from '../../atoms/ChatInformaion.Atom';
 
 const ChatsPage = () => {
   const {session} = useAuth();
@@ -19,6 +19,8 @@ const ChatsPage = () => {
   const [, setUsername] = useRecoilState(userName);
   const [, setAvatarUrl] = useRecoilState(avatarUrl);
   const [, setChatId] = useRecoilState(chatId);
+  const [,setChatStyle] = useRecoilState(chatStyling);
+
   
 
   const CDNURL =
@@ -43,11 +45,12 @@ const ChatsPage = () => {
     fetchChats();
   }, [session?.user.id]);
 
-  const handleOpenChat = (chatsId: any, avatarUrl: any, userName: any) => {
+  const handleOpenChat = (chatsId: any, avatarUrl: any, userName: any, chatBackground: any) => {
     navigate(`/chat/${chatsId}`);
     setAvatarUrl(avatarUrl);
     setUsername(userName);
     setChatId(chatsId);
+    setChatStyle(chatBackground);
   };
 
   return (
@@ -77,7 +80,7 @@ const ChatsPage = () => {
           </div>
           <div className='mx-6 px-3 pt-1 my-auto bg-[#f2e7f7] rounded-xl'>
             {chatsData.map((chats) => (
-              <div onClick={(() => handleOpenChat(chats.id, chats.profile?.avatar_url, chats.profile?.name ))}>
+              <div onClick={(() => handleOpenChat(chats.id, chats.profile?.avatar_url, chats.profile?.name, chats.background_style ))}>
                 <div
                   className='flex bg-[#f2e7f7] px-4 rounded-lg max-w-xs h-16 w-full items-center'>
                   <div className='flex-shrink-0'>

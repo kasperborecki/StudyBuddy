@@ -15,7 +15,6 @@ const BottomBar = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isBottomBarClosed] = useRecoilState(bottomBarClosed);
 
-  console.log(activeTab);
   const handleTabClick = (id: any) => {
     setActiveTab(id);
     switch (id) {

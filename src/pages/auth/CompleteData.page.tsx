@@ -22,7 +22,6 @@ const CompleteDataPage = () => {
   };
   const handleSubmit = async () => {
     const newData = {...formData};
-    console.log(registeredUser, newData);
     // await UserData.updateUserData(newData);
     navigate('/');
   };

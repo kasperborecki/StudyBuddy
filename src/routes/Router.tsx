@@ -16,13 +16,11 @@ import OfferFiltersPage from '../pages/offers/OfferFilters.Page';
 import AddOfferPage from '../pages/offers/AddOffer.Page';
 import OfferDetailsPage from '../pages/offers/OfferDetails.Page';
 import BottomBar from '../components/bottomBar/BottomBar';
-import { bottomBarClosed } from '../atoms/BottomBarClosed.Atom';
 import ContactsPage from '../pages/chats/Contacts.Page';
 import ChatPage from '../pages/chats/Chat.page';
 
 const AppRouter = () => {
   const { session } = useAuth();
-  const [isBottomBarClosed] = useRecoilState(bottomBarClosed);
 
   return (
     <>
