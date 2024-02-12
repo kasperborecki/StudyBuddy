@@ -5,12 +5,14 @@ import { useEffect, useRef, useState } from 'react';
 import { bottomBarClosed } from '../../atoms/BottomBarClosed.Atom';
 import { useNavigate } from 'react-router';
 import OwnerMsgBoxComponent from '../../components/messageBox/OwnerMsgBox.Component';
-import { Messages } from '../../interfaces/Chats.Interfaces';
+import { ChatStyle, Chats, Messages } from '../../interfaces/Chats.Interfaces';
 import ChatsData from '../../services/common/Chats.Selector';
 import { useAuth } from '../../atoms/Route.Atom';
 import { GiCardExchange } from "react-icons/gi";
 import '../../styles/ChatBackGround.css';
 import '../../styles/ChatMessageInput.css';
+import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
+import { ChatStyleing } from '../../constans/ChatStyleing.Constants';
 
 
 const ChatPage = () => {
@@ -19,9 +21,9 @@ const ChatPage = () => {
 
   const [usernameValue] = useRecoilState(userName);
   const [avatarUrlValue] = useRecoilState(avatarUrl);
-  // const [chatStyle, setChatSt] = useRecoilState(chatStyling);
   const [chatIdValue] = useRecoilState(chatId);
-  const [isBottomBarClosed, setIsBottomBarClosed] = useRecoilState(bottomBarClosed);
+  const [chatStylingValue] = useRecoilState(chatStyling)
+  const [, setIsBottomBarClosed] = useRecoilState(bottomBarClosed);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [messagesOutPut, setMessagesOutPut] = useState<Messages[]>([]);
   const { session } = useAuth();
@@ -45,12 +47,16 @@ const ChatPage = () => {
         setIsLoading(false);
       }
     };
-
     fetchMessages();
   }, [chatIdValue]);
 
   const handleBackButton = () => {
     navigate('/contacts');
+    setIsBottomBarClosed(false);
+  };
+
+  const handleOpenSettings = () => {
+    navigate('/chat-settings');
     setIsBottomBarClosed(false);
   };
 
@@ -83,16 +89,22 @@ const ChatPage = () => {
       await ChatsData.addNewMessage(messageText, userId, chatIdValue);
       setMessageText('');
       setIsLoading(false);
-      // Po wysłaniu nowej wiadomości zaktualizuj listę wiadomości
       updateMessages();
     }
   };
-  
+
+  const chatStyleObj = ChatStyleing.find(item => item.id.toString() === chatStylingValue);
+  const chatStyle = chatStyleObj ? chatStyleObj.style : '';
 
   return (
     <>
+    {isLoading ? (
+        <div>
+          <LoadingSuspense />
+        </div>
+      ) : (
         <div className="card">
-          <div className={`top-section h-screen bg-gradient-to-r from-fuchsia-600 to-pink-600 `}>
+            <div className={`top-section h-screen ${chatStyle} `}>
             <div className="border"></div>
             <div className="borderTwo"></div>
             <div className="icons">
@@ -108,7 +120,7 @@ const ChatPage = () => {
                   />
                 <p className='pl-3 pt-3.5 font-bold text-[15px]'>{usernameValue}</p>
               </div>
-              <div className="social-media"><GiCardExchange className='h-7 w-7 mt-3 text-white'/></div>
+              <div className="social-media"><GiCardExchange className='h-7 w-7 mt-3 text-white' onClick={handleOpenSettings}/></div>
             </div>
             <div className="flex flex-col h-screen justify-end items-center">
               <div className="flex flex-col w-full max-w-sm h-4/5 overflow-y-auto p-4 mb-14">
@@ -151,6 +163,7 @@ const ChatPage = () => {
             </div>
           </div>
         </div>
+    )}
     </>
   );
 };

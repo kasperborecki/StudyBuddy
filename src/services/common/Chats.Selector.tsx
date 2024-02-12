@@ -138,12 +138,23 @@ const addNewMessage = async (newData: string, userId: any, chatId: string) => {
   if (error) throw error.message;
 };
 
+const checkTheme = async (chatId: string) => {
+  const { data, error } = await supabase
+    .from('chats')
+    .select('background_style');
+    // .eq('id', chatId);
+
+
+  if (error) throw error.message;
+};
+
 
 const ChatsData = {
   getAllUserChats,
   getAllCurentChatMsg,
   getChatStyle,
   addNewMessage,
+  checkTheme,
 };
 
 export default ChatsData;

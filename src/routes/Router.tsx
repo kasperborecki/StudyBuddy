@@ -18,6 +18,7 @@ import OfferDetailsPage from '../pages/offers/OfferDetails.Page';
 import BottomBar from '../components/bottomBar/BottomBar';
 import ContactsPage from '../pages/chats/Contacts.Page';
 import ChatPage from '../pages/chats/Chat.page';
+import ChatSettings from '../pages/chats/Chat.Setting';
 
 const AppRouter = () => {
   const { session } = useAuth();
@@ -45,6 +46,7 @@ const AppRouter = () => {
                 <Route path='/offerDetail/:selectedOfferId' element={<OfferDetailsPage />} />
                 <Route path='/contacts' element={<ContactsPage />} />
                 <Route path='/chat/:chatId' element={<ChatPage />} />
+                <Route path='/chat-settings' element={<ChatSettings />} />
               </>
             ) : (
               <>
