@@ -1,4 +1,4 @@
-import { IoArrowBack } from 'react-icons/io5';
+import { IoArrowBack, IoSettingsSharp } from 'react-icons/io5';
 import { avatarUrl, chatId, chatStyling, userName } from '../../atoms/ChatInformaion.Atom';
 import { useRecoilState } from 'recoil';
 import { useEffect, useRef, useState } from 'react';
@@ -57,7 +57,6 @@ const ChatPage = () => {
 
   const handleOpenSettings = () => {
     navigate('/chat-settings');
-    setIsBottomBarClosed(false);
   };
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -120,7 +119,7 @@ const ChatPage = () => {
                   />
                 <p className='pl-3 pt-3.5 font-bold text-[15px]'>{usernameValue}</p>
               </div>
-              <div className="social-media"><GiCardExchange className='h-7 w-7 mt-3 text-white' onClick={handleOpenSettings}/></div>
+              <div className="social-media"><IoSettingsSharp className='h-7 w-7 mt-3 text-white' onClick={handleOpenSettings}/></div>
             </div>
             <div className="flex flex-col h-screen justify-end items-center">
               <div className="flex flex-col w-full max-w-sm h-4/5 overflow-y-auto p-4 mb-14">

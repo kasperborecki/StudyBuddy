@@ -138,11 +138,12 @@ const addNewMessage = async (newData: string, userId: any, chatId: string) => {
   if (error) throw error.message;
 };
 
-const checkTheme = async (chatId: string) => {
+const updateChatStyle = async (chatId: string, styleId: string) => {
   const { data, error } = await supabase
     .from('chats')
+    .update([{background_style: styleId}])
+    .eq('id', chatId)
     .select('background_style');
-    // .eq('id', chatId);
 
 
   if (error) throw error.message;
@@ -154,7 +155,7 @@ const ChatsData = {
   getAllCurentChatMsg,
   getChatStyle,
   addNewMessage,
-  checkTheme,
+  updateChatStyle,
 };
 
 export default ChatsData;
