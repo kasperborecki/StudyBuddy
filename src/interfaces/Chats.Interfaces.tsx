@@ -36,5 +36,5 @@ export interface Messages {
 }
 
 export interface ChatStyle {
-    background_style: string;
-}
+    background_style: any;
+  }
