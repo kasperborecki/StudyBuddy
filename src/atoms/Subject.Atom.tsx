@@ -1,12 +1,11 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const subjectIdAtom = atom({
-  key: 'subjectIdAtom',
-  default: ''
+  key: "subjectIdAtom",
+  default: "",
 });
 
 export const subjectNameAtom = atom({
-    key: 'subjectNameAtom',
-    default: ''
-  });
-  
+  key: "subjectNameAtom",
+  default: "",
+});
