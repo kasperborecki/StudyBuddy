@@ -19,7 +19,7 @@ const ChatSettings = () => {
     'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-[#FEECEB]'>
       <img
         src={CDNURL + avatarUrlValue}
         alt={'profileAvatar'}

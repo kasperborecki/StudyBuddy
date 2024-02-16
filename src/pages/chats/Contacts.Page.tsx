@@ -62,7 +62,7 @@ const ChatsPage = () => {
       ) : (
         <div
           className={`relative min-h-screen max-h-screen ${
-            isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'
+            isDarkMode ? 'bg-[#212121]' : 'bg-[#FEECEB]'
           }`}>
           <div className='flex h-1/4 p-8 items-center justify-between'>
             <p
