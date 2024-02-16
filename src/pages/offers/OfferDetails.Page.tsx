@@ -38,13 +38,13 @@ const OfferDetailsPage = () => {
   }, [selectedOfferId]);
 
   return (
-    <div className='relative min-h-screen mx-[8%]'>
+    <div className='relative min-h-screen px-[8%] bg-[#FEECEB]'>
       {isLoading ? (
         <div className='ml-20'>
           <LoadingSuspense />
         </div>
       ) : (
-        <div className='relative mt-8'>
+        <div className='relative pt-8 '>
           {offerData.map((offer, index) => (
             <div key={index}>
               <div>
