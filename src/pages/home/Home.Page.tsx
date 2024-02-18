@@ -64,7 +64,7 @@ const HomePage = () => {
           <div
             key={user.user_id}
             className={`relative min-h-screen flex flex-col items-center justify-start ${
-              isDarkMode ? 'bg-[#212121]' : 'bg-[#FEECEB]'
+              isDarkMode ? 'bg-[#212121]' : 'bg-[#fcfcfc]'
             }`}
           >
             <div className='mb-10 right-8 top-8 absolute'>
