@@ -4,9 +4,8 @@ import {bottomBarTabId} from '../../atoms/BottomBarTab.Atom';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import {FaPlus} from 'react-icons/fa6';
 import {AiFillHome} from 'react-icons/ai';
-import {IoChatboxEllipsesSharp} from 'react-icons/io5';
-import {FaBlog, FaCalendarAlt} from 'react-icons/fa';
-import {IoSettingsSharp} from 'react-icons/io5';
+import {IoChatboxEllipsesSharp, IoPersonSharp} from 'react-icons/io5';
+import {FaCalendarAlt} from 'react-icons/fa';
 import {bottomBarClosed} from '../../atoms/BottomBarClosed.Atom';
 import {useState} from 'react';
 import {TfiAnnouncement, TfiComments} from 'react-icons/tfi';
@@ -37,7 +36,7 @@ const BottomBar = () => {
         setIsAddingTabOpen(false);
         break;
       case 5:
-        navigate('/profile-settings-page');
+        navigate('/profile');
         setIsAddingTabOpen(false);
         break;
       case 6:
@@ -150,7 +149,7 @@ const BottomBar = () => {
               type='button'
               onClick={() => handleTabClick(5)}
               className={`inline-flex flex-col items-center justify-center px-5 rounded-e-full group`}>
-              <IoSettingsSharp
+              <IoPersonSharp
                 className={` w-[26px] h-[26px] ${
                   activeTab === 5 ? 'text-blue-400' : 'text-gray-400'
                 }`}
@@ -159,28 +158,13 @@ const BottomBar = () => {
                 className={` ${
                   activeTab === 5 ? 'text-blue-400' : 'text-gray-400'
                 }`}>
-                Ustawienia
+                Profil
               </p>
               <span className='sr-only'>Profile</span>
             </button>
           </div>
         </div>
       ) : null}
-      {/* {isAddingTabOpen ? ( */}
-      {/* <div className='flex justify-center '>
-          <div
-            className='absolute bg-[#893Eff] h-20 w-20 bottom-16 mr-24 '
-            style={{borderRadius: '72% 28% 85% 15% / 75% 25% 75% 25%'}}
-            onClick={() => handleTabClick(6)}>
-            <TfiAnnouncement className='text-[#FFFFFF] h-7 w-7 ml-5 mt-4' />
-          </div>
-          <div
-            className='absolute bg-[#893Eff] h-20 w-20 bottom-16 ml-24 '
-            style={{borderRadius: '28% 72% 15% 85% / 25% 75% 25% 75%'}}>
-            <TfiComments className='text-[#FFFFFF] h-6 w-6 ml-8 mt-5' />
-          </div>
-        </div> */}
-      {/* ) : null} */}
     </>
   );
 };

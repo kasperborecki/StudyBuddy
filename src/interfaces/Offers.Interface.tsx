@@ -53,4 +53,5 @@ export interface Requests {
   week_day: string;
   hour: string;
   created_at: any;
+  owner_id: string;
 }
