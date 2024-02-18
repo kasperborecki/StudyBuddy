@@ -23,7 +23,7 @@ const ForumPage = () => {
           <BsFilterRight className="w-7 h-7 -mt-0.5" />
         </div>
       </div>
-      <div className="absolute flex justify-center h-20 w-full bg-[#393939] top-20">
+      <div className="absolute flex justify-center h-20 w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-600 to-gray-800 bg-gradient-to-rs top-20">
         <p className="text-white text-[22px] text-semibold p-5">
           {selectedSubjectName}
         </p>
