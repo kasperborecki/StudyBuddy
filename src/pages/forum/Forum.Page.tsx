@@ -2,11 +2,31 @@ import { useRecoilState } from "recoil";
 import { DarkModeAtom } from "../../atoms/DarkMode.Atom";
 import { FaSearch } from "react-icons/fa";
 import { BsFilterRight } from "react-icons/bs";
-import { subjectNameAtom } from "../../atoms/Subject.Atom";
+import { subjectIdAtom, subjectNameAtom } from "../../atoms/Subject.Atom";
+import ForumPosts from "../../components/forumPosts/ForumPosts";
+import { useEffect, useState } from "react";
+import { Forum } from "../../interfaces/Forum.Interfaces";
+import ForumData from "../../services/common/Forum.Selector";
 
 const ForumPage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [selectedSubjectName] = useRecoilState(subjectNameAtom);
+  const [selectedSubjectId] = useRecoilState(subjectIdAtom);
+  const [forumData, setForumData] = useState<Forum[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const postsRes = await ForumData.getAllPosts(selectedSubjectId);
+        setForumData(postsRes);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+    console.log(selectedSubjectId);
+    console.log(forumData);
+    fetchPosts();
+  }, [selectedSubjectId]);
 
   return (
     <div
@@ -28,13 +48,18 @@ const ForumPage = () => {
           {selectedSubjectName}
         </p>
       </div>
-      <div className="relative top-40 bg-[#FEECEB] w-full">
-        <div className=" w-[90%] m-[5%] h-96 bg-white ">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
+      {forumData.map((data) => (
+        <ForumPosts
+          name={"Hubert Czaplicki"}
+          profileIcon={"421992140_1430648034327163_1645715190455232193_n.jpg"}
+          tittle={data.tittle}
+          description={data.description}
+          date={data.created_at}
+          views={data.views}
+          answers={420}
+          likes={data.likes}
+        />
+      ))}
     </div>
   );
 };
