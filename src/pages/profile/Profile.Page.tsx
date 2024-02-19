@@ -103,91 +103,9 @@ const ProfilePage = () => {
           </span>
         </button>
       </div>
-      {/* <div
-        className={`absolute h-[27%] w-[71%] top-[50%] rounded-[37px] ${
-          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FFFFFF]'
-        }`}>
-        <div className='flex flex-col items-center justify-center h-full'>
-          <p
-            className={` font-k2d text-[20px] font-bold my-3 ${
-              isDarkMode ? 'text-white' : 'text-black'
-            }`}>
-            Ilość Zajęć :
-          </p>
-          <div className='w-[78px] h-[78px] bg-gradient-to-bl from-[#ffdd94] to-[#d687f3] rounded-full '>
-            <div
-              className={`w-[60px] h-[60px] rounded-full relative mt-[9px] mb-[9px] ml-[9px] ${
-                isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FFFFFF]'
-              }`}>
-              <p
-                className={`absolute inset-0 flex items-center justify-center font-k2d text-[20px] font-bold ${
-                  isDarkMode ? 'text-white' : 'text-black'
-                }`}>
-                85
-              </p>
-            </div>
-          </div>
-          <div className='flex flex-col items-center'>
-            <p
-              className={`font-k2d text-[20px] font-bold mt-3 ${
-                isDarkMode ? 'text-white' : 'text-black'
-              }`}>
-              Średnia Ocena :
-            </p>
-            <div className='flex items-center'>
-              <img
-                src={stars}
-                alt='stars'
-                className='w-[75px] h-[80px] ml-2'
-              />
-              <p
-                className={`font-k2d text-[20px] font-bold ml-2 ${
-                  isDarkMode ? 'text-white' : 'text-black'
-                }`}>
-                / 4.6
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className={`absolute h-[14%] w-[90%] mt-[37rem] rounded-[30px] ${
-          isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FFFFFF]'
-        }`}>
-        <div className='flex flex-col items-start justify-center h-full'>
-          <p
-            className={`font-k2d text-[20px] font-bold my-2 text-center mx-auto ${
-              isDarkMode ? 'text-white' : 'text-black'
-            }`}>
-            Uczniowie
-          </p>
-          <div className='flex items-start mt-2'>
-            {tabs.map((tab) => (
-              <div
-                key={tab.id}
-                className='flex flex-col items-center ml-4'>
-                <img
-                  src={tab.icon.props.src}
-                  alt={tab.name}
-                  className='w-[45px] h-[45px] rounded-full mb-2 ml'
-                />
-                <p
-                  className={`font-k2d text-[16px] font-bold ${
-                    isDarkMode ? 'text-white' : 'text-black'
-                  }`}>
-                  {tab.name}
-                </p>
-              </div>
-            ))}
-            <button className=' bg-[#FFDD94] border-2 border-[#EBCA85] ml-4 font-bold font-k2d rounded-[10px] w-[90px] h-[25px] mt-3'>
-              Zobacz
-            </button>
-          </div>
-        </div>
-      </div> */}
+      <LessonCounter />
       <RewardCabinet />
       <HelpProgres />
-      <LessonCounter />
     </div>
   );
 };
