@@ -8,6 +8,9 @@ import icon3 from '../../assets/bartender.png';
 import {useNavigate} from 'react-router-dom';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
+import RewardCabinet from '../../components/profInformationCards/RewardsCabinet.Omponent';
+import HelpProgres from '../../components/profInformationCards/HelpProgres.Component';
+import LessonCounter from '../../components/profInformationCards/LessonCounter.Component';
 
 const ProfilePage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
@@ -60,52 +63,47 @@ const ProfilePage = () => {
 
   return (
     <div
-      className={`relative min-h-screen flex flex-col items-center justify-start ${
+      className={`relative h-[1400px] flex flex-col items-center justify-start ${
         isDarkMode ? 'bg-[#212121]' : 'bg-[#fceeed]'
       }`}>
       <img
         src={ProfileBackground}
         alt='Profile Background'
-        className='absolute w-full h-[40%] rounded-b-[66px]'
+        className='absolute w-full h-[350px] rounded-b-[66px]'
       />
       <div className='absolute z-20 rounded-full w-3 h-3 bg-red-700 top-[3%] right-[5%]' />
       <div className='absolute z-10 top-[3%] right-[5%] bg-gray-300 bg-opacity-60 w-12 h-12 rounded-full'>
         <IoSettingsOutline
-          className='absolute top-[3%] right-[5%] w-9 h-9 mt-1 mr-0.5 text-black'
+          className='absolute top-[3%] right-[5%] w-9 h-9 mt-1 mr-0.5 text-[#212427]'
           onClick={handleSettingsClick}
         />
       </div>
-      <div className='absolute w-full h-52 bg-white top-[20%] shadow-md shadow-bottom rounded-b-3xl'>
-        <div
-          className='flex -mt-10 mx-auto absolute '
-          style={{left: 'calc(50% - 65px)'}}>
-          <div className='absolute z-10 w-[130px] h-[130px] bg-white rounded-full'></div>
+      <div className='relative grid justify-items-center mx-[40%] w-full h-52 bg-white mt-[180px] shadow-md shadow-bottom rounded-b-3xl'>
+          <div className='absolute z-10 w-[130px] h-[130px] bg-white rounded-full -mt-12'></div>
           <img
             src={avatar}
             alt='avatar'
-            className='z-20 w-[110px] h-[110px] mt-[10px] ml-[10px] rounded-full border-8 border-white'
+            className='z-20 w-[110px] h-[110px] rounded-full border-8 border-white -mt-10'
           />
-          <p className='fixed mx-auto font-k2d text-[20px] text-black font-bold z-10 mt-32 -ml-2'>
+          <p className='absolute font-k2d text-[20px] text-[#212427] font-bold z-10 mt-20 '>
             Kasper Borecki
           </p>
-          <p className='fixed mx-auto font-k2d text-[14px] text-gray-300 z-10 mt-40 -ml-2'>
+          <p className='absolute font-k2d text-[14px] text-gray-300 z-10 mt-28 -ml-2'>
             kasper.borecki05@gmail.com
           </p>
-        </div>
-
         <button
-          className='overflow-hidden absolute flex mx-auto mt-40 w-32 pl-9 p-1 h-10 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer z-10 group'
+          className='overflow-hidden absolute flex mx-auto mt-40 w-32 px-9 h-8 bg-[#212427] text-white border-none rounded-md text-xl font-bold cursor-pointer z-10 group'
           style={{left: '51%', transform: 'translateX(-50%)'}}>
           Edytuj
           <span className='absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left'></span>
           <span className='absolute w-36 h-32 -top-8 -left-2 bg-purple-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left'></span>
           <span className='absolute w-36 h-32 -top-8 -left-2 bg-purple-600 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-left'></span>
-          <span className='group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-1 left-9 z-10 '>
+          <span className='group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute left-9 z-10 '>
             Edytuj
           </span>
         </button>
       </div>
-      <div
+      {/* <div
         className={`absolute h-[27%] w-[71%] top-[50%] rounded-[37px] ${
           isDarkMode ? 'bg-[#2B2B2B]' : 'bg-[#FFFFFF]'
         }`}>
@@ -186,7 +184,10 @@ const ProfilePage = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
+      <RewardCabinet />
+      <HelpProgres />
+      <LessonCounter />
     </div>
   );
 };
