@@ -7,6 +7,8 @@ import ForumPosts from '../../components/forumPosts/ForumPosts';
 import {useEffect, useState} from 'react';
 import {Forum} from '../../interfaces/Forum.Interfaces';
 import ForumData from '../../services/common/Forum.Selector';
+import { IoArrowBack } from 'react-icons/io5';
+import { useNavigate } from 'react-router';
 
 const ForumPage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
@@ -15,6 +17,11 @@ const ForumPage = () => {
   const [forumData, setForumData] = useState<Forum[]>([]);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<number>(1);
+  const navigate = useNavigate();
+
+  const handleBackButton = () => {
+    navigate('/offers');
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -36,7 +43,7 @@ const ForumPage = () => {
         isDarkMode ? 'bg-[#212121]' : 'bg-[#FEECEB]'
       }`}>
       <div className='fixed top-0 left-0 right-0 z-40'>
-        <div className='absolute left-0 bg-[#FEECEB] w-[25%] h-20 p-[25px]'>
+        <div className='flex flex-row absolute left-0 bg-[#FEECEB] w-[25%] h-20 p-[25px]'>
           <p className='font-semibold text-[22px] text-[#212427] '>Forum</p>
         </div>
         <div className='p-7 absolute flex flex-row justify-end right-0 bg-[#FEECEB] w-[76%] h-20 group'>
@@ -50,14 +57,18 @@ const ForumPage = () => {
               placeholder='Wyszukaj'
               className={`absolute input input-bordered h-10 bg-[#fff7f7] max-w-xs mr-10 w-[90%] -mt-2 left-0 opacity-0 transition ease-in-out duration-200 ${
                 isSearchOpen
-                  ? 'group-hover:opacity-100'
-                  : 'group-hover:opacity-0'
+                ? 'group-hover:opacity-100'
+                : 'group-hover:opacity-0'
               }`}
             />
           </div>
         </div>
       </div>
       <div className='fixed left-0 right-0 flex z-40 justify-center h-20 w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-600 to-gray-800 bg-gradient-to-rs top-20'>
+              <IoArrowBack
+                className={`absolute left-2 top-5 h-8 w-8 text-white`}
+                onClick={handleBackButton}
+              /> 
         <p className='text-white text-[22px] text-semibold p-5'>
           {selectedSubjectName}
         </p>
