@@ -8,18 +8,31 @@ import { MdBlockFlipped } from 'react-icons/md';
 import { RiDeleteBinFill } from 'react-icons/ri';
 import ChatStyleModal from '../../components/modal/ChatStyle.Modal';
 import { modalAtom } from '../../atoms/Modal.Atom';
+import { useNavigate } from 'react-router';
+import { IoArrowBack } from 'react-icons/io5';
 
 const ChatSettings = () => {
   const [usernameValue] = useRecoilState(userName);
   const [avatarUrlValue] = useRecoilState(avatarUrl);
   const [chatIdValue] = useRecoilState(chatId);
   const [showModal, setShowModal] = useRecoilState<boolean>(modalAtom);
+  const navigate = useNavigate();
+  const [chatsId] = useRecoilState(chatId);
+
+
+  const handleBackButton = () => {
+    navigate(`/chat/${chatsId}`);
+  };
 
   const CDNURL =
     'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen bg-[#FEECEB]'>
+       <IoArrowBack
+          className={`h-8 w-8 absolute left-4 top-4 z-20 text-black`}
+          onClick={handleBackButton}
+        /> 
       <img
         src={CDNURL + avatarUrlValue}
         alt={'profileAvatar'}

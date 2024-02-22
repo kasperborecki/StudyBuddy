@@ -10,6 +10,8 @@ import { LuGraduationCap } from 'react-icons/lu';
 import { FaRegClock, FaRegMoneyBillAlt } from 'react-icons/fa';
 import AvailabilityCalendar from '../../components/availabilityCalendar/AvailabilityCalendar.Component';
 import ContactModal from '../../components/modal/ContactModal.Component';
+import { useNavigate } from 'react-router';
+import { IoArrowBack } from 'react-icons/io5';
 
 
 const CDNURL =
@@ -20,6 +22,11 @@ const OfferDetailsPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [offerData, setOfferData] = useState<Offer[]>([]);
   const [isDarkMode] = useRecoilState(DarkModeAtom);
+  const navigate = useNavigate();
+
+  const handleBackButton = () => {
+    navigate('/offers');
+  };
 
   useEffect(() => {
     const fetchOffers = async () => {
@@ -45,6 +52,10 @@ const OfferDetailsPage = () => {
         </div>
       ) : (
         <div className='relative pt-8 '>
+          <IoArrowBack
+          className={`h-8 w-8 mb-4 -mt-4 ${isDarkMode ? 'text-white' : 'text-black'}`}
+          onClick={handleBackButton}
+        />
           {offerData.map((offer, index) => (
             <div key={index}>
               <div>
