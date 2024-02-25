@@ -25,7 +25,7 @@ const AddOfferPage = () => {
   return (
     <div
       className={`relative min-h-screen flex flex-col items-center justify-start ${
-        isDarkMode ? "bg-[#212121]" : "bg-[#FEECEB]"
+        isDarkMode ? "bg-[#212121]" : "bg-[#fcfcfc]"
       }`}
     >
       <div

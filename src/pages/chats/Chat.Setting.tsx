@@ -28,7 +28,7 @@ const ChatSettings = () => {
     'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-[#FEECEB]'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-[#fcfcfc]'>
        <IoArrowBack
           className={`h-8 w-8 absolute left-4 top-4 z-20 text-black`}
           onClick={handleBackButton}

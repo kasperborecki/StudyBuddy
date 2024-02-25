@@ -40,13 +40,13 @@ const ForumPage = () => {
   return (
     <div
       className={`relative h-full flex flex-col items-center justify-start pb-40 ${
-        isDarkMode ? 'bg-[#212121]' : 'bg-[#FEECEB]'
+        isDarkMode ? 'bg-[#212121]' : 'bg-[#fcfcfc]'
       }`}>
       <div className='fixed top-0 left-0 right-0 z-40'>
-        <div className='flex flex-row absolute left-0 bg-[#FEECEB] w-[25%] h-20 p-[25px]'>
+        <div className='flex flex-row absolute left-0 bg-[#fcfcfc] w-[25%] h-20 p-[25px]'>
           <p className='font-semibold text-[22px] text-[#212427] '>Forum</p>
         </div>
-        <div className='p-7 absolute flex flex-row justify-end right-0 bg-[#FEECEB] w-[76%] h-20 group'>
+        <div className='p-7 absolute flex flex-row justify-end right-0 bg-[#fcfcfc] w-[76%] h-20 group'>
           <div className=''>
             <FaSearch
               className='z-10 absolute w-8 h-8 -mt-2 left-[79%] text-gray-500 pt-2'
