@@ -45,7 +45,7 @@ const OfferDetailsPage = () => {
   }, [selectedOfferId]);
 
   return (
-    <div className='relative min-h-screen px-[8%] bg-[#FEECEB] pb-1'>
+    <div className='relative min-h-screen px-[8%] bg-[#FEEfcfcfcCEB] pb-1'>
       {isLoading ? (
         <div className='ml-20'>
           <LoadingSuspense />

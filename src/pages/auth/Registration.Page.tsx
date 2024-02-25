@@ -73,154 +73,114 @@ const RegistrationPage = () => {
   }
 
 return (
-  <div className='bg-[#FFFFFF]'>
-    {isModalShown ? <MailConfirmModal /> : null}
-    <div className={` relative bg-[#295d13] ${isModalShown ? 'opacity-30' : ''} `} >
-      <div className='absolute inset-0 z-0'>
+  <div className='bg-[#FFFFFF]  h-screen'>
+      <div className=' absolute inset-0 z-0 pt-[30px] bg-[#FFFFFF]'>
         <LoginBackgroundComponent />
       </div>
-      <div className='w-full h-[600px] mt-60 bg-[#DDDDDD] rounded-t-3xl absolute z-10 '>
-        <p className='text-center text-[#212427b0] mt-3 text-lg font-bold'>Stwórz nowe konto</p>
-      </div>
-      <div className='w-full h-[640px] mt-72 bg-[#FFFFFF] rounded-t-3xl absolute z-10 '>
-        <div className='flex flex-row gap-4 justify-between p-10 mt-5 px-24 w-full'>
-          <button disabled={true} className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400'>
-            <SiFacebook className='w-8 h-8 text-blue-600'/>
-          </button>
-          <button className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
-          onClick={handleGoogleSignIn}>
-            <FcGoogle className='w-8 h-8'/>
-          </button>
-          <button disabled={true} className='flex place-items-center h-14 w-14 mb-3 bg-white border border-gray-300 rounded-full shadow-md max-w-xs px-3 py-2 text-md font-semibold text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'>
-            <FaApple className='w-8 h-8'/>
-          </button>
-        </div>
-        <div>
-        <hr className='flex absolute top-[15%] flex-col w-[90%] z-10 h-[1px] bg-[#00000060] mx-5 mt-12'/>
-          <p className='flex absolute top-[15%] flex-col z-20 h-4 w-12 px-2.5 bg-[#FFFFFF] mx-[44%] text-[#212427] font-semibold mt-9 text-[17px]'>LUB</p>
-          </div>
-        <form
-            className='pt-8 flex absolute top-[15%] flex-col items-center font-k2d font-bold h-[400px] w-full z-10 rounded-xl mt-16'
-            onSubmit={handleSubmit}>
-          <div className='w-[80%]'>
-            <div className='mb-4'>
-              <div className='relative mb-6'>
-                <input
-                  id='email'
-                  name='email'
-                  type='text'
-                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-[#212427] ${
-                    registerError
-                      ? 'border-[#ff0000] focus:border-[#ff0000]'
-                      : 'border-gray-300 focus:border-[#893EFF]'
-                  }`}
-                  onChange={handleChange}
-                />
-                <label
-                  className={`absolute left-0 top-1 cursor-text transition-all px-2 bg-white ${
-                    formData.email
-                      ? registerError
-                        ? '-top-4 text-[#ff0000] ml-4'
-                        : '-top-4 text-[#893EFF] ml-4'
-                      : registerError
-                      ? 'peer-focus:text-xs ml-2 mt-1'
-                      : 'peer-focus:text-xs ml-2 mt-1'
-                  } text-[#212427]`}>
-                  Email
-                </label>
+      <form onSubmit={handleSubmit}>
+        <div className='mt-[250px] relative min-h-screen sm:flex sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl bg-opacity-0'>
+          <div className=' flex justify-center self-center z-10'>
+            <div className='p-12 mx-auto rounded-3xl w-96'>
+              <div className='mb-7'>
+                <h3 className='font-semibold text-2xl text-gray-800'>
+                  Zarejestruj się
+                </h3>
+                <p className='text-gray-400'>
+                  Masz już konto?
+                  <a
+                    className='text-sm text-purple-700 hover:text-purple-700 pl-1'
+                    onClick={() => navigate('/')}>
+                    Zaloguj się
+                  </a>
+                </p>
+              </div>
+              <div className='space-y-6'>
+                <div className=''>
+                  <input
+                    id='email'
+                    name='email'
+                    value={formData.email}
+                    onChange={handleChange}
+                    className='w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400'
+                    type='text'
+                    placeholder='Email'
+                  />
+                </div>
+                <div
+                  className='relative'>
+                  <input
+                    id='password'
+                    name='password'
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder='Hasło'
+                    type={isPasswordVisible ? 'text' : 'password'}
+                    className='text-sm text-blac px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400'
+                  />
+                  
+                  <div className='flex items-center absolute inset-y-0 right-0 mr-3 text-sm leading-5'>
+                    <button
+                      type='button'
+                      onClick={handleTogglePasswordVisibility}
+                      className='absolute top-3.5 right-2 cursor-pointer'>
+                      {isPasswordVisible ? (
+                        <IoMdEye className='w-5 h-5 text-purple-600' />
+                      ) : (
+                        <IoMdEyeOff className='w-5 h-5 text-purple-600' />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <div
+                  className='relative mt-2'>
+                  <input
+                    id='passwordSecond'
+                    name='passwordSecond'
+                    value={formData.passwordSecond}
+                    onChange={handleChange}
+                    placeholder='Powtórz hasło'
+                    type={isPasswordVisible ? 'text' : 'password'}
+                    className='text-sm text-blac px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400'
+                  />
+                  
+                  <div className='flex items-center absolute inset-y-0 right-0 mr-3 text-sm leading-5'>
+                    <button
+                      type='button'
+                      onClick={handleTogglePasswordVisibility}
+                      className='absolute top-3.5 right-2 cursor-pointer'>
+                      {isPasswordVisible ? (
+                        <IoMdEye className='w-5 h-5 text-purple-600' />
+                      ) : (
+                        <IoMdEyeOff className='w-5 h-5 text-purple-600' />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <div className=''>
+                  <button
+                    className='w-full py-3 text-white bg-purple-600 hover:bg-purple-700 rounded-lg text-sm'
+                    type='submit'>
+                    Zarejestruj się
+                  </button>
+                </div>
+              </div>
+              <div className='flex justify-center space-x-6 mt-6'>
+                <button
+                  onClick={handleGoogleSignIn}
+                  className='flex justify-center items-center w-full py-3 text-black hover:text-white bg-white border-[2px] border-red-600 hover:bg-red-700 rounded-lg text-sm'>
+                  <FcGoogle className='text-xl mr-2' />
+                  Google
+                </button>
+                <button className='flex justify-center items-center w-full py-3 text-black hover:text-black border-[2px] border-blue-700 hover:bg-blue-700 rounded-lg text-sm'>
+                  <SiFacebook className='text-xl mr-2 text-blue-600' />
+                  Facebook
+                </button>
               </div>
             </div>
-            <div className='relative mb-6'>
-                <input
-                  id='password'
-                  name='password'
-                  type={isPasswordVisible ? 'text' : 'password'}
-                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-[#212427] ${
-                    registerError
-                      ? 'border-[#ff0000] focus:border-[#ff0000]'
-                      : 'border-gray-300 focus:border-[#893EFF]'
-                  }`}
-                  onChange={handleChange}
-                />
-                <label
-                  className={`absolute left-0 top-1 cursor-text transition-all px-2 bg-white ${
-                    formData.password
-                      ? registerError
-                        ? '-top-4 text-[#ff0000] ml-4'
-                        : '-top-4 text-[#893EFF] ml-4'
-                      : registerError
-                        ? 'peer-focus:text-xs ml-2 mt-1'
-                        : 'peer-focus:text-xs ml-2 mt-1'
-                  } text-[#212427]`}>
-                  Password
-                </label>
-                <button
-                  type='button'
-                  onClick={handleTogglePasswordVisibility}
-                  className='absolute top-1.5 right-1 cursor-pointer'>
-                  {isPasswordVisible ? (
-                    <IoMdEye className='w-6 h-6' />
-                  ) : (
-                    <IoMdEyeOff className='w-6 h-6' />
-                  )}
-                </button>
-              </div>
-              <div className='relative mb-6'>
-                <input
-                  id='passwordSecond'
-                  name='passwordSecond'
-                  type={isPasswordVisible ? 'text' : 'password'}
-                  className={`border w-full h-9 shadow-lg py-1 focus:border-2  pl-2 rounded-lg transition-colors focus:outline-none peer bg-inherit text-[#212427] ${
-                    registerError
-                      ? 'border-[#ff0000] focus:border-[#ff0000]'
-                      : 'border-gray-300 focus:border-[#893EFF]'
-                  }`}
-                  onChange={handleChange}
-                />
-                <label
-                  className={`absolute left-0 top-1 cursor-text transition-all px-2 bg-white ${
-                    formData.passwordSecond
-                      ? registerError
-                        ? '-top-4 text-[#ff0000] ml-4'
-                        : '-top-4 text-[#893EFF] ml-4'
-                      : registerError
-                        ? 'peer-focus:text-xs ml-2 mt-1'
-                        : 'peer-focus:text-xs ml-2 mt-1'
-                  } text-[#212427]`}>
-                  Password
-                </label>
-                {registerError ? (
-                  <p className='text-[#ff0000] text-[11px] absolute mt-4'>
-                    Ops! Coś poszło nie tak, sprawdź ponownie hasło i e-mail.
-                  </p>
-                ) : null}
-                <button
-                  type='button'
-                  onClick={handleTogglePasswordVisibility}
-                  className='absolute top-1.5 right-1 cursor-pointer'>
-                  {isPasswordVisible ? (
-                    <IoMdEye className='w-6 h-6' />
-                  ) : (
-                    <IoMdEyeOff className='w-6 h-6' />
-                  )}
-                </button>
-              </div>
           </div>
-          <button
-            className='w-60 bg-[#893EFF] h-[50px] mt-10 my-3 flex items-center justify-center rounded-xl cursor-pointer relative overflow-hidden
-            transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full
-            before:w-full before:h-full before:bg-gradient-to-r before:from-[#58AD33] before:to-[#58AD33] before:transition-all
-            before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]'
-            type='submit'>
-            ZAREJESTRUJ SIĘ
-          </button>
-          <p onClick={() => navigate('/')}>
-            Masz już konto?
-          </p>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-  </div>
 );
 };
 

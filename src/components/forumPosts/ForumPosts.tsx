@@ -26,7 +26,7 @@ const ForumPosts: React.FC<CusomForumPorstProps> = ({
     'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
 
   return (
-    <div className='relative top-40 bg-[#FEECEB] w-full'>
+    <div className='relative top-40 bg-[#fcfcfc] w-full'>
       <div className=' w-[90%] m-[5%] h-[220px] bg-white rounded-xl shadow-md shadow-bottom'>
         <div className='relative flex flex-row justify-between h-24 w-full p-2'>
           <div className='w-[80px] h-[80px] p-[3px] bg-gradient-to-r from-yellow-500 via-pink-500 to-red-500 rounded-full'>

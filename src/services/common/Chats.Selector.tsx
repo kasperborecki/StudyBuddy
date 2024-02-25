@@ -17,6 +17,8 @@ const getAllUserChats = async (userId: any) => {
     if (!chatsData || chatsData.length === 0) {
       return [];
     }
+    
+    const chatIds = chatsData.map(chat => chat.id); // Extracting chat ids
 
     const userIds = chatsData.map((chats: any) => {
       if (chats.first_participant === userId) {
@@ -37,14 +39,13 @@ const getAllUserChats = async (userId: any) => {
     throw unReadCountError.message;
   }
 
-  const countUnReadMessages = unReadCountData.length;
 
     const { data: lastMessageData, error: lastMessageError } = await supabase
       .from('messages')
       .select('context, user_id, delivered_date')
       .in('user_id', userIds)
-      .order('delivered_date', { ascending: false })
-      .limit(1);
+      .in('chat_id', chatIds)
+      .order('delivered_date', { ascending: false });
 
     if (lastMessageError) {
       console.error(lastMessageError.message);

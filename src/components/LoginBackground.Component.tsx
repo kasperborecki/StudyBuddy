@@ -9,7 +9,7 @@ import {ImLab} from 'react-icons/im';
 import {BiAtom} from 'react-icons/bi';
 import {LuTreePine} from 'react-icons/lu';
 import Background from '../assets/background.png';
-import loginIcon from '../assets/LoginSreenIcon.png'
+import loginIcon from '../assets/7471684_3669492.jpg'
 
 
     // <IoSchoolOutline />
