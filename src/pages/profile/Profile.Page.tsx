@@ -12,10 +12,17 @@ import { CiLock, CiStar } from 'react-icons/ci';
 import { TbLogout2, TbPassword } from "react-icons/tb";
 import { IoLanguage, IoLockOpenOutline, IoTrashBinOutline } from 'react-icons/io5';
 import { RxExit } from 'react-icons/rx';
+import supabase from '../../config/SupabaseClient';
 
 const ProfileSettingsPage = () => {
   const [isDarkMode, setIsDarkMode] = useRecoilState(DarkModeAtom);
   const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    let {error} = await supabase.auth.signOut();
+    if (error) throw error.message;
+    navigate('/');
+  };
 
   return (
     <div
@@ -141,7 +148,7 @@ const ProfileSettingsPage = () => {
           </p>
           <IoIosArrowForward className='h-6 w-6 my-auto text-gray-600 opacity-80' />
         </div>
-        <div className='flex flex-row justify-between mt-5'>
+        <div className='flex flex-row justify-between mt-5' onClick={handleLogOut}>
           <div className='relative flex flex-row w-8 h-8 rounded-full bg-pink-700 p-1.5'>
             <RxExit  className='h-5 w-5 text-white' />
           </div>

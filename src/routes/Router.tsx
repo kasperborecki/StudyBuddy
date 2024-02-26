@@ -11,7 +11,6 @@ import RegistrationPage from "../pages/auth/Registration.Page";
 import { useAuth } from "../atoms/Route.Atom";
 import HomePage from "../pages/home/Home.Page";
 import ProfilePage from "../pages/profile/Profile.Page";
-import AccountSettings from "../pages/profile/Account.Settings.Page";
 import PersonalDataSettings from "../pages/profile/PrsonalData.Settings.Page";
 import OffersPage from "../pages/offers/Offers.Page";
 import OfferFiltersPage from "../pages/offers/OfferFilters.Page";
@@ -22,6 +21,7 @@ import ContactsPage from "../pages/chats/Contacts.Page";
 import ChatPage from "../pages/chats/Chat.page";
 import ChatSettings from "../pages/chats/Chat.Setting";
 import ForumPage from "../pages/forum/Forum.Page";
+import Schedule from "../pages/schedule/Schedule.Page";
 
 const AppRouter = () => {
   const { session } = useAuth();
@@ -40,7 +40,6 @@ const AppRouter = () => {
               <>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/account-settings" element={<AccountSettings />} />
                 <Route
                   path="/personal-data"
                   element={<PersonalDataSettings />}
@@ -56,6 +55,7 @@ const AppRouter = () => {
                 <Route path="/chat/:chatId" element={<ChatPage />} />
                 <Route path="/chat-settings" element={<ChatSettings />} />
                 <Route path="/forum" element={<ForumPage />} />
+                <Route path='/schedule' element={<Schedule />} />
               </>
             ) : (
               <>

@@ -32,7 +32,7 @@ const BottomBar = () => {
         setIsAddingTabOpen(!isAddingTabOpen);
         break;
       case 4:
-        navigate('/home');
+        navigate('/schedule');
         setIsAddingTabOpen(false);
         break;
       case 5:
