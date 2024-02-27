@@ -4,5 +4,6 @@ export interface Subjects {
     subject?: string;
     colour?: string;
     icon_url?: string;
+    shadow?: string;
   }
   

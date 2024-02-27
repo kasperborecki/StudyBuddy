@@ -58,6 +58,7 @@ const SubjectsComponent: React.FC = () => {
                     colour={subjectData.colour}
                     icon={subjectData.icon_url}
                     subjectId={subjectData.id}
+                    shadow={subjectData.shadow}
                     CDNURL={
                       'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/subjectsicons/'
                     }
