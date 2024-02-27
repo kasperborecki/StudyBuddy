@@ -3,7 +3,7 @@ import supabase from '../../config/SupabaseClient';
 const getSubjects = async () => {
   const { data, error } = await supabase
     .from('subjects')
-    .select('id,subject, colour, icon_url')
+    .select('id,subject, colour, icon_url, shadow')
     .lt('id', '9');
 
   if (error) {
@@ -16,7 +16,7 @@ const getSubjects = async () => {
 const getLanguages = async () => {
   const { data, error } = await supabase
     .from('subjects')
-    .select('id,subject, colour, icon_url')
+    .select('id,subject, colour, icon_url, shadow')
     .gt('id', '8');
 
   if (error) {
