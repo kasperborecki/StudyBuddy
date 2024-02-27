@@ -15,9 +15,9 @@ avatar_url,
         <div className="absolute w-[90%] h-36 ml-[5%] mr-[5%]">
             <div className="absolute w-[80%] h-36 bg-[#bb91ff] rounded-xl mx-[10%]"></div>
             <div className="absolute w-[90%] h-32 bg-[#ab79fc] rounded-xl mx-[5%]"></div>
-            <div className="absolute w-[100%] h-28 bg-gradient-to-t from-[#a065ff] to-[#893Eff] rounded-xl flex flex-row">
+            <div className="absolute w-[100%] h-28 bg-[#9b5dff] rounded-xl flex flex-row">
                 <div className="h-full w-[75%] p-2 text-white text-opacity-90">
-                    <p className=" text-[17px] font-semibold font-k2d"><b>Funkcja Kwadratowa Funkcja Kwadratowa Funkcja Kwadratowa</b></p>
+                    <p className=" text-[17px] font-semibold font-k2d"><b>Funkcja Kwadratowa</b></p>
                     <p className=" text-[13px] font-semibold font-k2d">Kasper Borecki</p>
                     <div className="flex flex-row mt-1">
                     <FaBell  className="mt-[3px] mr-2"/>
