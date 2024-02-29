@@ -41,7 +41,7 @@ const SubjectsComponent: React.FC = () => {
     fetchSubjects();
     fetchLanguages();
   }, []);
-
+  console.log(subjectsData);
   return (
     <>
       {isLoading ? (

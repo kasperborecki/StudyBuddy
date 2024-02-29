@@ -13,12 +13,12 @@ avatar_url,
     'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
     return(
         <div className="absolute w-[90%] h-36 ml-[5%] mr-[5%]">
-            <div className="absolute w-[80%] h-36 bg-[#bb91ff] rounded-xl mx-[10%]"></div>
-            <div className="absolute w-[90%] h-32 bg-[#ab79fc] rounded-xl mx-[5%]"></div>
-            <div className="absolute w-[100%] h-28 bg-[#9b5dff] rounded-xl flex flex-row">
-                <div className="h-full w-[75%] p-2 text-white text-opacity-90">
-                    <p className=" text-[17px] font-semibold font-k2d"><b>Funkcja Kwadratowa</b></p>
-                    <p className=" text-[13px] font-semibold font-k2d">Kasper Borecki</p>
+            <div className="absolute w-[80%] h-36 bg-[#c6a3ff] border-2 border-[#b587ff] shadow-md shadow-bottom shadow-[#b587ff] rounded-xl mx-[10%]"></div>
+            <div className="absolute w-[90%] h-32 bg-[#b98eff] border-2 border-[#ad7aff] shadow-md shadow-bottom shadow-[#ad7aff] rounded-xl mx-[5%]"></div>
+            <div className="absolute w-[100%] h-28 bg-[#ad7aff] border-2 border-[#9d5fff] shadow-md shadow-bottom shadow-[#9d5fff] rounded-xl flex flex-row">
+                <div className="h-full w-[75%] p-2 text-sky-100">
+                    <p className=" text-[17px] font-semibold"><b>Funkcja Kwadratowa</b></p>
+                    <p className=" text-[13px] font-semibold">Kasper Borecki</p>
                     <div className="flex flex-row mt-1">
                     <FaBell  className="mt-[3px] mr-2"/>
                     <p className="">27.03.2024</p>
