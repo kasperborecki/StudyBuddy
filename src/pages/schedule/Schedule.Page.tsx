@@ -65,12 +65,33 @@ const Schedule = () => {
   }, [fetchDates]);
 
   const handlePrevMonth = () => {
+    const monthNames = [
+      "styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec",
+      "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"
+    ];
+    
+    const date = new Date();
+    const month = date.getMonth();
+    
+    const monthName = monthNames[month];
+
+    if (currentMonth === monthNames.indexOf(monthName)) {
+    } else{
     setCurrentMonth((prevMonth) => prevMonth - 1);
+    }
+    if(formattedCurrentMonth === 'styczeń'){
+    setCurrentYear(currentYear - 1);
+    }
   };
 
   const handleNextMonth = () => {
     setCurrentMonth((prevMonth) => prevMonth + 1);
+    if(formattedCurrentMonth === 'grudzień'){
+      setCurrentYear(currentYear + 1);
+    }
   };
+
+  console.log(currentMonth);
 
   const formattedCurrentMonth = new Intl.DateTimeFormat('pl-PL', {
     month: 'long',
@@ -98,7 +119,7 @@ const Schedule = () => {
       <div className='w-full h-20 flex justify-center '>
         <p className='text-[22px] font-semibold mt-6'>Kalendarz</p>
       </div>
-      <div className='flex items-center justify-between px-2 rounded-t-xl mt-4 mb-6 space-x-5 mx-[20%]'>
+      <div className='flex items-center justify-between px-2 rounded-t-xl mt-4 mb-6 space-x-5 mx-[16%]'>
         <button
           onClick={handlePrevMonth}
           className='w-8 h-8 border-2 border-[#c0c0c0] text-2xl pl-1.5 rounded-lg focus:outline-none focus:border-blue-500'>
@@ -146,11 +167,28 @@ const Schedule = () => {
           ))}
         </div>
       </div>
-      <table className='border-x-2 border-[#9c9c9c] w-full bg-[#F4F5FA]'>
+      <table className='border-x-2 border-[#9c9c9c] w-full bg-[#F4F5FA] relative'>
         {AvabilityHours.map((availability) => (
           <tr className='h-20'>
             <th className='w-28 border-y-2 border-r-2 border-[#9c9c9c] border-opacity-20'>
               {availability.name}
+              <div className={`absolute ml-[102px] -mt-[19px] h-5 w-5 bg-white rounded-full border-[6px]
+              ${availability.name === '8:00' && 'border-red-400'}
+              ${availability.name === '9:00' && 'border-cyan-600'}
+              ${availability.name === '10:00' && 'border-green-600'}
+              ${availability.name === '11:00' && 'border-orange-400'}
+              ${availability.name === '12:00' && 'border-cyan-500'}
+              ${availability.name === '13:00' && 'border-emerald-600'}
+              ${availability.name === '14:00' && 'border-amber-800'}
+              ${availability.name === '15:00' && 'border-purple-600'}
+              ${availability.name === '16:00' && 'border-green-800'}
+              ${availability.name === '17:00' && 'border-green-500'}
+              ${availability.name === '18:00' && 'border-purple-600'}
+              ${availability.name === '19:00' && 'border-pink-700'}
+              ${availability.name === '20:00' && 'border-rose-600'}
+              ${availability.name === '21:00' && 'border-orange-400'}
+              ${availability.name === '22:00' && 'border-pink-700'}
+              `}/>
             </th>
             <th className='border-y-2 border-r-2 border-[#9c9c9c] border-opacity-20 px-4'>
               {scheduleData.filter(
