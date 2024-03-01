@@ -5,6 +5,8 @@ import {AvabilityHours} from '../../constans/Avability.Constans';
 import {ScheduleInterface} from '../../interfaces/Schedule.Interface';
 import ScheduleData from '../../services/common/Schedule.Service';
 import {useAuth} from '../../atoms/Route.Atom';
+import { FaBell } from 'react-icons/fa';
+import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
 
 const Schedule = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
@@ -20,6 +22,9 @@ const Schedule = () => {
   const [chosenDay, setChosenDay] = useState<string>('pon. 1');
   const [scheduleData, setScheduleData] = useState<ScheduleInterface[]>([]);
   const {session} = useAuth();
+
+  const CDNURL =
+  'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
 
   const fetchDates = useCallback(() => {
     const currentDate = new Date();
@@ -106,6 +111,7 @@ const Schedule = () => {
         setIsLoading(true);
         const scheduleRes = await ScheduleData.getScheduleData(userId, weekDay);
         setScheduleData(scheduleRes);
+        console.log(scheduleData);
       } catch (error: any) {
         console.error(error.message);
       } finally {
@@ -113,6 +119,8 @@ const Schedule = () => {
       }
     }
   };
+
+  console.log(ScheduleData);
 
   return (
     <div className='bg-[#F4F5FA] pb-32'>
@@ -167,6 +175,11 @@ const Schedule = () => {
           ))}
         </div>
       </div>
+      {isLoading ? (
+        <div className='ml-20'>
+          <LoadingSuspense />
+        </div>
+      ) : (
       <table className='border-x-2 border-[#9c9c9c] w-full bg-[#F4F5FA] relative'>
         {AvabilityHours.map((availability) => (
           <tr className='h-20'>
@@ -191,18 +204,35 @@ const Schedule = () => {
               `}/>
             </th>
             <th className='border-y-2 border-r-2 border-[#9c9c9c] border-opacity-20 px-4'>
-              {scheduleData.filter(
-                (schedule) => schedule.hour === availability.name,
-              ).length === 1 ? (
-                <div
-                  className={`h-16 w-full bg-${availability.color} rounded-3xl text-gray-100 text-[17px]`}>
-                  essa
-                </div>
-              ) : null}
+            {scheduleData.filter(
+  (schedule) => schedule.hour === availability.name,
+).map(schedule => (
+  <div
+    className={`h-16 w-full bg-${availability.color} rounded-3xl text-gray-100 text-[17px] flex flex-row`}
+  >
+    <div className="h-full w-[70%] p-2 text-sky-100">
+      <p className="text-[12px] font-semibold">
+        <b>{schedule.message}</b>
+      </p>
+      <p className="text-[9px] font-semibold">
+        {schedule.participantInfo?.name} {schedule.participantInfo?.surname}
+      </p>
+    </div>
+    <div className="h-full w-[25%]">
+      <img
+        src={CDNURL + schedule.participantInfo?.avatar_url}
+        alt='profileAvatar'
+        className='w-12 h-12 rounded-full ml-2 mt-2'
+      />
+    </div>
+  </div>
+))}
+
             </th>
           </tr>
         ))}
       </table>
+      )}
     </div>
   );
 };

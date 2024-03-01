@@ -8,11 +8,13 @@ export interface ScheduleInterface {
     message: string;
     created_at: string;
     owner_id: string;
-    profile?: Profile | undefined;
+    participantInfo?: Profile; // Update this line to include participantInfo
 }
+
 
 export interface Profile {
     user_id: string;
     name?: string;
+    surname?: string;
     avatar_url?: string;
   }
