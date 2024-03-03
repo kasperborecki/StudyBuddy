@@ -1,5 +1,5 @@
 export const AvabilityHours: {id: number; name: string; color: string}[] = [
-  {id: 1, name: '8:00', color: 'red-500'},
+  {id: 1, name: '8:00', color: 'red-400'},
   {id: 2, name: '9:00', color: 'cyan-600'},
   {id: 3, name: '10:00', color: 'green-600'},
   {id: 4, name: '11:00', color: 'orange-400'},
