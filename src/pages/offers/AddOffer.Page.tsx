@@ -3,15 +3,15 @@ import { RxCross2 } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 import { DarkModeAtom } from "../../atoms/DarkMode.Atom";
 import { addOfferPageAtom } from "../../atoms/AddOfferPage.Atom";
-import AddOfferTenthStep from "../../components/AddingOfferSteps/AddOffer.TenthStep";
-import AddOfferNinthStep from "../../components/AddingOfferSteps/AddOffer.NinthStep";
-import AddOfferEighthStep from "../../components/AddingOfferSteps/AddOffer.EightStep";
-import AddOfferSeventhStep from "../../components/AddingOfferSteps/AddOffer.SeventhStep";
-import AddOfferSixthStep from "../../components/AddingOfferSteps/AddOffer.SIxthStep";
-import AddOfferFifthStep from "../../components/AddingOfferSteps/AddOffer.FifthStep";
-import AddOfferFourthStep from "../../components/AddingOfferSteps/AddOffer.FourthStep";
-import AddOfferThirdStep from "../../components/AddingOfferSteps/AddOffer.ThirdStep";
-import AddOfferFirstStep from "../../components/AddingOfferSteps/AddOffer.FirstStep";
+// import AddOfferTenthStep from "../../components/AddingOfferSteps/AddOffer.TenthStep";
+// import AddOfferNinthStep from "../../components/AddingOfferSteps/AddOffer.NinthStep";
+// import AddOfferEighthStep from "../../components/AddingOfferSteps/AddOffer.EightStep";
+// import AddOfferSeventhStep from "../../components/AddingOfferSteps/AddOffer.SeventhStep";
+// import AddOfferSixthStep from "../../components/AddingOfferSteps/AddOffer.SIxthStep";
+// import AddOfferFifthStep from "../../components/AddingOfferSteps/AddOffer.FifthStep";
+// import AddOfferFourthStep from "../../components/AddingOfferSteps/AddOffer.FourthStep";
+// import AddOfferThirdStep from "../../components/AddingOfferSteps/AddOffer.ThirdStep";
+// import AddOfferFirstStep from "../../components/AddingOfferSteps/AddOffer.FirstStep";
 
 const AddOfferPage = () => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
@@ -43,7 +43,7 @@ const AddOfferPage = () => {
           onClick={handleBackButton}
         />
       </div>
-      {page === 1 ? (
+      {/* {page === 1 ? (
         <AddOfferFirstStep />
       ) : page === 2 ? (
         <AddOfferThirdStep />
@@ -61,7 +61,7 @@ const AddOfferPage = () => {
         <AddOfferNinthStep />
       ) : (
         <AddOfferTenthStep />
-      )}
+      )} */}
     </div>
   );
 };
