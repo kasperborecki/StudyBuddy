@@ -30,7 +30,7 @@ const ProfileSettingsPage = () => {
         isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'
       }`}>
       <p className={`text-[25px] font-semibold ${isDarkMode ? 'text-[#ffffff] text-opacity-80' : ' '}`}>Ustawienia</p>
-      <div className='flex flex-row justify-between bg-gray-300 bg-opacity-20 w-full h-22 mt-6 p-2 rounded-3xl shadow-md shadow-bottom'>
+      <div className='flex flex-row justify-between bg-gray-300 bg-opacity-20 w-full h-22 mt-6 p-2 rounded-3xl shadow-md shadow-bottom' onClick={(() => navigate('/personal-data'))}>
         <img
           src={avatar}
           alt='avatar'
