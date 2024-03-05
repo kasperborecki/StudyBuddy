@@ -1,18 +1,17 @@
-import { useRecoilState } from 'recoil';
-import { offerId } from '../../atoms/SelectedOfferId.Atom';
-import { useEffect, useState } from 'react';
+import {useRecoilState} from 'recoil';
+import {offerId} from '../../atoms/SelectedOfferId.Atom';
+import {useEffect, useState} from 'react';
 import OffersData from '../../services/common/Offer.Service';
-import { Offer } from '../../interfaces/Offers.Interface';
-import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
+import {Offer} from '../../interfaces/Offers.Interface';
+import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
-import { MdOutlinePlayLesson } from 'react-icons/md';
-import { LuGraduationCap } from 'react-icons/lu';
-import { FaRegClock, FaRegMoneyBillAlt } from 'react-icons/fa';
+import {MdOutlinePlayLesson} from 'react-icons/md';
+import {LuGraduationCap} from 'react-icons/lu';
+import {FaRegClock, FaRegMoneyBillAlt} from 'react-icons/fa';
 import AvailabilityCalendar from '../../components/availabilityCalendar/AvailabilityCalendar.Component';
 import ContactModal from '../../components/modal/ContactModal.Component';
-import { useNavigate } from 'react-router';
-import { IoArrowBack } from 'react-icons/io5';
-
+import {useNavigate} from 'react-router';
+import {IoArrowBack} from 'react-icons/io5';
 
 const CDNURL =
   'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
@@ -45,29 +44,35 @@ const OfferDetailsPage = () => {
   }, [selectedOfferId]);
 
   return (
-    <div className='relative min-h-screen px-[8%] bg-[#FEEfcfcfcCEB] pb-1'>
+    <div className='relative min-h-screen bg-[#FAEFFF] pb-1'>
       {isLoading ? (
         <div className='ml-20'>
           <LoadingSuspense />
         </div>
       ) : (
-        <div className='relative pt-8 '>
+        <div className='relative'>
           <IoArrowBack
-          className={`h-8 w-8 mb-4 -mt-4 ${isDarkMode ? 'text-white' : 'text-black'}`}
-          onClick={handleBackButton}
-        />
+            className={`absolute h-8 w-8 z-10 top-4 left-4 ${
+              isDarkMode ? 'text-white' : 'text-black'
+            }`}
+            onClick={handleBackButton}
+          />
           {offerData.map((offer, index) => (
-            <div key={index}>
-              <div>
+            <div
+              key={index}
+              className='h-96 w-full bg-[#789461] relative'>
+              <div className=''>
                 <img
                   src={CDNURL + offer.profile?.avatar_url}
                   alt={'profileAvatar'}
-                  className='absolute w-24 h-24 rounded-lg'
+                  className='absolute top-16 left-6 w-24 h-24 rounded-full '
                 />
-                <p className='text-lg ml-32 font-k2d font-bold'>
+                <div className='absolute left-30 top-16'>
+                <p className='text-lg font-k2d font-bold'>
                   {offer.profile?.name}
                   {offer.profile?.surname}
                 </p>
+                </div>
               </div>
               <div>
                 <div className='mt-24'>
@@ -106,16 +111,23 @@ const OfferDetailsPage = () => {
               <hr className='w-full h-[1px] bg-black opacity-20' />
               <div>
                 <p className='flex font-semibold text-md'>
-                  Poziom Nauczania: <p className='font-normal pl-2'>{offer.education_level}</p>
+                  Poziom Nauczania:{' '}
+                  <p className='font-normal pl-2'>{offer.education_level}</p>
                 </p>
                 <p className='flex font-semibold text-md'>
                   Lokalizacja: <p className='font-normal pl-2'>{offer.city}</p>
                 </p>
                 <p className='flex font-semibold text-md'>
-                  Forma Nauki: <p className='font-normal pl-2'>{offer.education_method}</p>
+                  Forma Nauki:{' '}
+                  <p className='font-normal pl-2'>{offer.education_method}</p>
                 </p>
               </div>
-              <ContactModal profilePic={offer.profile?.avatar_url} name={offer.profile?.name} surname={offer.profile?.surname}/>
+              <ContactModal
+                profilePic={offer.profile?.avatar_url}
+                name={offer.profile?.name}
+                surname={offer.profile?.surname}
+              />
+              <div className='h-24 w-full bg-[#50623A] rounded-t-3xl -mt-6'></div>
             </div>
           ))}
         </div>

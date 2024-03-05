@@ -117,7 +117,7 @@ const UpdateUserData = () => {
 
   return (
     <div
-      className='w-full mb-28'
+      className='w-full h-screen mb-28'
       style={{overflowY: 'auto'}}>
       {isLoading ? (
         <LoadingSuspense />
@@ -127,7 +127,7 @@ const UpdateUserData = () => {
         <form
           onSubmit={handleSubmit}
           className='mx-10 mt-4'>
-          <div className='w-full h-[470px] bg-white px-10 pt-6 rounded-3xl shadow shadow-xl shadow-gray-200'>
+          <div className='w-full h-[470px] bg-white px-10 pt-6 rounded-3xl shadow-md shadow-bottom shadow-gray-300'>
             <div className='flex items-center justify-center w-full'>
               <label
                 htmlFor='avatarInput'

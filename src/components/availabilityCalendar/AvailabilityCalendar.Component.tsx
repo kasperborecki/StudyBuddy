@@ -167,7 +167,7 @@ const AvailabilityCalendar = () => {
             ${index === 6 ? 'border-r-2 border-[#9c9c9c] -mr-0' : 'mx-1'}
           `}>
               <div
-                className={`text-center h-14 pt-2 text-black px-2.5 font-semibold text-k2d border-b-4 mb-3 ${
+                className={`text-center h-14 pt-2 text-black px-[5px] font-semibold text-k2d border-b-4 mb-3 ${
                   isToday(weekDay)
                     ? 'border-b-4 border-b-green-400'
                     : 'border-b-4 border-b-[#D687F3]'

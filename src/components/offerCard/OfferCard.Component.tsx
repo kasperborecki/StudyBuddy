@@ -4,9 +4,8 @@ import OffersData from '../../services/common/Offer.Service';
 import {Offer} from '../../interfaces/Offers.Interface';
 import {useRecoilState} from 'recoil';
 import {subjectIdAtom, subjectNameAtom} from '../../atoms/Subject.Atom';
-import AccoundHeader from '../uiComponents/uiHeaders/AccountHeader';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
-import {FaRegStar, FaStar} from 'react-icons/fa';
+import {FaHeart, FaRegMoneyBillAlt, FaStar} from 'react-icons/fa';
 import OfferSubHeader from '../uiComponents/uiHeaders/OfferSubHeader';
 import {
   educationLevel,
@@ -14,14 +13,13 @@ import {
   educationType,
   price,
 } from '../../atoms/FIlter.Atom';
-import {MdOutlinePlayLesson} from 'react-icons/md';
 import {LuGraduationCap} from 'react-icons/lu';
 import {RiHome3Line} from 'react-icons/ri';
-import {IoGlobeOutline} from 'react-icons/io5';
-import {MdOutlineMessage} from 'react-icons/md';
+import {IoArrowBack, IoGlobeOutline} from 'react-icons/io5';
 import {HiBadgeCheck} from 'react-icons/hi';
 import {offerId} from '../../atoms/SelectedOfferId.Atom';
 import {useNavigate} from 'react-router-dom';
+import trophyGold from '../../assets/nagrody/trophyGold.png'
 
 const OfferCard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -35,6 +33,7 @@ const OfferCard = () => {
   const [isEducationMethod] = useRecoilState(educationMethod);
   const [isPrice] = useRecoilState(price);
   const [, setSelectedOfferId] = useRecoilState(offerId);
+  
 
   const CDNURL =
     'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
@@ -65,13 +64,9 @@ const OfferCard = () => {
     navigate(`/offerDetail/${offerId}`);
   };
 
-
-
   const handleBackButton = () => {
     navigate('/');
   };
-
-
 
   return (
     <>
@@ -79,22 +74,32 @@ const OfferCard = () => {
         <LoadingSuspense />
       ) : (
         <>
-          <AccoundHeader text={selectedSubjectName} />
+          <div className='w-full pl-8 pr-8 mb-4 flex justify-between items-center text-[#212427]'>
+            <IoArrowBack
+              className={`h-8 w-8 mt-6`}
+              onClick={handleBackButton}
+            />
+            <div className='w-full flex justify-center -ml-6'>
+              <p className='text-[22px] font-semibold mt-6'>
+                {selectedSubjectName}
+              </p>
+            </div>
+          </div>
           <OfferSubHeader />
           {offerData.map((offer) => (
             <div
               key={offer.offer_id}
-              className={` relative w-[80%] h-40 rounded-3xl border-2 border-black pl-4 mb-8 text-white ${
+              className={` relative w-[90%] h-36 rounded-3xl pl-4 mb-8 text-white shadow-md shadow-bottom shadow-gray-300  ${
                 isDarkMode ? 'bg-[#212121]' : 'bg-[#FFFFFF]'
               }`}
               onClick={() => handleOpenOffer(offer.offer_id)}>
               <div
-                className='absolute h-32 pt-3
+                className='absolute h-24 left-0
               '>
                 <img
                   src={CDNURL + offer.profile?.avatar_url}
                   alt={'essa'}
-                  className='w-16 h-16 rounded-full'
+                  className='w-20 h-20 rounded-l-3xl rounded-r-3xl mx-4 mt-2'
                 />
                 {offer.profile?.verificated ? (
                   <HiBadgeCheck className='absolute text-blue-500 top-1.5 left-52 w-5 h-5' />
@@ -102,36 +107,45 @@ const OfferCard = () => {
                   <></>
                 )}
               </div>
-              <div>
-                <div
-                  className={`absolute ml-20 font-jua font-bold text-[14px] flex py-2 ${
-                    isDarkMode ? 'text-white' : 'text-black'
-                  }`}>
-                  <div className='mr-2 ml-1'>{offer.profile?.name}{offer.profile?.surname}</div>
-                </div>
-                <div className='absolute left-4 -bottom-1 font-k2d font-bold text-[12px] flex py-2'>
-                  <div className='text-[#edb72d] flex pt-[1px]'>
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaRegStar />
-                  </div>
-                  <p
-                    className={` pl-2 text-[13px] ${
-                      isDarkMode ? 'text-white' : 'text-[#D67BFF]'
-                    }`}>
-                    / 4.0
-                  </p>
-                </div>
+              <div className='absolute w-20 h-10 bg-sky-400 bg-opacity-50 rounded-3xl bottom-2'>
+              <img
+                  src={trophyGold}
+                  alt={'trophy'}
+                  className='w-8 h-8 mx-auto mt-1'
+                />
               </div>
               <div>
-                <div className='mt-8 ml-20 text-black  text-[12px]'>
+                <div
+                  className={`absolute left-28 font-jua font-bold text-[14px] flex py-2 ${
+                    isDarkMode ? 'text-white' : 'text-[#212427]'
+                  }`}>
+                  <div className='flex flex-row'>
+                    <p className='mr-1'>{offer.profile?.name}</p>
+                    <p>{offer.profile?.surname?.slice(0, 1)}.</p>
+                    <div className='font-k2d font-bold text-[12px] flex flex-row  pt-[2px] ml-2'>
+                      <div className='text-[#f7cd64] flex pt-[1px]'>
+                        <FaStar />
+                      </div>
+                      <p
+                        className={` pl-1 -mt-[1px] text-[13px] ${
+                          isDarkMode ? 'text-white' : 'text-[#f7cd64]'
+                        }`}>
+                        4.0
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='absolute text-gray-400 top-2 right-4'>
+                <FaHeart className='h-6 w-6' />
+              </div>
+              <div>
+                <div className='absolute mt-8 left-28 text-[#212427]  text-[12px]'>
                   <div className='flex text-md font-k2d font-medium pb-1'>
                     <div className='pr-2 text-xl'>
                       <LuGraduationCap className='text-[17px]' />
                     </div>
-                    <p className='opacity-40'>
+                    <p className='opacity-60'>
                       Doświadczenie {offer.profile?.experience_years} Lat
                     </p>
                   </div>
@@ -139,33 +153,33 @@ const OfferCard = () => {
                     <div className='pr-2 text-xl'>
                       <IoGlobeOutline className='text-[17px]' />
                     </div>
-                    <p className='opacity-40'>Języki: Polski, Angielski</p>
-                  </div>
-                  <div className='flex text-md font-k2d font-medium pb-1'>
-                    <div className='pr-2 text-xl'>
-                      <MdOutlinePlayLesson className='text-[17px]' />
-                    </div>
-                    <p className='opacity-40'>69 Lekcji</p>
+                    <p className='opacity-60'>Języki: Polski, Angielski</p>
                   </div>
                   <div className='flex text-md font-k2d font-medium pb-1'>
                     <div className='pr-2 text-xl'>
                       <RiHome3Line className='text-[17px]' />
                     </div>
-                    <p className='opacity-40'>
+                    <p className='opacity-60'>
                       Forma Nauki: {offer.education_method}
+                    </p>
+                  </div>
+                  <div className='flex text-md font-k2d font-medium pb-1'>
+                    <div className='pr-2 text-xl'>
+                      <FaRegMoneyBillAlt className='text-[17px]' />
+                    </div>
+                    <p className='opacity-60'>
+                    Cena: {offer.price} ZŁ
                     </p>
                   </div>
                 </div>
               </div>
-              <div
-                className={` absolute bottom-2 right-4 font-k2d font-bold text-[12px] ${
-                  isDarkMode ? 'text-white' : 'text-[#D67BFF]'
+              {/* <div
+                className={` absolute left-28 top-24 font-k2d font-bold text-[12px] ${
+                  isDarkMode ? 'text-white' : 'text-[#646668]'
                 }`}>
-                Cena: {offer.price} ZŁ / {offer.time}min
-              </div>
-              <div className='absolute border-2 border-black text-black text-3xl w-16 h-12 pt-1.5 pl-3.5 p-auto rounded-2xl right-4 top-10 bg-gradient-to-l from-[#ffdd94] to-[#d687f3]'>
-                <MdOutlineMessage />
-              </div>
+                Cena: {offer.price} ZŁ
+                <FaRegMoneyBillAlt />
+              </div> */}
             </div>
           ))}
         </>
