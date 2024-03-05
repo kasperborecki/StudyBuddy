@@ -49,4 +49,4 @@ async function getUserDataFromProvider() {
   }
 }
 
-export default getUserDataFromProvider;
+// export default getUserDataFromProvider;

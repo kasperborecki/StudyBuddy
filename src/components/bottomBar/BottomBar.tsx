@@ -110,9 +110,12 @@ const BottomBar = () => {
                   <TfiComments className='text-[#FFFFFF] h-6 w-6 ml-8 mt-5' />
                 </div>
               </div>
-              <div className={`absolute z-1 w-24 h-24 bottom-2 bg-[#e4e4e4] rounded-full px-2 py-2 transition ease-in-out duration-400 ${
+              <div className={`absolute z-1 w-24 h-24 bottom-2 rounded-full px-2 py-2 transition ease-in-out duration-400 ${
                         isAddingTabOpen ? 'group-hover:-translate-y-5' : '-translate-y-1'
-                      }`}>
+                      } ${
+                        isDarkMode ? 'bg-[#212121]' : 'bg-[#e4e4e4]'
+                      }
+                      `}>
                 <div className='z-20 w-20 h-20 bg-[#a065ff] rounded-full px-2 py-2'>
                   <button
                     type='button'
