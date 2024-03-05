@@ -2,7 +2,7 @@ import {useNavigate} from 'react-router-dom';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import DarkModeSwitch from '../../components/uiComponents/uiSwitch/DarkModeSwitch';
-import avatar from '../../assets/WIN_20231211_14_27_19_Pro.jpg';
+// import avatar from '../../assets/WIN_20231211_14_27_19_Pro.jpg';
 import {IoIosArrowForward, IoMdNotificationsOutline} from 'react-icons/io';
 import {FiMoon} from 'react-icons/fi';
 import '../../styles/DarkModeSwitch.css';
@@ -26,13 +26,14 @@ const ProfileSettingsPage = () => {
 
   return (
     <div
-      className={`fixed w-full h-[1400px] flex flex-col items-center justify-start px-5 pt-6 ${
+      className={`fixed w-full h-screen flex flex-col items-center justify-start px-5 pt-6 ${
         isDarkMode ? 'bg-[#212121]' : 'bg-[#FAEFFF]'
-      }`}>
+      }`}
+      style={{ overflowY: 'auto' }}>
       <p className={`text-[25px] font-semibold ${isDarkMode ? 'text-[#ffffff] text-opacity-80' : ' '}`}>Ustawienia</p>
-      <div className='flex flex-row justify-between bg-gray-300 bg-opacity-20 w-full h-22 mt-6 p-2 rounded-3xl shadow-md shadow-bottom'>
+      <div className='flex flex-row justify-between bg-gray-300 bg-opacity-20 w-full h-22 mt-6 p-2 rounded-3xl shadow-md shadow-bottom' onClick={(() => navigate('/personal-data'))}>
         <img
-          src={avatar}
+          // src={avatar}
           alt='avatar'
           className=' w-16 h-16 rounded-full border-8 '
         />
@@ -44,7 +45,7 @@ const ProfileSettingsPage = () => {
         </div>
         <IoIosArrowForward className='h-6 w-6 my-auto text-gray-600 opacity-80' />
       </div>
-      <div className='flex flex-col bg-gray-300 bg-opacity-20 w-full mt-7 p-2 rounded-3xl px-4 shadow-md shadow-bottom mb-20'>
+      <div className='flex flex-col bg-gray-300 bg-opacity-20 w-full mt-7 p-2 rounded-3xl px-4 shadow-md shadow-bottom mb-32'>
         <div className='flex flex-row justify-between mt-2'>
           <div className='relative flex flex-row w-8 h-8 rounded-full bg-purple-700 p-1'>
             <FiMoon className='h-6 w-6 text-white' />

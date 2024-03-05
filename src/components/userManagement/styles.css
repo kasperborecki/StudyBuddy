@@ -1,1 +1,134 @@
-@import "rsuite/dist/rsuite.css";
+.info-panels {
+    --color-icon: #fff;
+    --color-input: #000;
+    --color-border: #9e9e9e;
+    --color-border-hover: #4d7c0f;
+    --all-transition: all .2s ease-out;
+    --input-focus-opacity: .3;
+  }
+  
+  .input-color-group-one {
+    position: relative;
+  }
+  
+  .input-color {
+    width: 100%;
+    border: 1.5px solid var(--color-border);
+    border-radius: 80px;
+    background: none;
+    padding: 16px;
+    font-size: 16px;
+    transition: var(--all-transition);
+  }
+  
+  .input-color:focus {
+    color: var(--color-input);
+    outline: none;
+    border: 1.5px solid var(--color-border-hover);
+  }
+  
+  .input-color:valid {
+    color: var(--color-input);
+    outline: none;
+  }
+  
+  .input-color::-webkit-input-placeholder {
+    color: var(--color-input);
+  }
+  
+  .input-color::-moz-input-placeholder {
+    color: var(--color-input);
+  }
+  
+  .input-color::-ms-input-placeholder {
+    color: var(--color-input);
+  }
+  
+  .input-color:focus::-webkit-input-placeholder, input-color:valid::-webkit-input-placeholder {
+    opacity: var(--input-focus-opacity);
+  }
+  
+  .input-color:focus::-moz-input-placeholder, input-color:valid::-moz-input-placeholder {
+    opacity: var(--input-focus-opacity);
+  }
+  
+  .input-color:focus::-ms-input-placeholder, input-color:valid::-ms-input-placeholder {
+    opacity: var(--input-focus-opacity);
+  }
+  
+  .color-label {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: 600;
+    padding: 0 5px;
+    border: 1.5px solid var(--color-border);
+    border-radius: 20px;
+    top: -11.5px;
+    left: 25px;
+    background-color: transparent;
+    cursor: default;
+    backdrop-filter: blur(10px);
+    transition: var(--all-transition);
+  }
+  
+  .input-color:focus ~ .color-label, input-color:valid ~ .color-label {
+    color: var(--color-border-hover);
+    border: 1.5px solid var(--color-border-hover);
+  }
+  
+  .btn-copy {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border: 1.5px solid var(--color-border);
+    border-radius: 50%;
+    top: -11.5px;
+    right: 25px;
+    background-color: transparent;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: var(--all-transition);
+  }
+  
+  .btn-copy:hover {
+    background-color: var(--color-border);
+    transform: scale(1.2);
+  }
+  
+  .btn-copy:active {
+    transform: scale(1.1);
+  }
+  
+  .input-color:focus ~ .btn-copy {
+    border: 1.5px solid var(--color-border-hover);
+  }
+  
+  .input-color:valid .input-color:focus ~ .btn-copy {
+    border: 1.5px solid var(--color-border);
+  }
+  
+  .input-color:focus ~ .btn-copy:hover {
+    background-color: var(--color-border-hover);
+  }
+  
+  #icon-btn-copy {
+    fill: var(--color-border);
+  }
+  
+  .btn-copy:hover #icon-btn-copy {
+    fill: var(--color-icon);
+  }
+  
+  .input-color:focus ~ .btn-copy #icon-btn-copy {
+    fill: var(--color-border-hover);
+  }
+  
+  .input-color:focus ~ .btn-copy:hover #icon-btn-copy, .input-color:valid ~ .btn-copy:hover #icon-btn-copy {
+    fill: var(--color-icon);
+  }
