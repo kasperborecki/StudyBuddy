@@ -28,7 +28,7 @@ const PersonalDataSettings = () => {
           <p className='text-[22px] font-semibold mt-6'>Dane Osobiste</p>
         </div>
       </div>
-      <div className='w-full relative min-h-screen flex flex-col items-center justify-start'>
+      <div className='w-full relative items-center'>
         <UpdateUserData />
       </div>
     </div>

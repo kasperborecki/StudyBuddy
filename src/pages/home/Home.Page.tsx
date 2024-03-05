@@ -11,7 +11,7 @@ import UiChoseStudyField from '../../components/uiComponents/uiButons/UiChoseStu
 import {User} from '../../interfaces/User.Interface';
 import supabase from '../../config/SupabaseClient';
 import {UserIdentity} from '@supabase/supabase-js';
-import getUserDataFromProvider from '../../services/User/UserDataProvider';
+// import getUserDataFromProvider from '../../services/User/UserDataProvider';
 import AlertComponent from '../../components/alerts/Alert.Component';
 import {alertTypeAtom} from '../../atoms/AlertState.Atom';
 import NearestLesson from '../../components/uiComponents/uiHeaders/NearestLesson';
@@ -32,7 +32,7 @@ const HomePage = () => {
       if (session?.user.id) {
         try {
           setIsLoading(true);
-          await getUserDataFromProvider();
+          // await getUserDataFromProvider();
           const userId = session.user.id;
           const userRes = await UserData.getUserData(userId);
           setUserData(userRes);
@@ -67,7 +67,7 @@ const HomePage = () => {
             }`}>
             <div className='flex flex-row justify-between p-8'>
             <div
-              className={`font-k2d mt-4 ${
+              className={`font-k2d mt-4 w-[82%] ${
                 isDarkMode ? 'text-[#dddddd]' : 'text-black'
               }`}>
                 <p className='text-xl'>Witaj <b>{user.name}</b></p>
@@ -75,7 +75,7 @@ const HomePage = () => {
               Znajdz <b>odpowiedniego</b> nauczyciela dla <b><i>ciebie</i></b>.
               </p>
             </div>
-              <div>
+              <div className='w-[18%]'>
                 <img
                   src={CDNURL + user.avatar_url}
                   alt='profileAvatar'

@@ -1,43 +1,27 @@
-import React, {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
-import {Cities} from '../../constans/PersonalDataSettings.Constans';
-import './styles.css';
-import './slider.less';
 import UserData from '../../services/User/UserData';
 import {useAuth} from '../../atoms/Route.Atom';
 import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
-import {Slider} from 'rsuite';
+import {MdOutlineAddPhotoAlternate} from 'react-icons/md';
+import supabase from '../../config/SupabaseClient';
+import {User} from '../../interfaces/User.Interface';
 
 const UpdateUserData = () => {
   const {session} = useAuth();
   const [isLoading, setisLoading] = useState<boolean>();
+  const [userData, setUserData] = useState<User[]>([]);
   const userId = session?.user.id;
   const [isDarkMode] = useRecoilState(DarkModeAtom);
-  const [experienceRange, setExperienceRange] = useState<number>(0);
-  const [descriptionText, setDescriptionText] = useState<string>('');
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
+    email: '',
     city: '',
-    description: '',
+    avatar: '',
   });
-
-  const handleSliderChange = (value: number | [number, number] | undefined) => {
-    if (typeof value === 'number') {
-      setExperienceRange(value);
-    }
-  };
-
-  const handleTextAreaChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setDescriptionText(event.target.value);
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [event.target.name]: event.target.value,
-    }));
-  };
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -46,181 +30,194 @@ const UpdateUserData = () => {
       ...prevFormData,
       [event.target.name]: event.target.value,
     }));
-
-    setFormData((updatedFormData) => {
-      return updatedFormData;
-    });
   };
+
+  const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setAvatarFile(event.target.files[0]);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          avatar: e.target?.result as string,
+        }));
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  };
+
   const handleSubmit = async () => {
     setisLoading(true);
     const newData = {...formData};
+
+    if (!newData.name)
+      newData.name = userData.length > 0 ? userData[0].name : '';
+    if (!newData.surname)
+      newData.surname = userData.length > 0 ? userData[0].surname : '';
+    if (!newData.email)
+      newData.email = userData.length > 0 ? userData[0].email : '';
+    if (!newData.city)
+      newData.city = userData.length > 0 ? userData[0].city : '';
+    if (!newData.avatar)
+      newData.avatar = userData.length > 0 ? userData[0].avatar_url : '';
+
+    if (avatarFile) {
+      const avatarName = `${userId}_${avatarFile.name}`;
+      newData.avatar = avatarName;
+      const avatarPath = await uploadAvatar(avatarFile, avatarName);
+      if (avatarPath) {
+        newData.avatar = avatarPath;
+      }
+    }
+
     await UserData.updateUserData(newData, userId);
+    fetchUser();
     setisLoading(false);
   };
 
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const fetchUser = async () => {
+    if (session?.user.id) {
+      try {
+        setisLoading(true);
+        const userId = session.user.id;
+        const userRes = await UserData.getUserData(userId);
+        setUserData(userRes);
+      } catch (error: any) {
+        console.error(error.message);
+      } finally {
+        setisLoading(false);
+      }
+    }
+  };
+
+  const uploadAvatar = async (file: File, fileName: string) => {
+    try {
+      const {data, error} = await supabase.storage
+        .from('avatars')
+        .upload(fileName, file);
+
+      if (error) {
+        console.error('Error uploading image to Supabase Storage', error);
+        return null;
+      }
+
+      return data?.path;
+    } catch (error) {
+      console.error('Error uploading avatar', error);
+      return null;
+    }
+  };
+
+  const CDNURL =
+    'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
+
   return (
-    <div className='w-[70%]'>
+    <div
+      className='w-full mb-28'
+      style={{overflowY: 'auto'}}>
       {isLoading ? (
         <LoadingSuspense />
       ) : (
-        <form onSubmit={handleSubmit}>
-          <div className='info-panels'>
-            <div className='input-color-group-one'>
-              <input
-                className='input-color'
-                name='name'
-                type='text'
-                placeholder='Jan'
-                onChange={handleChange}
-              />
-              <label className='color-label'>Imię</label>
+        <>
+        {userData.map((user) => (
+        <form
+          onSubmit={handleSubmit}
+          className='mx-10 mt-4'>
+          <div className='w-full h-[470px] bg-white px-10 pt-6 rounded-3xl shadow shadow-xl shadow-gray-200'>
+            <div className='flex items-center justify-center w-full'>
+              <label
+                htmlFor='avatarInput'
+                className='relative w-28 text-center'>
+                <img
+                  src={formData.avatar.length > 0 ? formData.avatar : CDNURL + user.avatar_url}
+                  alt='avatar'
+                  className='w-28 h-28 rounded-full mx-auto border-2 border-gray-300 cursor-pointer'
+                />
+                <input
+                  id='avatarInput'
+                  type='file'
+                  accept='image/*'
+                  style={{display: 'none'}}
+                  onChange={handleAvatarChange}
+                />
+                <div className='absolute right-0 bottom-1 p-1 h-8 w-8 bg-gray-300 rounded-full'>
+                  <MdOutlineAddPhotoAlternate className='text-[#616161] h-6 w-6 cursor-pointer' />
+                </div>
+              </label>
+            </div>
+            <div className='flex items-center justify-start w-full mt-6'>
+              <div className='relative w-full'>
+                <input
+                  name='name'
+                  type='text'
+                  placeholder={userData.length > 0 ? user.name : ''}
+                  onChange={handleChange}
+                  className='border-b border-gray-300 py-1 focus:border-b-2 focus:border-[#893Eff] transition-colors peer focus:outline-none bg-transparent w-full'
+                />
+                <label className='absolute left-0 cursor-text -top-4 transition-all peer-focus:text-[#893Eff]'>
+                  Imię
+                </label>
+              </div>
+            </div>
+            <div className='flex items-center justify-start w-full mt-6'>
+              <div className='relative w-full'>
+                <input
+                  name='surname'
+                  type='text'
+                  placeholder={userData.length > 0 ? user.surname : ''}
+                  onChange={handleChange}
+                  className='border-b border-gray-300 py-1 focus:border-b-2 focus:border-[#893Eff] transition-colors peer focus:outline-none bg-transparent w-full'
+                />
+                <label className='absolute left-0 cursor-text -top-4 transition-all peer-focus:text-[#893Eff]'>
+                  Nazwisko
+                </label>
+              </div>
+            </div>
+            <div className='flex items-center justify-start w-full mt-6'>
+              <div className='relative w-full'>
+                <input
+                  name='email'
+                  type='email'
+                  placeholder={userData.length > 0 ? user.email : ''}
+                  onChange={handleChange}
+                  className='border-b border-gray-300 py-1 focus:border-b-2 focus:border-[#893Eff] transition-colors peer focus:outline-none bg-transparent w-full'
+                />
+                <label className='absolute left-0 cursor-text -top-4 transition-all peer-focus:text-[#893Eff]'>
+                  Email
+                </label>
+              </div>
+            </div>
+            <div className='flex items-center justify-start w-full mt-6'>
+              <div className='relative w-full'>
+                <input
+                  name='city'
+                  type='text'
+                  placeholder={userData.length > 0 ? user.city : ''}
+                  onChange={handleChange}
+                  className='border-b border-gray-300 py-1 focus:border-b-2 focus:border-[#893Eff] transition-colors peer focus:outline-none bg-transparent w-full'
+                />
+                <label className='absolute left-0 cursor-text -top-4 transition-all peer-focus:text-[#893Eff]'>
+                  Miasto
+                </label>
+              </div>
+            </div>
+            <div className='flex items-center justify-center w-full mt-4'>
+              <button
+                className='mt-4 w-32 h-10 bg-white cursor-pointer rounded-3xl border-2 border-[#9748FF] shadow-[inset_0px_-2px_0px_1px_#9748FF] group hover:bg-[#9748FF] transition duration-300 ease-in-out'
+                type='submit'>
+                <span className='font-medium text-[#333] group-hover:text-white'>
+                  Zapisz
+                </span>
+              </button>
             </div>
           </div>
-          <div className='info-panels mt-8'>
-            <div className='input-color-group-one'>
-              <input
-                className='input-color'
-                name='surname'
-                type='text'
-                placeholder='Kowalski'
-                onChange={handleChange}
-              />
-              <label className='color-label'>Nazwisko</label>
-            </div>
-          </div>
-          <div className='info-panels mt-8'>
-            <div className='input-color-group-one'>
-              <input
-                className='input-color'
-                name='city'
-                type='text'
-                placeholder='Kowalski'
-                onChange={handleChange}
-              />
-              <label className='color-label'>Miasto</label>
-            </div>
-          </div>
-          <div className='info-panels mt-8  mb-4'>
-            <div className='input-color-group-one'>
-              <input
-                className='input-color'
-                name='city'
-                type='text'
-                placeholder='Uniwersytet Warszawski'
-                onChange={handleChange}
-              />
-              <label className='color-label'>Ukończona szkoła i doświadcznie</label>
-            </div>
-          </div>
-          {/* 
-        <label
-        className={`block text-sm font-bold mb-2 ${
-          isDarkMode ? 'text-white' : 'text-black'
-        }`}
-      >
-        Typ Zajęć:
-      </label>
-        <select
-          className={`border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 ${
-            isDarkMode ? 'bg-[#2B2B2B] text-white' : 'bg-[#FFFFFF] text-black'
-          }`}
-          name='educationType'
-          onChange={handleChange}
-        >
-            {EducationType.map((option) => (
-              <option key={option.id} value={option.name} className={`bg-[#FFFFFF] text-black`}>
-                {option.name}
-              </option>
-            ))}
-        </select>
-        <label
-        className={`block text-sm font-bold mb-2 ${
-          isDarkMode ? 'text-white' : 'text-black'
-        }`}
-      >
-        Forma Nauki:
-      </label>
-        <select
-          className={`border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 ${
-            isDarkMode ? 'bg-[#2B2B2B] text-white' : 'bg-[#FFFFFF] text-black'
-          }`}
-          name='educationMethod'
-          onChange={handleChange}
-        >
-            {EducationMethod.map((option) => (
-              <option key={option.id} value={option.name} className={`bg-[#FFFFFF] text-black`}>
-                {option.name}
-              </option>
-            ))}
-        </select>
-        <label
-        className={`block text-sm font-bold mb-2 ${
-          isDarkMode ? 'text-white' : 'text-black'
-        }`}
-      >
-        Poziom Nauki:
-      </label>
-        <select
-          className={`border-2 border-black w-full h-[50px] rounded-3xl mb-[8%] pl-4 ${
-            isDarkMode ? 'bg-[#2B2B2B] text-white' : 'bg-[#FFFFFF] text-black'
-          }`}
-          name='educationLevel'
-          onChange={handleChange}
-        >
-            {EducationLevel.map((option) => (
-              <option key={option.id} value={option.name} className={`bg-[#FFFFFF] text-black`}>
-                {option.name}
-              </option>
-            ))}
-        </select>
-        <label
-        className={`block text-sm font-bold mb-2 ${
-          isDarkMode ? 'text-white' : 'text-black'
-        }`}
-      >
-        Cena:
-      </label>
-        <div className='flex flex-row  items-center w-full'>
-        <input
-        type='text'
-        className={`border-2 border-black w-[50px] h-[50px] rounded-3xl ml-[4%] ${
-          isDarkMode ? 'bg-[#2B2B2B] text-white' : 'bg-[#FFFFFF] text-black'
-        }`}
-        name='price'
-        style={{ textAlign: 'center'}}
-        value={priceRange}
-        onChange={handleInputChange}
-        maxLength={3}
-        />
-      </div> */}
-          <div className='w-full'>
-            <input
-              type='range'
-              min='0'
-              max='10'
-              // value={experienceRange}
-              className='range range-success'
-              step='1'
-            />
-            <div className='w-full flex justify-between text-xs px-2 font-semibold'>
-              <span className='text-[14px]'>1</span>
-              <span className='text-[14px]'>2</span>
-              <span className='text-[14px]'>3</span>
-              <span className='text-[14px]'>4</span>
-              <span className='text-[14px]'>5</span>
-              <span className='text-[14px]'>6</span>
-              <span className='text-[14px]'>7</span>
-              <span className='text-[14px]'>8</span>
-              <span className='text-[14px]'>9</span>
-              <span className='text-[14px]'>10+</span>
-            </div>
-          </div>
-          <button
-            className='bg-[#ccabd8] border-2 border-black w-[90%] h-[50px] ml-[5%] rounded-3xl mt-[8%]'
-            type='submit'>
-            Zapisz
-          </button>
         </form>
+        ))}
+        </>
       )}
     </div>
   );
