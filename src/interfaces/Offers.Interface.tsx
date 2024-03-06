@@ -4,6 +4,7 @@ export interface Profile {
   name?: string;
   surname?: string;
   avatar_url?: string;
+  city?: string;
   experience_years?: string;
   experience_info?: string;
   verificated?: boolean;

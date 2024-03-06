@@ -97,7 +97,7 @@ const getOffer = async (selectedOfferId: any) => {
     const {data: profilesData, error: profilesError} = await supabase
       .from('profiles')
       .select(
-        'user_id, name, avatar_url, experience_years, experience_info, verificated',
+        'user_id, name, surname, avatar_url, experience_years, experience_info, verificated, city',
       )
       .in('user_id', userIds);
 
