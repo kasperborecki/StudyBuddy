@@ -135,7 +135,7 @@ const AvailabilityCalendar = () => {
 
 
   return (
-    <div className='w-full max-w-2xl mx-auto mb-28 '>
+    <div className='w-full max-w-2xl mx-auto'>
       <div className='flex w-full h-12  items-center justify-between rounded-t-xl mt-4 px-5' >
         <button
           onClick={handlePrevWeek}

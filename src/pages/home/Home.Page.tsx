@@ -62,7 +62,7 @@ const HomePage = () => {
         userData.map((user) => (
           <div
             key={user.user_id}
-            className={`relative min-h-screen flex flex-col justify-start ${
+            className={`relative min-h-screen flex flex-col justify-start font-Roboto ${
               isDarkMode ? 'bg-[#212121]' : 'bg-[#fcfcfc]'
             }`}>
             <div className='flex flex-row justify-between p-8'>

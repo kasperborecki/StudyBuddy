@@ -89,12 +89,12 @@ const OfferCard = () => {
           {offerData.map((offer) => (
             <div
               key={offer.offer_id}
-              className={` relative w-[90%] h-36 rounded-3xl pl-4 mb-8 text-white shadow-md shadow-bottom shadow-gray-300  ${
+              className={` relative w-[90%] h-32 rounded-3xl pl-4 mb-8 text-white shadow-md shadow-bottom shadow-gray-300  ${
                 isDarkMode ? 'bg-[#212121]' : 'bg-[#FFFFFF]'
               }`}
               onClick={() => handleOpenOffer(offer.offer_id)}>
               <div
-                className='absolute h-24 left-0
+                className='absolute h-24 left-0 mt-4
               '>
                 <img
                   src={CDNURL + offer.profile?.avatar_url}
@@ -106,13 +106,6 @@ const OfferCard = () => {
                 ) : (
                   <></>
                 )}
-              </div>
-              <div className='absolute w-20 h-10 bg-sky-400 bg-opacity-50 rounded-3xl bottom-2'>
-              <img
-                  src={trophyGold}
-                  alt={'trophy'}
-                  className='w-8 h-8 mx-auto mt-1'
-                />
               </div>
               <div>
                 <div
