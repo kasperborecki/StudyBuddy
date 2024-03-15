@@ -67,7 +67,7 @@ const HomePage = () => {
             }`}>
             <div className='flex flex-row justify-between p-8'>
             <div
-              className={`font-k2d mt-4 w-[82%] ${
+              className={` font-Roboto mt-4 w-[82%] ${
                 isDarkMode ? 'text-[#dddddd]' : 'text-black'
               }`}>
                 <p className='text-xl'>Witaj <b>{user.name}</b></p>

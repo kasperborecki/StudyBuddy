@@ -4,7 +4,7 @@ const getSubjects = async () => {
   const { data, error } = await supabase
     .from('subjects')
     .select('id,subject, colour, icon_url, shadow')
-    .lt('id', '9');
+    .lt('id', '10');
 
   if (error) {
     console.error(error.message);
@@ -17,7 +17,7 @@ const getLanguages = async () => {
   const { data, error } = await supabase
     .from('subjects')
     .select('id,subject, colour, icon_url, shadow')
-    .gt('id', '8');
+    .gt('id', '9');
 
   if (error) {
     console.error(error.message);

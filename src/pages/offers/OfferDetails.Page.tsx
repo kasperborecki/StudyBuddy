@@ -98,7 +98,7 @@ const OfferDetailsPage = () => {
 
   return (
     <div
-      className={`relative min-h-screen pb-28 font-Roboto ${
+      className={`relative min-h-screen pb-28 font-roboto ${
         isDarkMode ? 'bg-[#212121]' : 'bg-[#fcfcfc]'
       }`}
       style={{overflowY: 'auto'}}>

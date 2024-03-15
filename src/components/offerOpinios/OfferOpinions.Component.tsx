@@ -65,12 +65,12 @@ const OfferOpinions: React.FC<OpinionsComponentProps> = ({
   return (
     <div className='h-96 w-full mt-4 rounded-3xl border-2 border-[#4143444f] font-Roboto'>
       <div className='h-28 w-full border-b border-[#4143444f] flex flex-row'>
-        <div className='w-1/2 flex flex-col pl-12 mt-5'>
+        <div className='w-1/2 flex flex-col pl-8 mt-6'>
           <p
             className={`text-center flex flex-row font-semibold text-[25px] ${
               isDarkMode ? 'text-[#ffffff] text-opacity-80' : 'text-[#414344]'
             }`}>
-            <FaStar className='mt-[6px] mr-2 text-yellow-500' />{' '}
+            <FaStar className='mt-[6px] mr-2 text-yellow-500' />
             {allStars >= 1 ? calculateAverageRating().toFixed(2) : 0}
           </p>
           <u
@@ -81,7 +81,7 @@ const OfferOpinions: React.FC<OpinionsComponentProps> = ({
           </u>
         </div>
         <div
-          className={`w-1/2 flex flex-col mt-4 ${
+          className={`w-1/2 flex flex-col justify-end items-end mt-4 mr-8 ${
             isDarkMode ? 'text-[#ffffff] text-opacity-80' : 'text-[#414344]'
           }`}>
           <div className='flex flex-row mt-[2px]'>

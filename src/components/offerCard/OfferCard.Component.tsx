@@ -29,7 +29,6 @@ const OfferCard = () => {
   const [offerData, setOfferData] = useState<Offer[]>([]);
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [isEducationLevel] = useRecoilState(educationLevel);
-  const [isEducationType] = useRecoilState(educationType);
   const [isEducationMethod] = useRecoilState(educationMethod);
   const [isPrice] = useRecoilState(price);
   const [, setSelectedOfferId] = useRecoilState(offerId);
@@ -74,13 +73,17 @@ const OfferCard = () => {
         <LoadingSuspense />
       ) : (
         <>
-          <div className='w-full pl-8 pr-8 mb-4 flex justify-between items-center text-[#212427]'>
+          <div className='w-full pl-8 pr-8 mb-4 font-Roboto flex justify-between items-center text-[#212427]'>
             <IoArrowBack
               className={`h-8 w-8 mt-6`}
               onClick={handleBackButton}
             />
             <div className='w-full flex justify-center -ml-6'>
-              <p className='text-[22px] font-semibold mt-6'>
+              <p className={` text-[22px] font-semibold mt-6 ${
+                  isDarkMode
+                    ? 'text-[#ffffff] text-opacity-80'
+                    : 'text-[#414344]'
+                }`}>
                 {selectedSubjectName}
               </p>
             </div>
@@ -90,7 +93,7 @@ const OfferCard = () => {
             <div
               key={offer.offer_id}
               className={` relative w-[90%] h-32 rounded-3xl pl-4 mb-8 text-white shadow-md shadow-bottom shadow-gray-300  ${
-                isDarkMode ? 'bg-[#212121]' : 'bg-[#FFFFFF]'
+                isDarkMode ? 'bg-[#363636]' : 'bg-[#ffffff94]'
               }`}
               onClick={() => handleOpenOffer(offer.offer_id)}>
               <div
@@ -110,7 +113,9 @@ const OfferCard = () => {
               <div>
                 <div
                   className={`absolute left-28 font-jua font-bold text-[14px] flex py-2 ${
-                    isDarkMode ? 'text-white' : 'text-[#212427]'
+                    isDarkMode
+                      ? 'text-[#ffffff] text-opacity-80'
+                      : 'text-[#414344]'
                   }`}>
                   <div className='flex flex-row'>
                     <p className='mr-1'>{offer.profile?.name}</p>
@@ -121,7 +126,9 @@ const OfferCard = () => {
                       </div>
                       <p
                         className={` pl-1 -mt-[1px] text-[13px] ${
-                          isDarkMode ? 'text-white' : 'text-[#f7cd64]'
+                          isDarkMode
+                            ? 'text-[#ffffff] text-opacity-80'
+                            : 'text-[#414344]'
                         }`}>
                         4.0
                       </p>
@@ -129,11 +136,19 @@ const OfferCard = () => {
                   </div>
                 </div>
               </div>
-              <div className='absolute text-gray-400 top-2 right-4'>
+              <div className={`absolute top-2 right-4 ${
+                  isDarkMode
+                    ? 'text-gray-400'
+                    : 'text-gray-400'
+                }`}>
                 <FaHeart className='h-6 w-6' />
               </div>
               <div>
-                <div className='absolute mt-8 left-28 text-[#212427]  text-[12px]'>
+                <div className={`absolute mt-8 left-28 text-[12px] ${
+                  isDarkMode
+                    ? 'text-[#ffffff] text-opacity-80'
+                    : 'text-[#414344]'
+                }`}>
                   <div className='flex text-md font-k2d font-medium pb-1'>
                     <div className='pr-2 text-xl'>
                       <LuGraduationCap className='text-[17px]' />
