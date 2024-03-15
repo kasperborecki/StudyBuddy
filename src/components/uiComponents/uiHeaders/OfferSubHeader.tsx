@@ -1,10 +1,10 @@
-import { useRecoilState } from "recoil";
-import { DarkModeAtom } from "../../../atoms/DarkMode.Atom";
-import { IoIosSearch } from "react-icons/io";
-import { IoFilter } from "react-icons/io5";
-import { modalAtom } from "../../../atoms/Modal.Atom";
-import { bottomBarClosed } from "../../../atoms/BottomBarClosed.Atom";
-import { useNavigate } from "react-router";
+import {useRecoilState} from 'recoil';
+import {DarkModeAtom} from '../../../atoms/DarkMode.Atom';
+import {IoIosSearch} from 'react-icons/io';
+import {IoFilter} from 'react-icons/io5';
+import {modalAtom} from '../../../atoms/Modal.Atom';
+import {bottomBarClosed} from '../../../atoms/BottomBarClosed.Atom';
+import {useNavigate} from 'react-router';
 
 const OfferSubHeader = () => {
   const navigate = useNavigate();
@@ -18,42 +18,38 @@ const OfferSubHeader = () => {
   };
 
   const handleForum = () => {
-    navigate("/forum");
+    navigate('/forum');
   };
 
   return (
-    <div className="relative flex justify-between w-[80%] h-12 mb-8">
+    <div className='relative flex justify-between w-[80%] h-12 mb-8 font-Roboto font-semibold'>
       <button
-        className={`font-jua text-[20px] font-bold border-2 border-black w-[60%] h-12 rounded-3xl
-    ${
-      isDarkMode
-        ? "bg-[#2B2B2B] border-[#626262] text-white"
-        : "bg-[#FFFFFF] border-black text-black"
-    }`}
-        onClick={handleForum}
-      >
-        FORUM
+        className='w-[60%] h-12 text-lg border-solid border-2 border-slate-400 rounded-3xl p-1 font-semibold'
+        onClick={handleForum}>
+        <p
+          className={` rounded-3xl font-medium text-[17px] ${
+            isDarkMode ? 'text-[#dddddd] text-opacity-90' : 'text-[#4d4d4d]'
+          }`}>
+          Forum
+        </p>
+      </button>
+      <button className='h-12 w-12 font-Roboto text-lg border-solid border-2 border-slate-400 rounded-3xl p-1'>
+        <p
+          className={` rounded-3xl font-medium text-[17px] ${
+            isDarkMode ? 'text-[#dddddd] text-opacity-90' : 'text-[#4d4d4d]'
+          }`}>
+          <IoIosSearch className='h-7 w-7 mx-auto' />
+        </p>
       </button>
       <button
-        className={`font-bold border-2 border-black w-12 h-12 rounded-3xl
-    ${
-      isDarkMode
-        ? "bg-[#2B2B2B] border-[#626262] text-white"
-        : "bg-[#FFFFFF] border-black text-black"
-    }`}
-      >
-        <IoIosSearch className="h-7 w-7 mx-auto" />
-      </button>
-      <button
-        className={`font-bold border-2 border-black w-12 h-12 rounded-3xl
-    ${
-      isDarkMode
-        ? "bg-[#2B2B2B] border-[#626262] text-white"
-        : "bg-[#FFFFFF] border-black text-black"
-    }`}
-        onClick={handleFilters}
-      >
-        <IoFilter className="h-7 w-7 mx-auto" />
+        className='h-12 w-12 font-Roboto text-lg border-solid border-2 border-slate-400 rounded-3xl p-1'
+        onClick={handleFilters}>
+        <p
+          className={` rounded-3xl font-medium text-[17px] ${
+            isDarkMode ? 'text-[#dddddd] text-opacity-90' : 'text-[#4d4d4d]'
+          }`}>
+          <IoFilter className='h-7 w-7 mx-auto' />
+        </p>
       </button>
     </div>
   );

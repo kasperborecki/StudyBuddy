@@ -10,6 +10,7 @@ import {
 } from '../../atoms/RequestLesson.Atom';
 import LoadingSuspense from '../loadingSuspense/LoadingSuspense';
 import {Availability, Requests} from '../../interfaces/Offers.Interface';
+import { DarkModeAtom } from '../../atoms/DarkMode.Atom';
 
 const AvailabilityCalendar = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
@@ -22,13 +23,14 @@ const AvailabilityCalendar = () => {
   const [, setIsModalOpen] = useRecoilState(requestModalLessonAtom);
   const [, setRequestHour] = useRecoilState(requestHourLessonAtom);
   const [, setRequestWeekDay] = useRecoilState(requestWeekDayLessonAtom);
+  const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [currentYear, setCurrentYear] = useState<number>(
     new Date().getFullYear(),
   );
   const [currentMonth, setCurrentMonth] = useState<string>('');
 
   const hourStyle =
-    'text-center text-gray-700 border-b font-semibold pb-3 border-gray-400';
+    'text-center border-b font-semibold pb-2 pt-2 border-gray-400';
 
   const fetchDates = useCallback(() => {
     const daysOfWeek = [];
@@ -135,15 +137,19 @@ const AvailabilityCalendar = () => {
 
 
   return (
-    <div className='w-full max-w-2xl mx-auto mb-28 border-b-2 border-b-[#9c9c9c]'>
-      <div className='flex w-full h-12 bg-gray-100 items-center justify-between px-2 rounded-t-xl border-t-2 border-x-2 border-[#9c9c9c] mt-4'>
+    <div className='w-full max-w-2xl mx-auto font-Roboto'>
+      <div className={`flex w-full h-12  items-center justify-between rounded-t-xl mt-4 px-5 ${
+        isDarkMode
+          ? 'text-[#ffffff] text-opacity-90'
+          : 'text-[#414344]'
+      }`}>
         <button
           onClick={handlePrevWeek}
           disabled={isDisabled}
           className='w-8 h-8 border-2 border-[#c0c0c0] text-2xl pl-1.5 rounded-lg focus:outline-none focus:border-blue-500'>
           <MdArrowBackIos />
         </button>
-        <div className='flex-1 text-center text-lg font-bold text-gray-800'>
+        <div className='flex-1 text-center text-lg font-bold'>
           {displayText}
         </div>
         <button
@@ -157,17 +163,17 @@ const AvailabilityCalendar = () => {
           <LoadingSuspense />
         </div>
       ) : (
-        <div className='flex'>
+        <div className='flex px-4'>
           {weekDays.map((weekDay, index) => (
             <div
               key={index}
               className={`flex-1  ${
-                index === 0 ? 'border-l-2 border-[#9c9c9c] -ml-0' : 'mx-1'
+                index === 0 ? '-ml-0' : 'mx-1'
               }
-            ${index === 6 ? 'border-r-2 border-[#9c9c9c] -mr-0' : 'mx-1'}
+            ${index === 6 ? '-mr-0' : 'mx-1'}
           `}>
               <div
-                className={`text-center h-14 pt-2 text-black px-2.5 font-semibold text-k2d border-b-4 mb-3 ${
+                className={`text-center h-14 pt-2 px-[5px] font-semibold text-k2d border-b-4 mb-3 ${
                   isToday(weekDay)
                     ? 'border-b-4 border-b-green-400'
                     : 'border-b-4 border-b-[#D687F3]'

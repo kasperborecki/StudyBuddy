@@ -1,9 +1,9 @@
-// Offers.ts
 export interface Profile {
   user_id: string;
   name?: string;
   surname?: string;
   avatar_url?: string;
+  city?: string;
   experience_years?: string;
   experience_info?: string;
   verificated?: boolean;

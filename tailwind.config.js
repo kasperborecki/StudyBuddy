@@ -5,6 +5,8 @@ module.exports = {
       fontFamily: {
         k2d: ['K2D', 'sans-serif'],
         jua: ['Jua', 'sans-serif'],
+        'madimi': ['Madimi One', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif']
       },
       colors: {
         primary: '#4673ce',

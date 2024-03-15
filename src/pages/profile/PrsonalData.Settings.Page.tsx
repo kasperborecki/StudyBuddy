@@ -24,7 +24,7 @@ const PersonalDataSettings = () => {
           className={`h-8 w-8 mt-6`}
           onClick={handleBackButton}
         />
-        <div className='w-full flex justify-center'>
+        <div className='w-full flex justify-center -ml-6'>
           <p className='text-[22px] font-semibold mt-6'>Dane Osobiste</p>
         </div>
       </div>

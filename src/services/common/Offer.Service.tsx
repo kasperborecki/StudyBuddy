@@ -28,8 +28,64 @@ const getSelectedSubjectOffers = async (
         isEducationMethod.length > 0 ? 'education_method' : '',
         isEducationMethod,
       )
-      .lt(isPrice.length > 0 ? 'price' : '', isPrice);
+      .lt(isPrice.length > 0 ? 'price' : '', isPrice)
+      .limit(10);
     // .eq(rating.length > 0 ? 'education_level' : '', rating)
+
+    if (offersError) {
+      console.error(offersError.message);
+      throw offersError.message;
+    }
+
+    if (!offersData || offersData.length === 0) {
+      return [];
+    }
+
+    const userIds = offersData.map((offer) => offer.user_id);
+
+    const {data: profilesData, error: profilesError} = await supabase
+      .from('profiles')
+      .select(
+        'user_id, name, surname, avatar_url, experience_years, experience_info, verificated',
+      )
+      .in('user_id', userIds);
+
+    if (profilesError) {
+      console.error(profilesError.message);
+      throw profilesError.message;
+    }
+
+    const combinedData = offersData.map((offer) => {
+      const matchingProfile = profilesData.find(
+        (profile) => profile.user_id === offer.user_id,
+      );
+      return {
+        ...offer,
+        ...(matchingProfile && {profile: matchingProfile}),
+      };
+    });
+
+    return combinedData;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+//  Get proposal offers
+
+const getSelectedSubjectOffersProposal = async (
+  selectedSubject: string,
+) => {
+
+  try {
+    const {data: offersData, error: offersError} = await supabase
+      .from('offers')
+      .select(
+        'offer_id, created_at, subject_id, user_id, education_level, education_method, price, time, city, description',
+      )
+      .eq('subject_id', selectedSubject)
+      .limit(6);
 
     if (offersError) {
       console.error(offersError.message);
@@ -97,7 +153,7 @@ const getOffer = async (selectedOfferId: any) => {
     const {data: profilesData, error: profilesError} = await supabase
       .from('profiles')
       .select(
-        'user_id, name, avatar_url, experience_years, experience_info, verificated',
+        'user_id, name, surname, avatar_url, experience_years, experience_info, verificated, city',
       )
       .in('user_id', userIds);
 
@@ -217,6 +273,7 @@ const OffersData = {
   addNewOffer,
   getAvailability,
   getRequests,
+  getSelectedSubjectOffersProposal,
 };
 
 export default OffersData;

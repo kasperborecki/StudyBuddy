@@ -62,12 +62,12 @@ const HomePage = () => {
         userData.map((user) => (
           <div
             key={user.user_id}
-            className={`relative min-h-screen flex flex-col justify-start ${
+            className={`relative min-h-screen flex flex-col justify-start font-Roboto ${
               isDarkMode ? 'bg-[#212121]' : 'bg-[#fcfcfc]'
             }`}>
             <div className='flex flex-row justify-between p-8'>
             <div
-              className={`font-k2d mt-4 w-[82%] ${
+              className={` font-Roboto mt-4 w-[82%] ${
                 isDarkMode ? 'text-[#dddddd]' : 'text-black'
               }`}>
                 <p className='text-xl'>Witaj <b>{user.name}</b></p>
