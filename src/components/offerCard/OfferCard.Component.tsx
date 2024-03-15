@@ -73,10 +73,9 @@ const OfferCard = () => {
         <LoadingSuspense />
       ) : (
         <>
-          <div className='w-full pl-8 pr-8 mb-4 font-Roboto flex justify-between items-center text-[#212427]'>
+          <div className='w-full pl-8 pr-8 mb-4 font-Roboto flex justify-between items-center text-[#212427]' onClick={handleBackButton}>
             <IoArrowBack
               className={`h-8 w-8 mt-6`}
-              onClick={handleBackButton}
             />
             <div className='w-full flex justify-center -ml-6'>
               <p className={` text-[22px] font-semibold mt-6 ${

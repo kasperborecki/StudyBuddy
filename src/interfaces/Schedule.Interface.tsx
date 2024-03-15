@@ -5,7 +5,7 @@ export interface ScheduleInterface {
     month: string;
     week_day: string;
     hour: string;
-    message: string;
+    topic: string;
     created_at: string;
     owner_id: string;
     participantInfo?: Profile; // Update this line to include participantInfo

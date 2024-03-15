@@ -141,7 +141,7 @@ const AvailabilityCalendar = () => {
       <div className={`flex w-full h-12  items-center justify-between rounded-t-xl mt-4 px-5 ${
         isDarkMode
           ? 'text-[#ffffff] text-opacity-90'
-          : 'text-[#414344]'
+          : 'text-[#212427]'
       }`}>
         <button
           onClick={handlePrevWeek}
@@ -173,17 +173,25 @@ const AvailabilityCalendar = () => {
             ${index === 6 ? '-mr-0' : 'mx-1'}
           `}>
               <div
-                className={`text-center h-14 pt-2 px-[5px] font-semibold text-k2d border-b-4 mb-3 ${
+                className={`text-center h-14 pt-2 px-[9px] font-semibold text-roboto border-b-4 mb-3 ${
                   isToday(weekDay)
                     ? 'border-b-4 border-b-green-400'
                     : 'border-b-4 border-b-[#D687F3]'
+                } ${
+                  isDarkMode
+                    ? 'text-[#ffffff] text-opacity-90'
+                    : 'text-[#212427]'
                 }`}>
                 {weekDay}
               </div>
 
               <div>
                 {availabilityData.map((data) => (
-                  <div key={data.id}>
+                  <div key={data.id} className={`${
+                    isDarkMode
+                      ? 'text-[#ffffff] text-opacity-90'
+                      : 'text-[#212427]'
+                  }`}>
                     {data.day.toLowerCase() ===
                       weekDay.slice(0, 2).toLowerCase() && (
                       <>

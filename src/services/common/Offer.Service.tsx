@@ -74,10 +74,7 @@ const getSelectedSubjectOffers = async (
 
 //  Get proposal offers
 
-const getSelectedSubjectOffersProposal = async (
-  selectedSubject: string,
-) => {
-
+const getSelectedSubjectOffersProposal = async (selectedSubject: string) => {
   try {
     const {data: offersData, error: offersError} = await supabase
       .from('offers')
@@ -246,7 +243,7 @@ const addNewOffer = async (
 // Get Availability Of Offer
 
 const getAvailability = async (selectedOfferId: any) => {
-  const { data, error } = await supabase
+  const {data, error} = await supabase
     .from('availability')
     .select('*')
     .eq('offer_id', selectedOfferId);
@@ -256,7 +253,7 @@ const getAvailability = async (selectedOfferId: any) => {
 };
 
 const getRequests = async (selectedOfferId: any) => {
-  const { data, error } = await supabase
+  const {data, error} = await supabase
     .from('offer_requests')
     .select('*')
     .eq('offer_id', selectedOfferId);
@@ -266,6 +263,32 @@ const getRequests = async (selectedOfferId: any) => {
   return data || [];
 };
 
+const createRequest = async (
+  selectedOfferId: any,
+  studentId: string,
+  weekDay: string,
+  hour: string,
+  topic: string,
+  offerOwnerId: any,
+) => {
+  const {data, error} = await supabase
+    .from('offer_requests')
+    .insert([
+      {
+        offer_id: selectedOfferId,
+        participant_id: studentId,
+        week_day: weekDay,
+        hour: hour,
+        topic: topic,
+        owner_id: offerOwnerId,
+      },
+    ])
+    .select('request_id');
+
+  if (error) throw error.message;
+
+  return data || [];
+};
 
 const OffersData = {
   getSelectedSubjectOffers,
@@ -274,6 +297,7 @@ const OffersData = {
   getAvailability,
   getRequests,
   getSelectedSubjectOffersProposal,
+  createRequest,
 };
 
 export default OffersData;
