@@ -5,7 +5,7 @@ const getScheduleData = async (ownerId: string, chosenDay: string) => {
     const { data: scheduleData, error: scheduleError } = await supabase
       .from("offer_requests")
       .select(
-        "request_id, offer_id, participant_id, month, week_day, hour, message, created_at, owner_id"
+        "request_id, offer_id, participant_id, month, week_day, hour, topic, created_at, owner_id"
       )
       .eq("owner_id", ownerId)
       .eq("week_day", chosenDay);

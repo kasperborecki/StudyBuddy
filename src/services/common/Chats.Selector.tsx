@@ -139,6 +139,8 @@ const addNewMessage = async (newData: string, userId: any, chatId: string) => {
   if (error) throw error.message;
 };
 
+// change chat style 
+
 const updateChatStyle = async (chatId: string, styleId: string) => {
   const { data, error } = await supabase
     .from('chats')
@@ -150,6 +152,49 @@ const updateChatStyle = async (chatId: string, styleId: string) => {
   if (error) throw error.message;
 };
 
+// create new chat after requeting lesson
+
+const createChatAfterRequest = async (
+  studentId: string,
+  offerOwnerId: any,
+  message: string,
+) => {
+  const { data: chatData, error: chatError } = await supabase
+    .from('chats')
+    .insert([
+      {
+        first_participant: offerOwnerId,
+        second_participant: studentId,
+      },
+    ])
+    .select('id');
+
+  if (chatError) throw chatError.message;
+
+  if (!chatData || chatData.length === 0) {
+    throw new Error('Failed to create chat');
+  }
+
+  const chatId = chatData[0].id;
+
+  const { data, error } = await supabase
+    .from('messages')
+    .insert([
+      {
+        chat_id: chatId,
+        user_id: studentId,
+        context: message,
+      },
+    ])
+    .select('message_id');
+
+  if (error) throw error.message;
+
+  return { chatId };
+};
+
+
+
 
 const ChatsData = {
   getAllUserChats,
@@ -157,6 +202,7 @@ const ChatsData = {
   getChatStyle,
   addNewMessage,
   updateChatStyle,
+  createChatAfterRequest,
 };
 
 export default ChatsData;

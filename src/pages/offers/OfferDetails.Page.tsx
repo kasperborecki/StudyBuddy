@@ -244,6 +244,14 @@ const OfferDetailsPage = () => {
                   Dostępność
                 </p>
                 <AvailabilityCalendar />
+                <p
+                  className={`text-[14px] font-semibold font-Roboto mt-4 ml-4 ${
+                    isDarkMode
+                      ? 'text-[#ffffff] text-opacity-80'
+                      : 'text-gray-400 text-opacity-70'
+                  }`}>
+                  *Aby zarezerwować lekcję należy kliknąć w wybraną godzinę.
+                </p>
               </div>
               <div className='mx-4'>
                 <p
@@ -364,6 +372,7 @@ const OfferDetailsPage = () => {
                   ))}
                 </div>
               </div>
+              <ContactModal avatar={offer.profile?.avatar_url} name={offer.profile?.name} surname={offer.profile?.surname} offerId={offer.offer_id} ownerId={offer.user_id} />
             </div>
           ))}
         </div>

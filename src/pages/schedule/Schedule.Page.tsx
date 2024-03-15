@@ -237,7 +237,7 @@ const Schedule = () => {
                       `}>
                       <div className='h-full w-[70%] p-2 text-sky-100'>
                         <p className='text-[12px] font-semibold'>
-                          <b>{schedule.message}</b>
+                          <b>{schedule.topic}</b>
                         </p>
                         <p className='text-[9px] font-semibold'>
                           {schedule.participantInfo?.name}{' '}

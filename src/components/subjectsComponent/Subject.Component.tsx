@@ -46,7 +46,7 @@ const SubjectsComponent: React.FC = () => {
       {isLoading ? (
         <LoadingSuspense />
       ) : (
-        <div className='pb-24'>
+        <div className='pb-2'>
           <div className='flex flex-wrap justify-center'>
             <p className='w-40 m-3'>essa</p>
             {studyField === 1 ? (
