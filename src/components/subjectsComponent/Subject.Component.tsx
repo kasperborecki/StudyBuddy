@@ -48,7 +48,13 @@ const SubjectsComponent: React.FC = () => {
       ) : (
         <div className='pb-2'>
           <div className='flex flex-wrap justify-center'>
-            <p className='w-40 m-3'>essa</p>
+            <div className='w-40 m-3 flex flex-col text-[18px] pt-2 text-[#303336] font-semibold'>
+              <div className='flex flex-row'>
+              <p>182</p>
+              <p className='mx-2 font-bold text-[#7c4fc4]'><i>Korepetytorów</i></p>
+              </div>
+              <p>dostępnych</p>
+            </div>
             {studyField === 1 ? (
               <>
                 {subjectsData.map((subjectData, index) => (

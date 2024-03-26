@@ -1,4 +1,4 @@
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useResetRecoilState} from 'recoil';
 import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
 import {IoIosSearch} from 'react-icons/io';
 import {useEffect, useState} from 'react';
@@ -28,6 +28,7 @@ const ChatsPage = () => {
   const [, setAvatarUrl] = useRecoilState(avatarUrl);
   const [, setChatId] = useRecoilState(chatId);
   const [, setChatStyle] = useRecoilState(chatStyling);
+  const [chatsType, setChatsType] = useState<number>(1)
 
   const CDNURL =
     'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
@@ -69,10 +70,8 @@ const ChatsPage = () => {
     const date = new Date(deliveredDate);
     if (isNaN(date.getTime())) return '';
 
-    // Obliczanie odległości czasowej
     let distance = formatDistanceToNow(date, {locale: pl, addSuffix: true});
 
-    // Usunięcie słowa "temu" ze zdania
     distance = distance.replace(' temu', '');
 
     return distance;
@@ -80,7 +79,7 @@ const ChatsPage = () => {
 
   console.log(chatsData);
   return (
-    <div className='relative min-h-screen'>
+    <div className='relative min-h-screen font-roboto'>
       {isLoading ? (
         <div className='ml-20'>
           <LoadingSuspense />
@@ -90,21 +89,27 @@ const ChatsPage = () => {
           className={`relative min-h-screen max-h-screen ${
             isDarkMode ? 'bg-[#212121]' : 'bg-[#fcfcfc]'
           }`}>
-          <div className='flex h-1/4 p-8 items-center justify-between'>
+          <div className='flex flex-col h-1/4 p-8 items-center justify-center'>
             <p
-              className={`pt-2 text-[24px] font-semibold ${
-                isDarkMode ? 'text-white' : 'text-[#212427]'
+              className={`text-[24px] font-semibold ${
+                isDarkMode ? 'text-white' : 'text-[#3d3e3f]'
               }`}>
               Wiadomości
             </p>
-            <p
-              className={`-mt-14 mr-2 text-[36px] rounded-full h-5 w-5 ${
-                isDarkMode ? 'text-white' : 'text-[#212427]'
+            <div
+              className={`flex flex-row rounded-2xl w-full mt-4 h-12 ${
+                isDarkMode ? '' : 'bg-gray-100'
               }`}>
-              <IoIosSearch />
-            </p>
+              <IoIosSearch className='h-7 w-7 mt-2.5 ml-3 text-blue-500' />
+              <p className='mt-3 ml-3 text-gray-400'>Szukaj</p>
+            </div>
+            <div className='flex flex-row w-full border-2 rounded-2xl border-gray-200 h-12 mt-4 py-1.5 px-2 text-[#f1f1f1]'>
+              <button className={`w-[50%] h-full rounded-md mr-1 ${chatsType === 1 ? 'bg-blue-500' : 'bg-gray-200 text-gray-400'}`} onClick={(() => setChatsType(1))}>Osobiste</button>
+              <button className={`w-[50%] h-full rounded-md ml-1 ${chatsType === 2 ? 'bg-blue-500' : 'bg-gray-200 text-gray-400'}`} onClick={(() => setChatsType(2))}>Grupowe</button>
+            </div>
           </div>
-          <div className='mx-4 px-3 pt-1 my-auto rounded-xl'>
+
+          <div className='mx-4 pt-1 my-auto rounded-xl'>
             {chatsData.map((chats) => (
               <div
                 key={chats.id}
@@ -116,34 +121,38 @@ const ChatsPage = () => {
                     chats.background_style,
                   )
                 }>
-                <div className='flex px-4 rounded-lg h-20 w-full items-center shadow-sm shadow-bottom '>
+                <div className='relative flex px-4 rounded-lg h-20 w-full items-center shadow-sm shadow-bottom '>
                   <div className='flex-shrink-0'>
                     <img
-                      src={
-                        CDNURL + 'kasperstudybuddy@gmail.com_1708881272863.png'
-                      }
-                      // src={CDNURL + chats.profile?.avatar_url}
+                      src={CDNURL + chats.profile?.avatar_url}
                       alt={'profileAvatar'}
-                      className='w-12 h-12 rounded-full'
+                      className='w-14 h-14 rounded-full'
                     />
+                    {chats.un_read_messages?.length !== 0 && (
+                      <span className='absolute top-[50px] left-14 rounded-full h-5 w-5 bg-blue-500 px-1.5 pt-0.5 text-sm text-white'>
+                        {chats.un_read_messages?.length}
+                      </span>
+                    )}
                   </div>
                   <div className='ml-4 text-left'>
-                    <p className='font-bold text-lg'>{chats.profile?.name}</p>
+                    <p className='font-bold text-lg text-[#3d3e3f]'>
+                      {chats.profile?.name}
+                    </p>
                     <p className='text-sm text-gray-600'>
                       {chats.last_message?.context?.slice(0, 30)}
                     </p>
                   </div>
-                  <div className='absolute flex flex-col justify-end items-end right-12'>
-                    <p className='text-xs text-gray-500 w-18'>
+                  <div className='absolute flex flex-col justify-end items-end right-8 top-4'>
+                    <p
+                      className={`text-xs w-18 ${
+                        chats.un_read_messages?.length !== 0
+                          ? 'text-blue-500'
+                          : 'text-gray-500'
+                      } `}>
                       {getTimeDistanceFromNow(
                         chats.last_message?.delivered_date,
                       )}
                     </p>
-                    {chats.un_read_messages?.length !== 0 && (
-                      <span className='indicator-item badge badge-accent right-6 mt-1'>
-                        {chats.un_read_messages?.length}
-                      </span>
-                    )}
                   </div>
                 </div>
               </div>
@@ -153,7 +162,7 @@ const ChatsPage = () => {
       )}
       <button
         type='button'
-        className='absolute bottom-24 right-4 z-30 inline-flex items-center justify-center w-16 h-16 font-medium bg-pink-500 rounded-full text-[#ebe5e5] '>
+        className='absolute bottom-24 right-4 z-30 inline-flex items-center justify-center w-16 h-16 font-medium bg-blue-500 rounded-full text-[#ebe5e5] '>
         <BsEnvelopePlus className='w-[26px] h-[26px]' />
         <span className='sr-only'>New item</span>
       </button>
