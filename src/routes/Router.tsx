@@ -22,6 +22,7 @@ import ChatPage from "../pages/chats/Chat.page";
 import ChatSettings from "../pages/chats/Chat.Setting";
 import ForumPage from "../pages/forum/Forum.Page";
 import Schedule from "../pages/schedule/Schedule.Page";
+import SuccessPage from "../pages/status/Success.Page";
 
 const AppRouter = () => {
   const { session } = useAuth();
@@ -56,6 +57,7 @@ const AppRouter = () => {
                 <Route path="/chat-settings" element={<ChatSettings />} />
                 <Route path="/forum" element={<ForumPage />} />
                 <Route path='/schedule' element={<Schedule />} />
+                <Route path='/success' element={<SuccessPage />} />
               </>
             ) : (
               <>

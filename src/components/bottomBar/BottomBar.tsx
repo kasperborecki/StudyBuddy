@@ -95,7 +95,7 @@ const BottomBar = () => {
             <div className='flex items-center justify-center group '>
               <div className='flex justify-center '>
                 <div
-                  className={`absolute bg-[#893Eff] h-[75px] w-20 bottom-20 mr-24 transition ease-in-out duration-300 ${
+                  className={`absolute bg-[#66a1fa] h-[75px] w-20 bottom-20 mr-24 transition ease-in-out duration-300 ${
                     isAddingTabOpen ? 'group-hover:opacity-100' : 'opacity-0'
                   }`}
                   style={{borderRadius: '72% 28% 85% 15% / 75% 25% 75% 25%'}}
@@ -103,7 +103,7 @@ const BottomBar = () => {
                   <TfiAnnouncement className='text-[#FFFFFF] h-7 w-7 ml-5 mt-4' />
                 </div>
                 <div
-                  className={`absolute bg-[#893Eff] h-[75px] w-20 bottom-20 ml-24 transition ease-in-out duration-200 ${
+                  className={`absolute bg-[#66a1fa] h-[75px] w-20 bottom-20 ml-24 transition ease-in-out duration-200 ${
                     isAddingTabOpen ? 'group-hover:opacity-100' : 'opacity-0'
                   }`}
                   style={{borderRadius: '28% 72% 15% 85% / 25% 75% 25% 75%'}}>
@@ -116,11 +116,11 @@ const BottomBar = () => {
                         isDarkMode ? 'bg-[#212121]' : 'bg-[#e4e4e4]'
                       }
                       `}>
-                <div className='z-20 w-20 h-20 bg-[#a065ff] rounded-full px-2 py-2'>
+                <div className='z-20 w-20 h-20 bg-[#66a1fa] rounded-full px-2 py-2'>
                   <button
                     type='button'
                     onClick={() => handleTabClick(3)}
-                    className='z-30 inline-flex items-center justify-center w-16 h-16 font-medium bg-[#893Eff] rounded-full text-[#ebe5e5] '>
+                    className='z-30 inline-flex items-center justify-center w-16 h-16 font-medium bg-[#78aeff] rounded-full text-[#ebe5e5] '>
                     <FaPlus
                       className={`w-[26px] h-[26px] transition ease-in-out duration-200 ${
                         isAddingTabOpen ? 'group-hover:rotate-45' : 'rotate-0'

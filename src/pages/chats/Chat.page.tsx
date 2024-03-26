@@ -1,32 +1,48 @@
-import { IoArrowBack, IoSettingsSharp } from 'react-icons/io5';
-import { avatarUrl, chatId, chatStyling, userName } from '../../atoms/ChatInformaion.Atom';
-import { useRecoilState } from 'recoil';
-import { useEffect, useRef, useState } from 'react';
-import { bottomBarClosed } from '../../atoms/BottomBarClosed.Atom';
-import { useNavigate } from 'react-router';
+import {
+  IoArrowBack,
+  IoCall,
+  IoSend,
+  IoSettingsSharp,
+  IoVideocam,
+} from 'react-icons/io5';
+import {
+  avatarUrl,
+  chatId,
+  chatStyling,
+  userName,
+} from '../../atoms/ChatInformaion.Atom';
+import {useRecoilState} from 'recoil';
+import {useEffect, useRef, useState} from 'react';
+import {bottomBarClosed} from '../../atoms/BottomBarClosed.Atom';
+import {useNavigate} from 'react-router';
 import OwnerMsgBoxComponent from '../../components/messageBox/OwnerMsgBox.Component';
-import { ChatStyle, Chats, Messages } from '../../interfaces/Chats.Interfaces';
+import {ChatStyle, Chats, Messages} from '../../interfaces/Chats.Interfaces';
 import ChatsData from '../../services/common/Chats.Selector';
-import { useAuth } from '../../atoms/Route.Atom';
-import { GiCardExchange } from "react-icons/gi";
+import {useAuth} from '../../atoms/Route.Atom';
+import {GiCardExchange} from 'react-icons/gi';
 import '../../styles/ChatBackGround.css';
 import '../../styles/ChatMessageInput.css';
 import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
-import { ChatStyleing } from '../../constans/ChatStyleing.Constants';
-
+import {ChatStyleing} from '../../constans/ChatStyleing.Constants';
+import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
+import {HiDotsVertical} from 'react-icons/hi';
+import {FaVideo} from 'react-icons/fa';
+import {BiSolidPhoneCall} from 'react-icons/bi';
 
 const ChatPage = () => {
   const navigate = useNavigate();
-  const CDNURL = 'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
+  const CDNURL =
+    'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/avatars/';
 
+  const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [usernameValue] = useRecoilState(userName);
   const [avatarUrlValue] = useRecoilState(avatarUrl);
   const [chatIdValue] = useRecoilState(chatId);
-  const [chatStylingValue] = useRecoilState(chatStyling)
+  const [chatStylingValue] = useRecoilState(chatStyling);
   const [, setIsBottomBarClosed] = useRecoilState(bottomBarClosed);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [messagesOutPut, setMessagesOutPut] = useState<Messages[]>([]);
-  const { session } = useAuth();
+  const {session} = useAuth();
   const [messageText, setMessageText] = useState<string>('');
 
   const userId = session?.user.id;
@@ -62,7 +78,7 @@ const ChatPage = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
+    messagesEndRef.current?.scrollIntoView({behavior: 'auto'});
   };
 
   useEffect(() => {
@@ -78,91 +94,91 @@ const ChatPage = () => {
       const messagesRes = await ChatsData.getAllCurentChatMsg(chatIdValue);
       setMessagesOutPut(messagesRes);
     } catch (error: any) {
-      console.error("Error updating messages:", error.message);
+      console.error('Error updating messages:', error.message);
     }
   };
-  
+
   const handleSubmit = async () => {
     if (messageText.trim() !== '') {
-      setIsLoading(true);
       await ChatsData.addNewMessage(messageText, userId, chatIdValue);
       setMessageText('');
-      setIsLoading(false);
       updateMessages();
     }
   };
 
-  const chatStyleObj = ChatStyleing.find(item => item.id.toString() === chatStylingValue);
+  const chatStyleObj = ChatStyleing.find(
+    (item) => item.id.toString() === chatStylingValue,
+  );
   const chatStyle = chatStyleObj ? chatStyleObj.style : '';
 
   return (
     <>
-    {isLoading ? (
+      {isLoading ? (
         <div>
           <LoadingSuspense />
         </div>
       ) : (
-        <div className="card">
-            <div className={`top-section h-screen ${chatStyle} `}>
-            <div className="border"></div>
-            <div className="borderTwo"></div>
-            <div className="icons">
+        <div
+          className={`relative min-h-screen max-h-screen ${
+            isDarkMode ? 'bg-[#212121]' : 'bg-[#fcfcfc]'
+          }`}>
+          <div className='fixed flex flex-row pt-3 px-2 w-full h-20 bg-[#e6e3ff] bg-opacity-50 z-20'>
+            <div className='flex flex-row w-[50%]'>
               <IoArrowBack
-                className='h-8 w-8 mt-4 ml-3 text-white'
+                className='h-8 w-8 ml-3 mt-2 text-black'
                 onClick={handleBackButton}
-                />
-              <div className='flex'>
-                <img
-                  src={CDNURL + avatarUrlValue}
-                  alt={'profileAvatar'}
-                  className='mt-1 ml-3 w-12 h-12 rounded-full'
-                  />
-                <p className='pl-3 pt-3.5 font-bold text-[15px]'>{usernameValue}</p>
-              </div>
-              <div className="social-media"><IoSettingsSharp className='h-7 w-7 mt-3 text-white' onClick={handleOpenSettings}/></div>
+              />
+              <img
+                src={CDNURL + avatarUrlValue}
+                alt={'profileAvatar'}
+                className='ml-3 w-12 h-12 rounded-full'
+              />
+              <p className='pl-3 pt-2.5 font-bold text-[18px] text-[#3d3e3f]'>
+                {usernameValue}
+              </p>
             </div>
-            <div className="flex flex-col h-screen justify-end items-center">
-              <div className="flex flex-col w-full max-w-sm h-4/5 overflow-y-auto p-4 mb-14">
-              {messagesOutPut.slice().reverse().map((message) => (
-                <OwnerMsgBoxComponent
-                  key={message.message_id}
-                  text={message.context}
-                  isMine={message.user_id === userId}
-                  date={message.delivered_date}
-                  />
-                  ))}
-                <div ref={messagesEndRef} />
-              </div>
+            <div className='flex flex-row w-[50%] justify-end pr-2 mt-3'>
+              <BiSolidPhoneCall className='w-6 h-6 text-blue-500' />
+              <FaVideo className='w-6 h-6 text-blue-500 mr-3 ml-4' />
+              <HiDotsVertical className='w-6 h-6 text-blue-500' />
             </div>
-            <div className='absolute bottom-4 w-full flex justify-center'>
-              <div className="messageBox">
-                <input
-                  placeholder="Message..."
-                  type="text"
-                  id="messageInput"
-                  value={messageText}
-                  onChange={handleTextAreaChange}
-                />
-                <button id="sendButton" onClick={handleSubmit}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
-                    <path
-                      fill="none"
-                      d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"
-                    ></path>
-                    <path
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="33.67"
-                      stroke="#212427"
-                      d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
+          </div>
+          <div className='flex z-0 h-screen'>
+            <div
+              className='mt-24 pb-4 px-2 h-4/5 overflow-y-auto w-full'>
+              {messagesOutPut
+                .slice()
+                .reverse()
+                .map((message) => (
+                  <OwnerMsgBoxComponent
+                    key={message.message_id}
+                    text={message.context}
+                    isMine={message.user_id === userId}
+                    date={message.delivered_date}
+                  />
+                ))}
+              <div ref={messagesEndRef} />
+            </div>
+          </div>
+          <div className='absolute bottom-4 w-full flex justify-center'>
+            <div className='messageBox'>
+              <input
+                placeholder='Napisz Wiadomość...'
+                type='text'
+                id='messageInput'
+                className='w-[90%] bg-white'
+                value={messageText}
+                onChange={handleTextAreaChange}
+              />
+              <button
+                className='bg-blue-500 h-[50px] w-[50px] rounded-2xl -mr-7'
+                onClick={handleSubmit}>
+                <IoSend className='text-white h-5 w-5 mx-auto flex' />
+              </button>
             </div>
           </div>
         </div>
-    )}
+      )}
     </>
   );
 };
