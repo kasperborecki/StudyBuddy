@@ -17,7 +17,7 @@ const SubjectsComponent: React.FC = () => {
       try {
         setIsLoading(true);
         const subjectsRes = await SubjectsData.getSubjects();
-        setSubjectsData(subjectsRes);
+        setSubjectsData(subjectsRes || []); // Ensure it's an array
       } catch (error: any) {
         console.error(error.message);
       } finally {
@@ -29,7 +29,7 @@ const SubjectsComponent: React.FC = () => {
       try {
         setIsLoading(true);
         const languagesRes = await SubjectsData.getLanguages();
-        setLanguagesData(languagesRes);
+        setLanguagesData(languagesRes || []); // Ensure it's an array
       } catch (error: any) {
         console.error(error.message);
       } finally {
@@ -40,7 +40,14 @@ const SubjectsComponent: React.FC = () => {
     fetchSubjects();
     fetchLanguages();
   }, []);
-  console.log(subjectsData);
+
+  const calculateAveragePrice = (offers: any[]) => {
+    if (!offers || offers.length === 0) return 0;
+    const prices = offers.map(offer => offer.price);
+    const sum = prices.reduce((acc, curr) => acc + curr, 0);
+    return sum / offers.length;
+  };
+  
   return (
     <>
       {isLoading ? (
@@ -50,8 +57,10 @@ const SubjectsComponent: React.FC = () => {
           <div className='flex flex-wrap justify-center'>
             <div className='w-40 m-3 flex flex-col text-[18px] pt-2 text-[#303336] font-semibold'>
               <div className='flex flex-row'>
-              <p>182</p>
-              <p className='mx-2 font-bold text-[#7c4fc4]'><i>Korepetytorów</i></p>
+                <p>182</p>
+                <p className='mx-2 font-bold text-[#7c4fc4]'>
+                  <i>Korepetytorów</i>
+                </p>
               </div>
               <p>dostępnych</p>
             </div>
@@ -60,7 +69,8 @@ const SubjectsComponent: React.FC = () => {
                 {subjectsData.map((subjectData, index) => (
                   <UISubjectButton
                     index={index}
-                    totalItems={subjectsData.length}
+                    totalItems={subjectData.offers ? subjectData.offers.length : 0}
+                    averagePrice={calculateAveragePrice(subjectData.offers || [])}
                     key={subjectData.id}
                     text={subjectData.subject}
                     colour={subjectData.colour}
@@ -77,7 +87,7 @@ const SubjectsComponent: React.FC = () => {
                 {languagesData.map((languageData, index) => (
                   <UISubjectButton
                     index={index}
-                    totalItems={subjectsData.length}
+                    totalItems={languagesData.length} // Fixed typo, subjectsData -> languagesData
                     key={languageData.id}
                     text={languageData.subject}
                     colour={languageData.colour}
@@ -86,6 +96,7 @@ const SubjectsComponent: React.FC = () => {
                     CDNURL={
                       'https://kgejrkbokmzmryqkyial.supabase.co/storage/v1/object/public/subjectsicons/'
                     }
+                    averagePrice={10}
                   />
                 ))}
               </>
@@ -97,4 +108,4 @@ const SubjectsComponent: React.FC = () => {
   );
 };
 
-export default SubjectsComponent;
+export default SubjectsComponent

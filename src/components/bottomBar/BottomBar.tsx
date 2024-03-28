@@ -64,12 +64,12 @@ const BottomBar = () => {
               className={`inline-flex flex-col items-center justify-center px-5 rounded-s-full group`}>
               <AiFillHome
                 className={`w-[26px] h-[26px] ${
-                  activeTab === 1 ? 'text-[#893Eff]' : 'text-gray-400'
+                  activeTab === 1 ? 'text-blue-500' : 'text-gray-400'
                 }`}
               />
               <p
                 className={` ${
-                  activeTab === 1 ? 'text-[#893Eff]' : 'text-gray-400'
+                  activeTab === 1 ? 'text-blue-500' : 'text-gray-400'
                 }`}>
                 Home
               </p>
@@ -81,12 +81,12 @@ const BottomBar = () => {
               className={`inline-flex flex-col items-center justify-center px-5 group`}>
               <IoChatboxEllipsesSharp
                 className={`w-[26px] h-[26px] ${
-                  activeTab === 2 ? 'text-[#893Eff]' : 'text-gray-400'
+                  activeTab === 2 ? 'text-blue-500' : 'text-gray-400'
                 }`}
               />
               <p
                 className={` ${
-                  activeTab === 2 ? 'text-[#893Eff]' : 'text-gray-400'
+                  activeTab === 2 ? 'text-blue-500' : 'text-gray-400'
                 }`}>
                 Czaty
               </p>
@@ -137,12 +137,12 @@ const BottomBar = () => {
               className={`inline-flex flex-col items-center justify-center px-5 group `}>
               <FaCalendarAlt
                 className={`w-[26px] h-[26px]  ${
-                  activeTab === 4 ? 'text-[#893Eff]' : 'text-gray-400'
+                  activeTab === 4 ? 'text-blue-500' : 'text-gray-400'
                 }`}
               />
               <p
                 className={` ${
-                  activeTab === 4 ? 'text-[#893Eff]' : 'text-gray-400'
+                  activeTab === 4 ? 'text-blue-500' : 'text-gray-400'
                 }`}>
                 Kalendarz
               </p>
@@ -154,12 +154,12 @@ const BottomBar = () => {
               className={`inline-flex flex-col items-center justify-center px-5 rounded-e-full group`}>
               <IoPersonSharp
                 className={` w-[26px] h-[26px] ${
-                  activeTab === 5 ? 'text-[#893Eff]' : 'text-gray-400'
+                  activeTab === 5 ? 'text-blue-500' : 'text-gray-400'
                 }`}
               />
               <p
                 className={` ${
-                  activeTab === 5 ? 'text-[#893Eff]' : 'text-gray-400'
+                  activeTab === 5 ? 'text-blue-500' : 'text-gray-400'
                 }`}>
                 Profil
               </p>
