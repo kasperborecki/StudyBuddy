@@ -57,6 +57,7 @@ const ChatPage = () => {
         console.error(error.message);
       } finally {
         setIsLoading(false);
+        scrollToBottom();
       }
     };
     fetchMessages();
@@ -77,9 +78,6 @@ const ChatPage = () => {
     messagesEndRef.current?.scrollIntoView({behavior: 'auto'});
   };
   
-  useEffect(() => {
-    scrollToBottom();
-  }, [messagesOutPut]);  
   
   const handleTextAreaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessageText(event.target.value);
