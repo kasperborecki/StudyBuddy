@@ -70,7 +70,10 @@ const HomePage = () => {
               className={` font-Roboto mt-4 w-[82%] ${
                 isDarkMode ? 'text-[#dddddd]' : 'text-black'
               }`}>
-                <p className='text-xl'>Witaj <b>{user.name}</b></p>
+                <p className='text-xl'>Witaj <b>
+                {user.name &&
+                  user.name.charAt(0).toUpperCase() +
+                    user.name.slice(1)}</b></p>
               <p className='font-lg text-gray-600 text-opacity-70'>
               Znajdz <b>odpowiedniego</b> nauczyciela dla <b><i>ciebie</i></b>.
               </p>

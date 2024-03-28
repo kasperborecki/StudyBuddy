@@ -19,3 +19,8 @@ export const chatStyling = atom({
   key: 'chatStyling',
   default: '',
 });
+
+export const userId = atom({
+  key: 'userId',
+  default: '',
+});

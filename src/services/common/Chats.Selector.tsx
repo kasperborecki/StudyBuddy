@@ -193,8 +193,18 @@ const createChatAfterRequest = async (
   return { chatId };
 };
 
+// update message as read
+
+const updateMessageReadState = async (chatId: string, userId: string) => {
+  const { data, error } = await supabase
+    .from('messages')
+    .update([{is_read: true}])
+    .eq('chat_id', chatId)
+    .eq('user_id', userId);
 
 
+  if (error) throw error.message;
+};
 
 const ChatsData = {
   getAllUserChats,
@@ -203,6 +213,7 @@ const ChatsData = {
   addNewMessage,
   updateChatStyle,
   createChatAfterRequest,
+  updateMessageReadState,
 };
 
 export default ChatsData;
