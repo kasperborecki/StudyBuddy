@@ -24,7 +24,7 @@ const AddOfferFirstStep = () => {
       try {
         setIsLoading(true);
         const subjectsRes = await SubjectsData.getSubjects();
-        setSubjectsData(subjectsRes);
+        // setSubjectsData(subjectsRes);
       } catch (error: any) {
         console.error(error.message);
       } finally {

@@ -13,6 +13,7 @@ interface CustomButtonProps {
   shadow?: string;
   index: number;
   totalItems: number;
+  averagePrice: any;
 }
 
 const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
@@ -23,6 +24,7 @@ const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
   colour,
   index,
   totalItems,
+  averagePrice,
 }) => {
   const [isDarkMode] = useRecoilState(DarkModeAtom);
   const [, setSubjectId] = useRecoilState(subjectIdAtom);
@@ -60,12 +62,12 @@ const UiWhiteButtonLong: React.FC<CustomButtonProps> = ({
             <b className='absolute top-2 left-2 text-[17px]'>{text}</b>
           </p>
           <div className='absolute flex flex-col top-8 left-2 font-semibold text-[13px]'>
-            <p> {colour?.length != 0 && '~80PLN'}</p>
+            <p> {colour?.length != 0 && '~' + averagePrice + 'PLN'}</p>
           </div>
           <div className='absolute flex flex-row bottom-3 left-3'>
             <IoPerson className='mr-[4px] mt-[2px]' />
             <p>
-              <b>80</b> nauczycieli
+              <b>{totalItems}</b> nauczycieli
             </p>
           </div>
           <img
