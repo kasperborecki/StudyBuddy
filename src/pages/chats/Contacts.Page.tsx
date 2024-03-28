@@ -11,6 +11,7 @@ import {
   avatarUrl,
   chatId,
   chatStyling,
+  userId,
   userName,
 } from '../../atoms/ChatInformaion.Atom';
 import {formatDistanceToNow} from 'date-fns';
@@ -26,6 +27,7 @@ const ChatsPage = () => {
   const [chatsData, setChatsData] = useState<Chats[]>([]);
   const [, setUsername] = useRecoilState(userName);
   const [, setAvatarUrl] = useRecoilState(avatarUrl);
+  const [, setUserId] = useRecoilState(userId);
   const [, setChatId] = useRecoilState(chatId);
   const [, setChatStyle] = useRecoilState(chatStyling);
   const [chatsType, setChatsType] = useState<number>(1)
@@ -53,15 +55,18 @@ const ChatsPage = () => {
   }, [session?.user.id]);
 
   const handleOpenChat = (
-    chatsId: any,
+    chatId: any,
     avatarUrl: any,
+    userId: any,
     userName: any,
     chatBackground: any,
   ) => {
-    navigate(`/chat/${chatsId}`);
+    console.log(chatId);
+    navigate(`/chat/${chatId}`);
+    setChatId(chatId);
     setAvatarUrl(avatarUrl);
+    setUserId(userId)
     setUsername(userName);
-    setChatId(chatsId);
     setChatStyle(chatBackground);
   };
 
@@ -117,6 +122,7 @@ const ChatsPage = () => {
                   handleOpenChat(
                     chats.id,
                     chats.profile?.avatar_url,
+                    chats.profile?.user_id,
                     chats.profile?.name,
                     chats.background_style,
                   )
@@ -136,7 +142,7 @@ const ChatsPage = () => {
                   </div>
                   <div className='ml-4 text-left'>
                     <p className='font-bold text-lg text-[#3d3e3f]'>
-                      {chats.profile?.name}
+                      {chats.profile?.name && chats.profile?.name.charAt(0).toUpperCase() + chats.profile?.name.slice(1)}
                     </p>
                     <p className='text-sm text-gray-600'>
                       {chats.last_message?.context?.slice(0, 30)}

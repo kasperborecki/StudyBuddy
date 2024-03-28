@@ -1,13 +1,8 @@
-import {
-  IoArrowBack,
-  IoCall,
-  IoSend,
-  IoSettingsSharp,
-  IoVideocam,
-} from 'react-icons/io5';
+import {IoArrowBack, IoSend} from 'react-icons/io5';
 import {
   avatarUrl,
   chatId,
+  userId as chatUserId, // Rename userId import to avoid conflict
   chatStyling,
   userName,
 } from '../../atoms/ChatInformaion.Atom';
@@ -19,12 +14,11 @@ import OwnerMsgBoxComponent from '../../components/messageBox/OwnerMsgBox.Compon
 import {ChatStyle, Chats, Messages} from '../../interfaces/Chats.Interfaces';
 import ChatsData from '../../services/common/Chats.Selector';
 import {useAuth} from '../../atoms/Route.Atom';
-import {GiCardExchange} from 'react-icons/gi';
 import '../../styles/ChatBackGround.css';
 import '../../styles/ChatMessageInput.css';
 import LoadingSuspense from '../../components/loadingSuspense/LoadingSuspense';
 import {ChatStyleing} from '../../constans/ChatStyleing.Constants';
-import {DarkModeAtom} from '../../atoms/DarkMode.Atom';
+import {DarkModeAtom} from '../../atoms/DarkMode.Atom'; // Correct import path
 import {HiDotsVertical} from 'react-icons/hi';
 import {FaVideo} from 'react-icons/fa';
 import {BiSolidPhoneCall} from 'react-icons/bi';
@@ -38,6 +32,7 @@ const ChatPage = () => {
   const [usernameValue] = useRecoilState(userName);
   const [avatarUrlValue] = useRecoilState(avatarUrl);
   const [chatIdValue] = useRecoilState(chatId);
+  const [chatUserIdValue] = useRecoilState(chatUserId);
   const [chatStylingValue] = useRecoilState(chatStyling);
   const [, setIsBottomBarClosed] = useRecoilState(bottomBarClosed);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,6 +52,7 @@ const ChatPage = () => {
         setIsLoading(true);
         const messagesRes = await ChatsData.getAllCurentChatMsg(chatIdValue);
         setMessagesOutPut(messagesRes);
+        await ChatsData.updateMessageReadState(chatIdValue, chatUserIdValue);
       } catch (error: any) {
         console.error(error.message);
       } finally {
@@ -77,13 +73,14 @@ const ChatPage = () => {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({behavior: 'auto'});
-  };
-
   useEffect(() => {
     scrollToBottom();
   }, [messagesOutPut]);
+  
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+  };
+  
 
   const handleTextAreaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessageText(event.target.value);
@@ -105,11 +102,6 @@ const ChatPage = () => {
       updateMessages();
     }
   };
-
-  const chatStyleObj = ChatStyleing.find(
-    (item) => item.id.toString() === chatStylingValue,
-  );
-  const chatStyle = chatStyleObj ? chatStyleObj.style : '';
 
   return (
     <>
@@ -134,7 +126,9 @@ const ChatPage = () => {
                 className='ml-3 w-12 h-12 rounded-full'
               />
               <p className='pl-3 pt-2.5 font-bold text-[18px] text-[#3d3e3f]'>
-                {usernameValue}
+                {usernameValue &&
+                  usernameValue.charAt(0).toUpperCase() +
+                    usernameValue.slice(1)}
               </p>
             </div>
             <div className='flex flex-row w-[50%] justify-end pr-2 mt-3'>
@@ -144,8 +138,7 @@ const ChatPage = () => {
             </div>
           </div>
           <div className='flex z-0 h-screen'>
-            <div
-              className='mt-24 pb-4 px-2 h-4/5 overflow-y-auto w-full'>
+            <div className='mt-24 pb-4 px-2 h-4/5 overflow-y-auto w-full'>
               {messagesOutPut
                 .slice()
                 .reverse()
