@@ -73,15 +73,14 @@ const ChatPage = () => {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messagesOutPut]);
-  
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+    messagesEndRef.current?.scrollIntoView({behavior: 'auto'});
   };
   
-
+  useEffect(() => {
+    scrollToBottom();
+  }, [messagesOutPut]);  
+  
   const handleTextAreaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessageText(event.target.value);
   };
